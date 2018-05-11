@@ -1,0 +1,44 @@
+/**
+ * Module siemens.collapsible
+ * basic stylesheet
+ * 
+ * @project   Digital First
+ * @date      2011-04-18
+ * @author    Robin Rush, Sapient GmbH <rrush@sapient.com>
+ * @licensor  Siemens AG
+ * @site      Siemens Healthcare
+ */
+ 
+.section-productline,.section-special-topics {margin-bottom:10px;}
+ 
+/* collapsible - general styles */
+.collapsible { padding: 10px 0 10px 0; border-bottom: 1px dotted #666666;} 
+.no-js .collapsible {float:left;}
+.collapsible h3 { color: #333333; }
+.collapsible img { float: left; margin: 0 10px 0 0; border: 1px solid #ffffff; }
+.collapsible a { display: block; height: 100%; text-decoration: none; cursor: pointer; }
+.collapsible a:hover h3, .collapsible a:focus h3, .collapsible a:active h3 { color: #990000; }
+.collapsible a:hover img, .collapsible a:focus img, .collapsible a:active img{ border: 1px solid #990000; }
+ 
+/* collapsible - section header styles */
+.collapsible .collapsible-header { overflow: hidden; }
+.collapsible .collapsible-header .collapsible-icon { float: left; width: 11px; height: 11px; margin: 0 5px 0 0; background: url(../images/icon-plus.gif) no-repeat 0 0; overflow: hidden; }
+.no-js .collapsible .collapsible-header .collapsible-icon {background-image: url(../images/icon-minus.gif); } /*if JS is not active, bodies are expanded*/
+.collapsible.active .collapsible-header .collapsible-icon {background-image: url(../images/icon-minus.gif); }
+.collapsible .collapsible-header img { width: 102px; height: 77px; }
+.collapsible .collapsible-header p { padding: 0 0 0 16px; }
+.collapsible .collapsible-header .collapsible-header-description { color: #333333;}
+.collapsible .collapsible-header .collapsible-header-keywords { color: #666666; }
+
+/* collapsible - section body styles */	
+.collapsible .collapsible-body { display: none; }
+.no-js .collapsible .collapsible-body { display: block; }
+.collapsible .collapsible-body h3 { padding: 0 12px; background: url(../images/icon-arrow-right.gif) no-repeat 0 4px; }
+.collapsible .collapsible-body ul {color:#666;}
+.collapsible .collapsible-body-row { clear: left; }
+.collapsible .collapsible-body-row.engaged { padding: 0 0 0 130px; }
+.collapsible .collapsible-body-cell { float: left; width: 297px; margin: 10px 0; }
+.collapsible .collapsible-body-cell img { width: 65px; height: 65px; margin: 0 10px 0 16px; }
+.collapsible .collapsible-body-cell .collapsible-body-description { height: 100%; padding: 0 15px 0 0; color: #333333; overflow: hidden; }
+.collapsible .collapsible-body-list { float: left; width: 232px; margin: 5px 0; }
+.collapsible .collapsible-body-list li { padding: 0 0 5px 0; list-style: none; }

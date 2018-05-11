@@ -1,0 +1,117 @@
+/**
+ * Lightbox
+ * 
+ * The styles in this file are for the module "lightbox". They are
+ * based on example 2 of the original ColorBox.
+ * 
+ * @project   HTML5 template set
+ * @date      2011-05-24
+ * @author    Finn Pröpper, Sapient GmbH <fproepper@sapient.com>
+ * @licensor  Siemens AG
+ * @site      Siemens Healthcare
+ * @see       colorpowered.com/colorbox/core/example2/index.html
+ */
+
+/**
+ * ColorBox Core Style
+ *
+ * The following CSS is consistent between example themes and should not
+ * be altered.
+ *
+ * @section   =core
+ */
+#colorbox, #cboxOverlay, #cboxWrapper {
+	position: absolute;
+	top: 0;
+	left: 0;
+	z-index: 250;
+	overflow: hidden;
+}
+#cboxOverlay {
+	position: fixed;
+	width: 100%;
+	height: 100%;
+}
+#cboxMiddleLeft, #cboxBottomLeft {
+	clear: left;
+}
+#cboxContent {
+	position: relative;
+}
+#cboxLoadedContent {
+	overflow: auto;
+}
+#cboxTitle {
+	margin: 0;
+}
+#cboxLoadingOverlay, #cboxLoadingGraphic {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+}
+#cboxPrevious, #cboxNext, #cboxClose, #cboxSlideshow {
+	cursor: pointer;
+}
+.cboxPhoto {
+	display: block;
+	float: left;
+	margin: auto;
+	border: 0;
+}
+.cboxIframe {
+	display: block;
+	width: 100%;
+	height: 100%;
+	border: 0;
+}
+
+
+
+/**
+ * Customized Style
+ *
+ * Change the following styles to modify the appearance of ColorBox.
+ * They are ordered in a way that represents the nesting of the
+ * generated HTML.
+ *
+ * @section   =custom
+ */
+#cboxOverlay {
+	background: #666;
+}
+#cboxContent {
+	overflow: visible;
+}
+#cboxError {
+	padding: 48px;
+}
+#cboxLoadedContent {
+	padding: 24px 14px 14px;
+	background: #FFF;
+}
+#cboxLoadingGraphic {
+	background: url("../images/progress-indicator.gif") no-repeat center center;
+}
+#cboxLoadingOverlay {
+	background: #FFF;
+}
+/*
+   Modify the following selectors if you want to use extended features
+   like automatic titles, slideshows etc.
+*/
+#cboxTitle, #cboxCurrent, #cboxSlideshow, #cboxPrevious, #cboxNext {
+	display: none;
+}
+#cboxClose {
+	position: absolute;
+	top: 0;
+	right: 0;
+	border-bottom: 2px solid #666;
+	border-left: 2px solid #666;
+	padding: 1px 18px 3px 6px;
+	color: #666;
+	font-size: 85%;
+	font-weight: bold;
+	background: #FFF url("../images/icon-cross.gif") no-repeat right top;
+}

@@ -1,0 +1,3714 @@
+/**
+ * Core stylesheet
+ * The styles in this file represent all basic styles for the Siemens HTML5 template set.
+ * It includes a reset, the basic grid and some default components.
+ *
+ * Why we are using the equals sign in the section identifier:
+ * stopdesign.com/archive/2005/05/03/css-tip-flags.html
+ * 
+ * @project   HTML5 template set
+ * @date      2011-04-06
+ * @author    Finn Pröpper, Sapient GmbH <fproepper@sapient.com>
+ * @licensor  Siemens AG
+ * @site      Siemens Healthcare
+ * 
+ * @colordef  #333333; Quasi black (for most of the copy)
+ * @colordef  #666666; Grey (for some special copy)
+ * @colordef  #999999; Light grey (toolbar and text color)
+ * @colordef  #990000; Dark Red (link and highlight color)
+ * @colordef  #000000; Black (eye-catcher text color)
+ * @colordef  #CC0000; Red (error color)
+ * @colordef  #FFFFFF; White (page background)
+ * @colordef  #CCCCCC; Light grey (background color for modules)
+ * @colordef  #DDDDDD; Lighter grey (background color for modules)
+ * @colordef  #EEEEEE; Lightest grey (background color for modules)
+ * @colordef  #889EA7; Cool green
+ * @colordef  #A0B6C0; Light cool green
+ * @colordef  #CAD6DA; Lightest cool green
+ * @colordef  #949EAA; Cool grey
+ * @colordef  #AFB4BE; Light cool grey
+ * @colordef  #D0D3DA; Lightest cool grey
+ * @colordef  #009999; Green (for logo only)
+ */
+
+/**
+ * html5doctor.com Reset Stylesheet
+ * Eric Meyer's Reset Reloaded + HTML5 baseline
+ *
+ * @section   =reset
+ * @todo      At the end: remove all elements below that are not in use by Siemens
+ * @author    Eric Meyer
+ * @author    Richard Clark
+ * @version   1.6.1
+ * @date      2010-09-17
+ * @see       html5doctor.com/html-5-reset-stylesheet/
+ */
+html, body, div, span, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+abbr, address, cite, code, del, dfn, em, img, ins, kbd, q, samp,
+small, strong, sub, sup, var, b, i, dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, figcaption, figure,
+footer, header, hgroup, menu, nav, section, summary,
+time, mark, audio, video {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 100%;
+  font: inherit;
+  vertical-align: baseline;
+  word-break:break-all;
+}
+article, aside, details, figcaption, figure,
+footer, header, hgroup, menu, nav, section {
+  display: block;
+}
+blockquote, q { quotes: none; }
+blockquote:before, blockquote:after, q:before, q:after { content: ""; content: none; }
+ins { background-color: #FF9; color: #000; text-decoration: none; }
+mark { background-color: #FF9; color: #000; font-style: italic; font-weight: bold; }
+del { text-decoration: line-through; }
+abbr[title], dfn[title] { border-bottom: 1px dotted; cursor: help; }
+table { border-collapse: collapse; border-spacing: 0; }
+input, select { vertical-align: middle; }
+
+
+
+/**
+ * Some basics
+ *
+ * @section   =basic
+ */
+
+/**
+ * Set some defaults for several generic elements
+ *
+ * @subsection   =defaults
+ */
+/* Always force a scrollbar in non-IE */
+html {
+	overflow-y: scroll;
+}
+/* Font normalization inspired by YUI Library's fonts.css: developer.yahoo.com/yui/ */
+body {
+	font: 13px/1.231 Arial, sans-serif;
+	*font-size: small; /* Hack retained to preserve specificity */
+	background: #FFF;
+}
+body, select, input, textarea {
+	color: #333;
+	font-family: Arial, sans-serif;
+}
+h1, h2, h3, h4, h5, h6 {
+	font-weight: bold;
+}
+/* Normalize monospace sizing: en.wikipedia.org/wiki/MediaWiki_talk:Common.css/Archive_11#Teletype_style_fix_for_Chrome */
+pre, code, kbd, samp {
+	font-family: monospace, sans-serif;
+}
+/* Make the small tag use small font-size */
+small {
+	font-size: 77%;
+}
+/* Format strong text bold */
+strong {
+	font-weight: bold;
+}
+/* Set sub, sup without affecting line-height: gist.github.com/413930 */
+sub, sup {
+	font-size: 77%;
+	line-height: 0;
+	position: relative;
+}
+sup {
+	top: -0.5em;
+}
+sub {
+	bottom: -0.25em;
+}
+/* www.pathf.com/blogs/2008/05/formatting-quoted-code-in-blog-posts-css21-white-space-pre-wrap/ */
+pre {
+	white-space: pre;
+	white-space: pre-wrap;
+	word-wrap: break-word;
+	padding: 15px;
+}
+/* Bicubic resizing for non-native sized IMG: code.flickr.com/blog/2008/11/12/on-ui-quality-the-little-things-client-side-image-resizing/ */
+.ie7 img {
+	-ms-interpolation-mode: bicubic;
+}
+
+/**
+ * Lists
+ *
+ * @subsection   =lists
+ */
+ul {
+	margin-left: 1.5em;
+	list-style-type: square;
+}
+ol {
+	margin-left: 2em;
+	list-style-type: decimal;
+}
+
+/**
+ * Horizontal rules
+ *
+ * Styling them is still a problem:
+ * http://www.sovavsiti.cz/css/hr.html
+ *
+ * hr-cautious equals a dotted horizontal rule
+ * 
+ * @subsection   =hr, =rules
+ */
+div.hr,
+div.hr-cautious {
+	display: block;
+	clear: both;
+	height: 1px;
+	margin: 10px 0;
+	border-top: 1px solid #999;
+	padding: 0;
+}
+div.hr-cautious {
+	border-top-style: dotted;
+}
+div.hr hr,
+div.hr-cautious hr {
+	display: none;
+}
+/*
+	Cosmetics for the browsers that support :first-child:
+	Remove the margin on top as the element above should have a gap below already
+*/
+div.hr:first-child,
+div.hr-cautious:first-child {
+	margin-top: 0;
+}
+
+/**
+ * Links
+ *
+ * @subsection   =links
+ */
+a {
+	color: #900;
+	text-decoration: underline;
+}
+/* j.mp/webkit-tap-highlight-color */
+a:link {
+	-webkit-tap-highlight-color: #FF5E99;
+}
+/* Accessible focus treatment: people.opera.com/patrickl/experiments/keyboard/test */
+a:hover, a:active {
+	outline: none;
+}
+/* Our close link, mainly used in layers on the top right */
+a.close {
+	display: block;
+	position: absolute;
+	top: 0;
+	right: 0;
+	width: 18px;
+	height: 18px;
+	overflow: hidden;
+	border-top: 1px solid #FFF;
+	border-bottom: 2px solid #FFF;
+	border-left: 2px solid #FFF;
+	text-indent: -9999em;
+	background: #DDD url("../images/icon-cross.gif") no-repeat center center;
+}
+/*
+	Links with icons in front
+	Extending selectors here to give them highest specificity possible
+	=icons
+*/
+html body a.icon {
+	position: relative;
+	padding-left: 15px;
+	background: none;
+}
+
+html body a.no-colorhighlight {
+	color:#333;
+	text-decoration:none;
+}
+
+
+html body a.icon span {
+	display: block;
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 15px;
+	height: 14px;
+	overflow: hidden;
+	text-indent: -9999em;
+	background: url("../images/icons-sprite.gif") no-repeat 0 0;
+}
+
+html body a.icon-file { padding-left: 15px }
+html body a.icon-file span { top: -1px; width: 9px; height: 12px; background-position: 0 -20px }
+
+html body a.icon-image { padding-left: 18px }
+html body a.icon-image span { top: 2px; width: 12px; height: 9px; background-position: 0 -40px }
+
+html body a.icon-movie { padding-left: 18px }
+html body a.icon-movie span { top: 2px; width: 12px; height: 9px; background-position: 0 -60px }
+
+html body a.icon-sound { padding-left: 18px }
+html body a.icon-sound span { top: -1px; width: 12px; height: 12px; background-position: 0 -80px }
+
+html body a.icon-doc { padding-left: 18px }
+html body a.icon-doc span { top: -1px; width: 12px; height: 12px; background-position: 0 -100px }
+
+html body a.icon-xls { padding-left: 18px }
+html body a.icon-xls span { top: -1px; width: 12px; height: 12px; background-position: 0 -120px }
+
+html body a.icon-ppt { padding-left: 17px }
+html body a.icon-ppt span { top: -1px; width: 11px; height: 12px; background-position: 0 -140px }
+
+html body a.icon-zip { padding-left: 17px }
+html body a.icon-zip span { top: 0; width: 11px; height: 12px; background-position: 0 -160px }
+
+html body a.icon-pdf { padding-left: 18px }
+html body a.icon-pdf span { top: -1px; width: 12px; height: 12px; background-position: 0 -180px }
+
+html body a.icon-htm { padding-left: 19px }
+html body a.icon-htm span { top: -1px; width: 13px; height: 12px; background-position: 0 -200px }
+
+html body a.icon-jpg { padding-left: 18px }
+html body a.icon-jpg span { top: -1px; width: 12px; height: 12px; background-position: 0 -220px }
+
+html body a.icon-gif { padding-left: 18px }
+html body a.icon-gif span { top: -1px; width: 12px; height: 12px; background-position: 0 -240px }
+
+html body a.icon-tif { padding-left: 17px }
+html body a.icon-tif span { top: -1px; width: 11px; height: 12px; background-position: 0 -260px }
+
+html body a.icon-email { padding-left: 17px }
+html body a.icon-email span { top: 2px; width: 12px; height: 9px; background-position: 0 -280px }
+
+html body a.icon-print { padding-left: 18px }
+html body a.icon-print span { top: -1px; width: 12px; height: 12px; background-position: 0 -300px }
+
+html body a.icon-link { padding-left: 11px }
+html body a.icon-link span { top: 4px; width: 5px; height: 7px; background-position: 0 -320px }
+
+html body a.icon-back { padding-left: 11px }
+html body a.icon-back span { top: 4px; width: 5px; height: 7px; background-position: 0 -340px }
+
+html body a.icon-up { padding-left: 15px }
+html body a.icon-up span { top: 4px; width: 9px; height: 6px; background-position: 0 -360px }
+
+html body a.icon-down { padding-left: 13px }
+html body a.icon-down span { top: 4px; width: 7px; height: 5px; background-position: 0 -380px }
+
+html body a.icon-ext { padding-left: 13px }
+html body a.icon-ext span { top: 4px; width: 7px; height: 7px; background-position: 0 -400px }
+
+html body a.icon-email-share { padding-left: 22px }
+html body a.icon-email-share span { top: 4px; width: 18px; height: 9px; background-position: 0 -420px }
+
+html body a.icon-help { padding-left: 18px }
+html body a.icon-help span { top: -1px; width: 15px; height: 12px; background-position: 0 -437px }
+
+html body span.list-item-connotation {
+	color:#666;
+}
+
+/**
+ * Forms
+ *
+ * Some basics, styling of system defaults and input replacements
+ *
+ * @section   =forms
+ */
+
+/**
+ * Basics
+ *
+ * @subsection   =form-basics
+ */
+/* Adjust font sizing in form elements */
+select, input, textarea, button {
+	font: 99% sans-serif;
+}
+/* Webkit browsers add a 2px margin outside the chrome of form elements */
+button, input, select, textarea {
+	margin: 0;
+}
+/* www.sitepoint.com/blogs/2010/08/20/ie-remove-textarea-scrollbars/ */
+textarea {
+	overflow: auto;
+}
+/* Fix legend in IE */
+.ie6 legend, .ie7 legend {
+	margin-left: -7px;
+}
+/* Align checkboxes, radios, text inputs with their label by: Thierry Koblentz tjkdesign.com/ez-css/css/base.css  */
+input[type="radio"] {
+	vertical-align: text-bottom;
+}
+input[type="checkbox"] {
+	vertical-align: middle;
+}
+.ie7 input[type="checkbox"] {
+	vertical-align: baseline;
+}
+.ie6 input {
+	vertical-align: text-bottom;
+}
+/* Hand cursor on clickable input elements */
+label, input[type="button"], input[type="submit"], input[type="image"], button {
+	cursor: pointer;
+}
+/* Make buttons play nice in IE: www.viget.com/inspire/styling-the-button-element-in-internet-explorer/ */
+button {
+	width: auto;
+	overflow: visible;
+}
+
+/**
+ * System defaults
+ *
+ * @subsection   =form-system
+ */
+
+/* Fieldset stuff */
+fieldset {
+	margin: 20px 0 10px;
+}
+fieldset.group {
+	margin: 10px 0;
+}
+/* Bonus for the cool browsers */
+fieldset:first-child {
+	margin-top: 0;
+}
+legend {
+	margin-bottom: 5px;
+	color: #666;
+	font-size: 85%;
+	font-weight: bold;
+}
+/* Fix for FF < 3.6 */
+legend.visuallyhidden {
+	font-size: 0;
+	line-height: 0;
+}
+
+/* Input element defaults */
+textarea {
+	height: 56px;
+	resize: vertical;
+	white-space: pre-wrap;
+	word-wrap: break-word;
+}
+textarea.small {
+	height: 28px;
+}
+legend.error,
+label.error,
+input.error,
+textarea.error,
+select.error {
+	color: #C00;
+}
+label.disabled {
+	color: #999;
+	cursor: default;
+}
+select.disabled {
+	color: #999;
+}
+
+dl {
+	font-size:85%;
+	margin-bottom:15px;
+} 
+dt {
+	color:black;
+}
+dd {
+	padding:0 0 10px 0px;
+}
+
+
+
+/* Generic buttons */
+a.button {
+	display: inline-block;
+	margin-left: 7px;
+	border: 1px solid #999;
+	   -moz-border-radius: 2px; /* FF1+ */
+	-webkit-border-radius: 2px; /* Saf3-4, iOS 1+, Android 1.5+ */
+	        border-radius: 2px; /* Opera 10.5, IE9, Saf5, Chrome, FF4 */
+	padding: 3px 10px;
+	color: #FFF;
+	font-size: 85%;
+	text-decoration: none;
+	background: #999;
+}
+a.button:hover,
+a.button:active,
+a.button:focus {
+	background: #666;
+}
+/* Always use this styling in combination with button: class="button button-disabled" */
+a.button-disabled {
+	border: 1px solid #DDD;
+	color: #999;
+	text-shadow: 1px 0 0 #EEE; /* FF3.5+, Opera 9+, Saf1+, Chrome */
+	background: #DDD;
+}
+a.button-disabled:hover,
+a.button-disabled:active,
+a.button-disabled:focus {
+	color: #AAA;
+	background: #DDD;
+}
+
+/* Overlabeling (works only when JS is enabled) */
+.js label.overlabel {
+	position: absolute;
+	top: 6px;
+	left: 4px;
+	margin: 0;
+	cursor: text;
+}
+.js label.focus {
+	color: #CCC;
+}
+.js label.error {
+	color: #C00;
+}
+
+/* Input elements thar are placed in an input box */
+.input {
+	position: relative;
+	margin-bottom: 10px;
+}
+.input label {
+	display: block;
+	margin-bottom: 2px;
+	font-size: 95%;
+}
+.input input.text,
+.input textarea {
+	width: 244px;
+}
+.input select {
+	width: 250px;
+}
+.input input.text,
+.input textarea,
+.input select {
+	font-size: 100%;
+}
+.input textarea,
+.input select {
+	line-height: 1.28;
+}
+
+/* Lists of checkboxes and radio buttons */
+form ul.choose {
+	margin: 0 0 -3px;
+	padding: 0;
+	list-style: none;
+}
+
+/* Submit button section */
+form .submit {
+	margin: 20px 0 10px;
+	text-align: right;
+}
+
+
+
+/**
+ * Replacements
+ *
+ * We style elements only when JS is enabled (the fancy-forms class is set in
+ * scripts/siemens.fancyForms.js).
+ *
+ * Reason is that only in that case we are able to style dropdowns and buttons
+ * as well (because we need JS for it). Thus the styling remains consistent:
+ * System defaults without JS, fancy forms with JS.
+ *
+ * For the dropdowns we are using the plugin from the Digital First project.
+ *
+ * Checkboxes and radio buttons are replaced with the jQuery plugin Uniform.
+ * The styles are inspired by the default theme.
+ * pixelmatrixdesign.com/uniform/
+ *
+ * @subsection   =form-replacements
+ * @see          pixelmatrixdesign.com/uniform/
+ */
+
+/* Styling of the default elements */
+.fancy-forms input.text,
+.fancy-forms textarea,
+.fancy-forms select {
+	border: 1px solid #999;
+	padding: 2px;
+}
+.fancy-forms input.error,
+.fancy-forms textarea.error,
+.fancy-forms select.error {
+	border-color: #C00;
+}
+
+/* Scrollbars (only for IE) */
+.fancy-forms textarea {
+	scrollbar-3dlight-color: #FFF;
+	scrollbar-darkshadow-color: #FFF;
+	scrollbar-highlight-color: #999;
+	scrollbar-shadow-color: #999;
+	scrollbar-arrow-color: #FFF;
+	scrollbar-base-color: #999;
+	scrollbar-face-color: #999;
+	scrollbar-track-color: #FFF;
+}
+
+/* Styling of the selectBox */
+.fancy-forms a.selectBox-dropdown,
+.fancy-forms ul.selectBox-options {
+	color: #333;
+	font-size: 85%;
+}
+.fancy-forms a.selectBox-dropdown {
+	float: none;
+	width: 227px;
+	margin: 0;
+}
+
+.fancy-forms a.selectBox-dropdown {
+}
+
+/* use fullwidth-form make dropdowns take up the full width of your container 
+  (eg Search filter on right hand side of search results)*/
+
+.s-right .section .fullwidth-form  a.selectBox-dropdown {
+	width: 252px;
+}
+
+.s-right .section a.selectBox-dropdown {
+	width: 219px;
+	font-size:100%;
+}
+
+.fancy-forms a.selectBox-disabled {
+	color: #999;
+}
+
+/* Styling of checkboxes and radio buttons */
+/* Global Declaration */
+div.checker span, div.radio span {
+	background-image: url("../images/checkboxes-radios-sprite.gif");
+	background-repeat: no-repeat;
+	-webkit-font-smoothing: antialiased;
+}
+.radio, .checker, .radio *, .checker * {
+	margin: 0;
+	padding: 0;
+}
+/* Core functionality */
+.checker, .radio {
+	display: -moz-inline-box;
+	display: inline-block;
+	vertical-align: middle;
+	zoom: 1;
+	*display: inline;
+}
+.checker input:focus, .radio input:focus {
+	outline: 0;
+}
+div.checker,
+div.radio {
+	position: relative;
+}
+div.checker span,
+div.radio span {
+	display: -moz-inline-box;
+	display: inline-block;
+	text-align: center;
+}
+div.checker input,
+div.radio input {
+	opacity: 0;
+	filter: alpha(opacity:0);
+	display: inline-block;
+	background: none;
+}
+div.radio input {
+	text-align: center;
+}
+/* Checkbox */
+div.checker,
+div.checker input,
+div.checker span {
+	width: 17px;
+	height: 17px;
+}
+div.checker span {
+	background-position: 0 0;
+}
+div.checker span.checked {
+	background-position: -17px 0;
+}
+div.checker.disabled span {
+	background-position: -34px 0;
+}
+/* Radio */
+div.radio,
+div.radio input,
+div.radio span {
+	width: 16px;
+	height: 16px;
+}
+div.radio span {
+	background-position: 0 -19px;
+}
+div.radio span.checked {
+	background-position: -16px -19px;
+}
+div.radio.disabled span {
+	background-position: -32px -19px;
+}
+
+
+
+/**
+ * Link lists
+ *
+ * Generic lists for links, can be used anywhere
+ *
+ * @section   =link-lists
+ */
+ul.links {
+	margin: 0;
+	padding-bottom: 3px;
+	list-style: none;
+}
+ul.links li {
+	padding: 1px 0 3px;
+	line-height: 1.28;
+}
+ul.links a {
+	display: inline-block;
+	padding-left: 11px;
+	color: #333;
+	text-decoration: none;
+	background: url("../images/icon-arrow-right.gif") no-repeat 0 4px;
+}
+ul.links a:hover,
+ul.links a:active,
+ul.links a:focus {
+	color: #900;
+}
+
+
+
+/**
+ * Tabs
+ *
+ * There are two variants in the styleguide, both are styled below.
+ * Variant 1 has a wrapper with the class "tabs" surrounded, variant 2 has
+ * a wrapper called "tab-links" as it does not really look like tabs but more
+ * like links.
+ *
+ * @section   =tabs
+ */
+
+/* Generic styles for both variants */
+.tabs,
+.tab-links {
+	margin: 0 0 14px;
+	border-bottom: 1px solid #999;
+}
+.tabs ol,
+.tab-links ol {
+	margin: 0;
+	list-style: none;
+}
+/* This is necessary when the jQuery UI plugin for the tabs is in use */
+.ui-tabs-hide {
+	display: none !important;
+}
+
+/* Set font-sizing for the content area */
+#content .tabs,
+#content .tab-links {
+	font-size: 85%;
+}
+
+/* Variant 1 */
+.tabs {
+	line-height: 1.45;
+}
+.tabs li {
+	float: left;
+	margin-right: 2px;
+	border-bottom: 1px solid #FFF;
+	padding-right: 2px;
+	background: url("../images/bg-tabs-sprite.gif") no-repeat right 0;
+}
+/* The last selector is necessary when the jQuery UI plugin for the tabs is in use */
+.tabs li.active,
+.tabs li.ui-state-active {
+	position: relative;
+	top: 1px;
+	margin-top: -1px;
+	border-bottom: 0;
+	background-color: #FFF;
+	background-position: right -100px;
+}
+.tabs a {
+	display: block;
+	padding: 3px 8px 2px 6px;
+	color: #333;
+	font-weight: bold;
+	text-decoration: none;
+	background: #DDD;
+}
+.tabs a:hover,
+.tabs a:active,
+.tabs a:focus {
+	color: #900;
+}
+/* The second selector is necessary when the jQuery UI plugin for the tabs is in use */
+.tabs li.active a,
+.tabs li.ui-state-active a,
+.tabs strong {
+	display: block;
+	border-top: 1px solid #999;
+	border-left: 1px solid #999;
+	padding: 2px 8px 4px 5px;
+	color: #900;
+	background-color: #FFF;
+}
+
+/*
+	Variant 2
+	The values for padding, margin etc. were not all clearly defined in the styleguide
+	thus we defined them with the naked eye.
+*/
+.tab-links {
+	padding: 3px 0;
+	line-height: 1.1;
+}
+.tab-links li {
+	float: left;
+	border-left: 1px solid #999;
+	padding: 0 7px;
+}
+/* Negative margin stuff did not work in IE7 :( */
+.tab-links li.first {
+	border-left: 0;
+	padding-left: 0;
+}
+.tab-links a {
+	display: block;
+	color: #333;
+	font-weight: bold;
+	text-decoration: none;
+}
+.tab-links a:hover,
+.tab-links a:active,
+.tab-links a:focus {
+	color: #900;
+}
+.tab-links strong {
+	display: block;
+	color: #900;
+}
+
+
+
+/**
+ * Tables
+ *
+ * @section   =tables
+ */
+/* Generic formatting that is valid for every table */
+table th {
+	font-weight: bold;
+	text-align: left;
+}
+table td {
+	vertical-align: top;
+}
+table th.number,
+table td.number {
+	text-align: right;
+}
+
+/* Simple table with a header, body and footer (labeled "Simple" in the styleguide) */
+table.simple {
+	width: 100%;
+	margin: 5px 0 16px;
+}
+table.simple caption {
+	font-weight: bold;
+	text-align: left;
+}
+table.simple caption,
+table.simple th,
+table.simple td {
+	padding: 3px 8px 3px 0;
+}
+table.simple thead th,
+table.simple thead td {
+	border-bottom: 1px solid #DDD;
+	color: #666;
+	font-weight: bold;
+}
+table.simple tbody th,
+table.simple tbody td {
+	border-bottom: 1px dotted #DDD;
+	font-weight: normal;
+}
+table.simple tfoot th,
+table.simple tfoot td {
+	border-top: 1px solid #DDD;
+	font-weight: bold;
+}
+
+/* Complex table with several headers and a more complex design (labeled "Medium complexity" in the styleguide) */
+table.complex {
+	width: 100%;
+	margin: 5px 0 16px;
+}
+table.complex caption {
+	border-bottom: 1px solid #FFF;
+	font-weight: bold;
+	text-align: left;
+	background: #DDD;
+}
+table.complex caption,
+table.complex th,
+table.complex td {
+	padding: 3px 17px 3px 6px;
+}
+table.complex thead th,
+table.complex thead td {
+	border-bottom: 1px solid #FFF;
+	color: #666;
+	font-weight: bold;
+	background: #DDD;
+}
+table.complex tbody th,
+table.complex tbody td {
+	border-bottom: 1px dotted #DDD;
+	font-weight: normal;
+}
+table.complex tbody .level-1 th,
+table.complex tbody .level-1 td {
+	border-top: 1px solid #FFF;
+	border-bottom: 1px solid #DDD;
+	font-weight: bold;
+	background: #EEE;
+}
+
+/* Tables in the content area always have the same font settings */
+#content table {
+	font-size: 85%;
+	line-height: 1.28;
+}
+
+
+
+/**
+ * Pagination
+ *
+ * @section   =pagination
+ */
+/* Container */
+.pagination-top {
+	margin: 0 0 6px;
+	border-bottom: 1px dotted #999;
+	padding: 2px 0 4px;
+}
+.pagination-bottom {
+	margin: 6px 0 0;
+	border-top: 1px dotted #999;
+	padding: 4px 0 2px;
+}
+.pagination {
+	float: right;
+	color: #666;
+	font-size: 85%;
+	line-height: 1.1;
+}
+/* Generic styling for all elements of the pagination */
+.pagination a,
+.pagination .prev,
+.pagination .next,
+.pagination .hellip,
+.pagination strong {
+	float: left;
+}
+
+/* Pagination description (eg search results x of y text) */
+
+.pagination-description {
+	font-size:85%;
+	color:#666;
+	font-weight:normal;
+	float:left;
+}
+
+/* Normal page links */
+.pagination a {
+	border-left: 1px solid #666;
+	padding: 0 7px;
+	color: #666;
+	text-decoration: none;
+}
+.pagination a:hover,
+.pagination a:active,
+.pagination a:focus {
+	color: #900;
+}
+/* Previous/next buttons */
+.pagination .prev {
+	border-left: 0;
+	padding-right: 14px;
+	padding-left: 11px;
+	background: url("../images/icon-pagination-sprite.gif") no-repeat left 3px;
+}
+.pagination span.prev {
+	color: #999;
+	background-position: left -13px;
+}
+.pagination .next {
+	border-left: 1px solid #666;
+	padding-right: 11px;
+	padding-left: 14px;
+	background: url("../images/icon-pagination-sprite.gif") no-repeat right -29px;
+}
+.pagination span.next {
+	color: #999;
+	background-position: right -45px;
+}
+/* Horizontal ellipsis */
+.pagination .hellip {
+	border-left: 1px solid #666;
+	padding: 0 7px;
+	color: #666;
+}
+/* Current page styling */
+.pagination .current,
+.pagination strong {
+	border-left: 1px solid #666;
+	padding: 0 7px;
+	color: #900;
+	font-weight: bold;
+}
+/*
+	If there is no prev/next button, you should assign the following class
+	to the first element in order to avoid the border on the left.
+*/
+.pagination .first {
+	border-left: 0;
+}
+
+
+
+/**
+ * Skiplinks
+ *
+ * Skiplinks for better accessibility
+ *
+ * @section   =skiplinks
+ */
+#skiplink {
+	color: #FFF;
+}
+#skiplink:active, #skiplink:focus {
+	display: block;
+	position: absolute;
+	top: 10px;
+	left: 0;
+	z-index: 1000; /* To overlap the logo (1000 is in general our value to "overlap anything") */
+	padding: 10px 20px;
+	background: #999;
+}
+
+
+
+/**
+ * Grid
+ *
+ * The main grid for a typical Siemens page with header, toolbar, breadcrumb,
+ * content area and footer.
+ *
+ * @section   =grid
+ */
+html, body {
+	height: 100%;
+}
+#wrapper {
+	position: relative;
+	min-height: 100%;
+}
+.ie6 #wrapper {
+	height: 100%;
+}
+#header {
+	background: #AFB4BE;
+}
+#toolbar {
+	height: 20px;
+	border-top: 1px solid #FFF;
+	border-bottom: 1px solid #FFF;
+	color: #FFF;
+	background: #999;
+}
+/* IE6 expands toolbar when border gets added to the opener */
+.ie6 #toolbar {
+	overflow: hidden;
+}
+/* Padding bottom has to be the height of the footer */
+#content {
+	clear: both;
+	padding-bottom: 44px;
+}
+/* When the pagetools are in the footer, we need to adjust the padding on the bottom */
+.extended-footer #content {
+	padding-bottom: 51px;
+}
+#footer {
+	position: absolute;
+	bottom: 0;
+	width: 100%;
+	height: 44px;
+	min-width: 916px;
+	overflow: hidden;
+}
+/* When the pagetools are in the footer, we need to adjust the height */
+.extended-footer #footer {
+	height: 51px;
+}
+
+
+
+/**
+ * Header
+ *
+ * Global header for all pages in four variants.
+ *
+ * @section   =header
+ */
+#logo {
+	position: absolute;
+	top: 0;
+	left: 44px;
+	z-index: 300; /* Adopted from the last template set, as desired by Siemens */
+	width: 172px;
+	height: 72px;
+	background: url("../images/siemens-logo.gif") no-repeat;
+}
+#header {
+	overflow: hidden;
+}
+#header .inner,
+#header .visual,
+#header .headertext {
+	height: 144px;
+	overflow: hidden;
+}
+#header .visual {
+	float: left;
+	width: 638px;
+}
+#header .visual img {
+	display: block;
+}
+#header .headertext {
+	width: 300px;
+	height: 76px;
+	border-left: 2px solid #FFF;
+	padding: 68px 0 0 22px;
+	color: #FFF;
+}
+/* Make the headertext div float in IE6 to remove margin */
+.ie6 #header .headertext {
+	float: left;
+}
+/* We support all level headlines to be flexible with the outline */
+#header h1, #header h2, #header h3, #header h4, #header h5, #header h6, #header p.main {
+	font-size: 123.1%;
+	font-weight: bold;
+}
+#header p {
+	margin-bottom: 5px;
+	font-size: 85%;
+	line-height: 1.45;
+}
+#header p.main {
+	margin-bottom: 0;
+	line-height: inherit;
+}
+
+/* The following header types conform with the homepage types */
+/* All styles for type 1: Big with some text */
+#header.type-1 .inner,
+#header.type-1 .visual,
+#header.type-1 .headertext {
+	height: 393px;
+}
+#header.type-1 .visual {
+	
+}
+#header.type-1 .headertext {
+	height: 308px;
+	padding-top: 85px;
+}
+
+/* All styles for type 2: Big but with more space for text */
+#header.type-2 .inner,
+#header.type-2 .visual,
+#header.type-2 .headertext {
+	height: 393px;
+}
+#header.type-2 .visual {
+	width: 362px;
+}
+#header.type-2 .headertext {
+	width: 418px;
+	height: 308px;
+	padding: 85px 76px 0 104px;
+}
+
+/* All styles for type 3: Small, but not as small as default */
+#header.type-3 .inner,
+#header.type-3 .visual,
+#header.type-3 .headertext {
+	height: 196px;
+}
+#header.type-3 .visual {
+	
+}
+#header.type-3 .headertext {
+	height: 111px;
+	padding-top: 85px;
+}
+
+/* Some styles for all three types */
+#header.type-1 h1, #header.type-2 h1, #header.type-3 h1,
+#header.type-1 h2, #header.type-2 h2, #header.type-3 h2,
+#header.type-1 h3, #header.type-2 h3, #header.type-3 h3,
+#header.type-1 h4, #header.type-2 h4, #header.type-3 h4,
+#header.type-1 h5, #header.type-2 h5, #header.type-3 h5,
+#header.type-1 h6, #header.type-2 h6, #header.type-3 h6,
+#header.type-1 p.main, #header.type-2 p.main, #header.type-3 p.main {
+	margin-bottom: 10px;
+	font-size: 153.9%;
+	line-height: 1.3;
+}
+/* Extending the selectors here to trick specificity */
+body #header.type-1 .sub, body #header.type-2 .sub, body #header.type-3 .sub {
+	margin-bottom: 10px;
+	font-size: 108%;
+	font-weight: normal;
+	line-height: 1.285;
+}
+
+
+
+/**
+ * Toolbar
+ *
+ * Global toolbar for all pages.
+ *
+ * @section   =toolbar
+ */
+
+/**
+ * Toolbar grid
+ *
+ * As the toolbar is huge, we need to divide into more parts.
+ *
+ * @subsection   =toolbar-grid
+ */
+#toolbar .wrapper {
+	position: relative;
+	clear: both;
+	z-index: 200; /* to overlap breadcrumb */
+	width: 940px;
+	margin: 0 22px 0 34px;
+}
+/*
+	Default style for a toolbar element
+	All elements should base on this one. Further settings can and should be
+	defined by assigning additional IDs (e.g. #site-id, #language etc.).
+*/
+#toolbar .element {
+	position: relative;
+	float: left;
+}
+#toolbar .identification {
+	float: left;
+	width: 320px;
+}
+#toolbar .service {
+	float: left;
+	width: 274px;
+}
+#toolbar .exploration {
+	float: right;
+	width: 321px;
+}
+/* The "opener" represents a generic element with the arrow in front of it */
+#toolbar a.opener {
+	display: block;
+	float: left;
+	border: 0;
+	border-right: 1px solid #999;
+	border-left: 1px solid #999;
+	margin-right: 2px;
+	padding: 0 8px 0 20px;
+	color: #FFF;
+	font-size: 85%;
+	text-decoration: none;
+	line-height: 20px;
+	background: transparent url("../images/icon-toolbar-arrows-sprite.gif") no-repeat 0 0;
+}
+#toolbar a.opener:hover,
+#toolbar a.opener:active,
+#toolbar a.opener:focus {
+	color: #333;
+	background-position: 0 -60px;
+}
+#toolbar .active a.opener {
+	border-right-color: #FFF;
+	border-bottom: 1px solid #EEE;
+	border-left-color: #FFF;
+	color: #333;
+	background-color: #EEE;
+	background-position: 0 -60px;
+}
+/* A general class for a layer that can be used inside the toolbar (triggered by an opener) */
+#toolbar .layer {
+	display: none;
+	position: absolute;
+	top: 21px;
+	left: 0;
+	min-width: 100px;
+	border: 1px solid #FFF;
+	border-top-width: 0;
+	border-bottom-width: 2px;
+	padding: 19px 10px;
+	color: #333;
+	font-size: 85%;
+	background: #EEE;
+}
+#toolbar .active .layer {
+	display: block;
+}
+/*
+	This is meant to be used in combination with the layer class
+	Needs to be positioned via JS, see scripts/siemens.toolbarLayer.js for details
+*/
+#toolbar .wide {
+	width: 920px;
+}
+/* All lists in the toolbar are for navigation purposes only */
+#toolbar ul {
+	margin: 0;
+	list-style: none;
+}
+
+/**
+ * Site identifier
+ *
+ * The site identifier layer is based on a default layer in the toolbar
+ *
+ * @subsection   =toolbar-site-id
+ */
+#site-id a.opener .c {
+	padding-bottom: 1px; /* Webkit cuts background-image if it overlaps the box */
+	padding-left: 24px;
+	background-image: url("../images/icon-toolbar-countries-sprite.gif");
+	background-repeat: no-repeat;
+}
+#site-id .layer {
+	width: 913px;
+	padding-top: 24px;
+	padding-bottom: 24px;
+	padding-left: 16px;
+	line-height: 1.45;
+}
+#site-id .layer h2 {
+	margin-bottom: 8px;
+}
+#site-id .layer a {
+	color: #333;
+	text-decoration: none;
+}
+#site-id .layer a:hover,
+#site-id .layer a:active,
+#site-id .layer a:focus {
+	color: #900;
+}
+/* Special tab styling */
+#site-id .layer .tabs {
+	margin: 0 0 10px -6px;
+}
+#site-id .layer .tabs li {
+	border-bottom-color: #EEE;
+}
+#site-id .layer .tabs li.active {
+	background-color: #EEE;
+}
+#site-id .layer .tabs li.active a,
+#site-id .layer .tabs li.ui-state-active a,
+#site-id .layer .tabs strong {
+	background-color: #EEE;
+}
+#site-id .layer .tabs a {
+	padding-bottom: 1px;
+}
+#site-id .layer .tabs strong {
+	padding-bottom: 3px;
+}
+#site-id .layer .tabs li.external {
+	padding: 0;
+	background: transparent none;
+}
+#site-id .layer .tabs li.external a {
+	padding-right: 0;
+	padding-left: 22px;
+	font-weight: normal;
+	background: transparent url("../images/icon-arrow-top-right.gif") no-repeat 9px 7px;
+}
+/* Special styling for corporate links */
+#site-id .corp {
+	margin-top: 20px;
+}
+/* Special styling for the ruler */
+#site-id .hr {
+	margin-top: 8px;
+}
+/* Our region columns */
+#site-id .layer ul.versions {
+	float: left;
+	width: 279px;
+	margin-bottom: -2px;
+	margin-left: 40px;
+}
+/* The first one has no margin for the gap */
+#site-id .layer ul.first {
+	margin-left: -4px;
+}
+#site-id .layer ul.versions li {
+	padding: 4px 0 4px 4px;
+}
+#site-id .layer ul.versions li.active {
+	background: #DDD;
+}
+#site-id .layer ul.versions li.active a {
+	color: #900;
+}
+/* Special styles for the links to worldwide and mobile */
+#site-id .layer ul.versions a.worldwide {
+	padding-left: 34px;
+	background: url("../images/icon-toolbar-world-sprite.gif") no-repeat 0 0;
+}
+#site-id .layer ul.versions a.worldwide:hover,
+#site-id .layer ul.versions a.worldwide:active,
+#site-id .layer ul.versions a.worldwide:focus,
+#site-id .layer ul.versions .hover a.worldwide,
+#site-id .layer ul.versions .active a.worldwide {
+	background-position: 0 -14px;
+}
+#site-id .layer ul.versions a.mobile {
+	padding-left: 18px;
+	background: url("../images/icon-toolbar-mobile-sprite.gif") no-repeat 0 1px;
+}
+#site-id .layer ul.versions a.mobile:hover,
+#site-id .layer ul.versions a.mobile:active,
+#site-id .layer ul.versions a.mobile:focus,
+#site-id .layer ul.versions .hover a.mobile,
+#site-id .layer ul.versions .active a.mobile {
+	background-position: 0 -13px;
+}
+/* Country links */
+#site-id .layer ul.versions a.c {
+	padding-bottom: 1px; /* Webkit cuts background-image if it overlaps the box */
+	padding-left: 24px;
+	background-image: url("../images/icon-toolbar-countries-sprite.gif");
+	background-repeat: no-repeat;
+}
+#site-id .layer ul.versions .hover a.c,
+#site-id .layer ul.versions .hover a.worldwide,
+#site-id .layer ul.versions .hover a.mobile {
+	color: #900;
+}
+/* Country specific links */
+#site-id .ad { background-position: 0 -0px }
+#site-id .ae { background-position: 0 -40px }
+#site-id .af { background-position: 0 -80px }
+#site-id .ag { background-position: 0 -120px }
+#site-id .ai { background-position: 0 -160px }
+#site-id .al { background-position: 0 -200px }
+#site-id .am { background-position: 0 -240px }
+#site-id .an { background-position: 0 -280px }
+#site-id .ao { background-position: 0 -320px }
+#site-id .ar { background-position: 0 -360px }
+#site-id .as { background-position: 0 -400px }
+#site-id .at { background-position: 0 -440px }
+#site-id .au { background-position: 0 -480px }
+#site-id .ax { background-position: 0 -520px }
+#site-id .az { background-position: 0 -560px }
+#site-id .ba { background-position: 0 -600px }
+#site-id .bb { background-position: 0 -640px }
+#site-id .bd { background-position: 0 -680px }
+#site-id .be { background-position: 0 -720px }
+#site-id .bf { background-position: 0 -760px }
+#site-id .bg { background-position: 0 -800px }
+#site-id .bh { background-position: 0 -840px }
+#site-id .bi { background-position: 0 -880px }
+#site-id .bj { background-position: 0 -920px }
+#site-id .bm { background-position: 0 -960px }
+#site-id .bn { background-position: 0 -1000px }
+#site-id .bo { background-position: 0 -1040px }
+#site-id .br { background-position: 0 -1080px }
+#site-id .bs { background-position: 0 -1120px }
+#site-id .bt { background-position: 0 -1160px }
+#site-id .bv { background-position: 0 -1200px }
+#site-id .bw { background-position: 0 -1240px }
+#site-id .by { background-position: 0 -1280px }
+#site-id .bz { background-position: 0 -1320px }
+#site-id .ca { background-position: 0 -1360px }
+#site-id .cc { background-position: 0 -1400px }
+#site-id .cd { background-position: 0 -1440px }
+#site-id .cf { background-position: 0 -1480px }
+#site-id .cg { background-position: 0 -1520px }
+#site-id .ch { background-position: 0 -1560px }
+#site-id .ci { background-position: 0 -1600px }
+#site-id .ck { background-position: 0 -1640px }
+#site-id .cl { background-position: 0 -1680px }
+#site-id .cm { background-position: 0 -1720px }
+#site-id .cn { background-position: 0 -1760px }
+#site-id .co { background-position: 0 -1800px }
+#site-id .cr { background-position: 0 -1840px }
+#site-id .cs { background-position: 0 -1880px }
+#site-id .cu { background-position: 0 -1920px }
+#site-id .cv { background-position: 0 -1960px }
+#site-id .cx { background-position: 0 -2000px }
+#site-id .cy { background-position: 0 -2040px }
+#site-id .cz { background-position: 0 -2080px }
+#site-id .de { background-position: 0 -2120px }
+#site-id .dj { background-position: 0 -2160px }
+#site-id .dk { background-position: 0 -2200px }
+#site-id .dm { background-position: 0 -2240px }
+#site-id .do { background-position: 0 -2280px }
+#site-id .dz { background-position: 0 -2320px }
+#site-id .ec { background-position: 0 -2360px }
+#site-id .ee { background-position: 0 -2400px }
+#site-id .eg { background-position: 0 -2440px }
+#site-id .eh { background-position: 0 -2480px }
+#site-id .er { background-position: 0 -2520px }
+#site-id .es-ct { background-position: 0 -2560px }
+#site-id .es { background-position: 0 -2600px }
+#site-id .et { background-position: 0 -2640px }
+#site-id .eu { background-position: 0 -2680px }
+#site-id .fi { background-position: 0 -2720px }
+#site-id .fj { background-position: 0 -2760px }
+#site-id .fk { background-position: 0 -2800px }
+#site-id .fm { background-position: 0 -2840px }
+#site-id .fo { background-position: 0 -2880px }
+#site-id .fr { background-position: 0 -2920px }
+#site-id .ga { background-position: 0 -2960px }
+#site-id .gb-eng { background-position: 0 -3000px }
+#site-id .gb-sct { background-position: 0 -3040px }
+#site-id .gb-wls { background-position: 0 -3080px }
+#site-id .gb { background-position: 0 -3120px }
+#site-id .gd { background-position: 0 -3160px }
+#site-id .ge { background-position: 0 -3200px }
+#site-id .gf { background-position: 0 -3240px }
+#site-id .gh { background-position: 0 -3280px }
+#site-id .gi { background-position: 0 -3320px }
+#site-id .gl { background-position: 0 -3360px }
+#site-id .gm { background-position: 0 -3400px }
+#site-id .gn { background-position: 0 -3440px }
+#site-id .gp { background-position: 0 -3480px }
+#site-id .gq { background-position: 0 -3520px }
+#site-id .gr { background-position: 0 -3560px }
+#site-id .gs { background-position: 0 -3600px }
+#site-id .gt { background-position: 0 -3640px }
+#site-id .gu { background-position: 0 -3680px }
+#site-id .gw { background-position: 0 -3720px }
+#site-id .gy { background-position: 0 -3760px }
+#site-id .hk { background-position: 0 -3800px }
+#site-id .hn { background-position: 0 -3840px }
+#site-id .hr { background-position: 0 -3880px }
+#site-id .ht { background-position: 0 -3920px }
+#site-id .hu { background-position: 0 -3960px }
+#site-id .id { background-position: 0 -4000px }
+#site-id .ie { background-position: 0 -4040px }
+#site-id .il { background-position: 0 -4080px }
+#site-id .in { background-position: 0 -4120px }
+#site-id .io { background-position: 0 -4160px }
+#site-id .iq { background-position: 0 -4200px }
+#site-id .ir { background-position: 0 -4240px }
+#site-id .is { background-position: 0 -4280px }
+#site-id .it { background-position: 0 -4320px }
+#site-id .jm { background-position: 0 -4360px }
+#site-id .jo { background-position: 0 -4400px }
+#site-id .jp { background-position: 0 -4440px }
+#site-id .ke { background-position: 0 -4480px }
+#site-id .kg { background-position: 0 -4520px }
+#site-id .kh { background-position: 0 -4560px }
+#site-id .ki { background-position: 0 -4600px }
+#site-id .km { background-position: 0 -4640px }
+#site-id .kn { background-position: 0 -4680px }
+#site-id .kp { background-position: 0 -4720px }
+#site-id .kr { background-position: 0 -4760px }
+#site-id .kw { background-position: 0 -4800px }
+#site-id .ky { background-position: 0 -4840px }
+#site-id .kz { background-position: 0 -4880px }
+#site-id .la { background-position: 0 -4920px }
+#site-id .lb { background-position: 0 -4960px }
+#site-id .lc { background-position: 0 -5000px }
+#site-id .li { background-position: 0 -5040px }
+#site-id .lk { background-position: 0 -5080px }
+#site-id .lr { background-position: 0 -5120px }
+#site-id .ls { background-position: 0 -5160px }
+#site-id .lt { background-position: 0 -5200px }
+#site-id .lu { background-position: 0 -5240px }
+#site-id .lv { background-position: 0 -5280px }
+#site-id .ly { background-position: 0 -5320px }
+#site-id .ma { background-position: 0 -5360px }
+#site-id .mc { background-position: 0 -5400px }
+#site-id .md { background-position: 0 -5440px }
+#site-id .me { background-position: 0 -5480px }
+#site-id .mg { background-position: 0 -5520px }
+#site-id .mh { background-position: 0 -5560px }
+#site-id .mk { background-position: 0 -5600px }
+#site-id .ml { background-position: 0 -5640px }
+#site-id .mm { background-position: 0 -5680px }
+#site-id .mn { background-position: 0 -5720px }
+#site-id .mo { background-position: 0 -5760px }
+#site-id .mp { background-position: 0 -5800px }
+#site-id .mq { background-position: 0 -5840px }
+#site-id .mr { background-position: 0 -5880px }
+#site-id .ms { background-position: 0 -5920px }
+#site-id .mt { background-position: 0 -5960px }
+#site-id .mu { background-position: 0 -6000px }
+#site-id .mv { background-position: 0 -6040px }
+#site-id .mw { background-position: 0 -6080px }
+#site-id .mx { background-position: 0 -6120px }
+#site-id .my { background-position: 0 -6160px }
+#site-id .mz { background-position: 0 -6200px }
+#site-id .na { background-position: 0 -6240px }
+#site-id .nc { background-position: 0 -6280px }
+#site-id .ne { background-position: 0 -6320px }
+#site-id .nf { background-position: 0 -6360px }
+#site-id .ng { background-position: 0 -6400px }
+#site-id .ni { background-position: 0 -6440px }
+#site-id .nl { background-position: 0 -6480px }
+#site-id .no { background-position: 0 -6520px }
+#site-id .np { background-position: 0 -6560px }
+#site-id .nr { background-position: 0 -6600px }
+#site-id .nu { background-position: 0 -6640px }
+#site-id .nz { background-position: 0 -6680px }
+#site-id .om { background-position: 0 -6720px }
+#site-id .pa { background-position: 0 -6760px }
+#site-id .pe { background-position: 0 -6800px }
+#site-id .pf { background-position: 0 -6840px }
+#site-id .pg { background-position: 0 -6880px }
+#site-id .ph { background-position: 0 -6920px }
+#site-id .pk { background-position: 0 -6960px }
+#site-id .pl { background-position: 0 -7000px }
+#site-id .pm { background-position: 0 -7040px }
+#site-id .pn { background-position: 0 -7080px }
+#site-id .pr { background-position: 0 -7120px }
+#site-id .ps { background-position: 0 -7160px }
+#site-id .pt { background-position: 0 -7200px }
+#site-id .pw { background-position: 0 -7240px }
+#site-id .py { background-position: 0 -7280px }
+#site-id .qa { background-position: 0 -7320px }
+#site-id .re { background-position: 0 -7360px }
+#site-id .ro { background-position: 0 -7400px }
+#site-id .rs { background-position: 0 -7440px }
+#site-id .ru { background-position: 0 -7480px }
+#site-id .rw { background-position: 0 -7520px }
+#site-id .sa { background-position: 0 -7560px }
+#site-id .sb { background-position: 0 -7600px }
+#site-id .sc { background-position: 0 -7640px }
+#site-id .sd { background-position: 0 -7680px }
+#site-id .se { background-position: 0 -7720px }
+#site-id .sg { background-position: 0 -7760px }
+#site-id .sh { background-position: 0 -7800px }
+#site-id .si { background-position: 0 -7840px }
+#site-id .sj { background-position: 0 -7880px }
+#site-id .sk { background-position: 0 -7920px }
+#site-id .sl { background-position: 0 -7960px }
+#site-id .sm { background-position: 0 -8000px }
+#site-id .sn { background-position: 0 -8040px }
+#site-id .so { background-position: 0 -8080px }
+#site-id .sr { background-position: 0 -8120px }
+#site-id .st { background-position: 0 -8160px }
+#site-id .sv { background-position: 0 -8200px }
+#site-id .sy { background-position: 0 -8240px }
+#site-id .sz { background-position: 0 -8280px }
+#site-id .tc { background-position: 0 -8320px }
+#site-id .td { background-position: 0 -8360px }
+#site-id .tf { background-position: 0 -8400px }
+#site-id .tg { background-position: 0 -8440px }
+#site-id .th { background-position: 0 -8480px }
+#site-id .tj { background-position: 0 -8520px }
+#site-id .tk { background-position: 0 -8560px }
+#site-id .tl { background-position: 0 -8600px }
+#site-id .tm { background-position: 0 -8640px }
+#site-id .tn { background-position: 0 -8680px }
+#site-id .to { background-position: 0 -8720px }
+#site-id .tr { background-position: 0 -8760px }
+#site-id .tt { background-position: 0 -8800px }
+#site-id .tv { background-position: 0 -8840px }
+#site-id .tw { background-position: 0 -8880px }
+#site-id .tz { background-position: 0 -8920px }
+#site-id .ua { background-position: 0 -8960px }
+#site-id .ug { background-position: 0 -9000px }
+#site-id .us { background-position: 0 -9040px }
+#site-id .uy { background-position: 0 -9080px }
+#site-id .uz { background-position: 0 -9120px }
+#site-id .va { background-position: 0 -9160px }
+#site-id .vc { background-position: 0 -9200px }
+#site-id .ve { background-position: 0 -9240px }
+#site-id .vg { background-position: 0 -9280px }
+#site-id .vi { background-position: 0 -9320px }
+#site-id .vn { background-position: 0 -9360px }
+#site-id .vu { background-position: 0 -9400px }
+#site-id .wf { background-position: 0 -9440px }
+#site-id .ws { background-position: 0 -9480px }
+#site-id .ye { background-position: 0 -9520px }
+#site-id .yt { background-position: 0 -9560px }
+#site-id .za { background-position: 0 -9600px }
+#site-id .zm { background-position: 0 -9640px }
+#site-id .zw { background-position: 0 -9680px }
+#site-id .ad:hover, #site-id .ad:active, #site-id .ad:focus, #site-id a.opener:hover .ad, #site-id a.opener:active .ad, #site-id a.opener:focus .ad, #site-id.active a.opener .ad, #site-id li.hover .ad, #site-id li.active .ad { background-position: 0 -20px }
+#site-id .ae:hover, #site-id .ae:active, #site-id .ae:focus, #site-id a.opener:hover .ae, #site-id a.opener:active .ae, #site-id a.opener:focus .ae, #site-id.active a.opener .ae, #site-id li.hover .ae, #site-id li.active .ae { background-position: 0 -60px }
+#site-id .af:hover, #site-id .af:active, #site-id .af:focus, #site-id a.opener:hover .af, #site-id a.opener:active .af, #site-id a.opener:focus .af, #site-id.active a.opener .af, #site-id li.hover .af, #site-id li.active .af { background-position: 0 -100px }
+#site-id .ag:hover, #site-id .ag:active, #site-id .ag:focus, #site-id a.opener:hover .ag, #site-id a.opener:active .ag, #site-id a.opener:focus .ag, #site-id.active a.opener .ag, #site-id li.hover .ag, #site-id li.active .ag { background-position: 0 -140px }
+#site-id .ai:hover, #site-id .ai:active, #site-id .ai:focus, #site-id a.opener:hover .ai, #site-id a.opener:active .ai, #site-id a.opener:focus .ai, #site-id.active a.opener .ai, #site-id li.hover .ai, #site-id li.active .ai { background-position: 0 -180px }
+#site-id .al:hover, #site-id .al:active, #site-id .al:focus, #site-id a.opener:hover .al, #site-id a.opener:active .al, #site-id a.opener:focus .al, #site-id.active a.opener .al, #site-id li.hover .al, #site-id li.active .al { background-position: 0 -220px }
+#site-id .am:hover, #site-id .am:active, #site-id .am:focus, #site-id a.opener:hover .am, #site-id a.opener:active .am, #site-id a.opener:focus .am, #site-id.active a.opener .am, #site-id li.hover .am, #site-id li.active .am { background-position: 0 -260px }
+#site-id .an:hover, #site-id .an:active, #site-id .an:focus, #site-id a.opener:hover .an, #site-id a.opener:active .an, #site-id a.opener:focus .an, #site-id.active a.opener .an, #site-id li.hover .an, #site-id li.active .an { background-position: 0 -300px }
+#site-id .ao:hover, #site-id .ao:active, #site-id .ao:focus, #site-id a.opener:hover .ao, #site-id a.opener:active .ao, #site-id a.opener:focus .ao, #site-id.active a.opener .ao, #site-id li.hover .ao, #site-id li.active .ao { background-position: 0 -340px }
+#site-id .ar:hover, #site-id .ar:active, #site-id .ar:focus, #site-id a.opener:hover .ar, #site-id a.opener:active .ar, #site-id a.opener:focus .ar, #site-id.active a.opener .ar, #site-id li.hover .ar, #site-id li.active .ar { background-position: 0 -380px }
+#site-id .as:hover, #site-id .as:active, #site-id .as:focus, #site-id a.opener:hover .as, #site-id a.opener:active .as, #site-id a.opener:focus .as, #site-id.active a.opener .as, #site-id li.hover .as, #site-id li.active .as { background-position: 0 -420px }
+#site-id .at:hover, #site-id .at:active, #site-id .at:focus, #site-id a.opener:hover .at, #site-id a.opener:active .at, #site-id a.opener:focus .at, #site-id.active a.opener .at, #site-id li.hover .at, #site-id li.active .at { background-position: 0 -460px }
+#site-id .au:hover, #site-id .au:active, #site-id .au:focus, #site-id a.opener:hover .au, #site-id a.opener:active .au, #site-id a.opener:focus .au, #site-id.active a.opener .au, #site-id li.hover .au, #site-id li.active .au { background-position: 0 -500px }
+#site-id .ax:hover, #site-id .ax:active, #site-id .ax:focus, #site-id a.opener:hover .ax, #site-id a.opener:active .ax, #site-id a.opener:focus .ax, #site-id.active a.opener .ax, #site-id li.hover .ax, #site-id li.active .ax { background-position: 0 -540px }
+#site-id .az:hover, #site-id .az:active, #site-id .az:focus, #site-id a.opener:hover .az, #site-id a.opener:active .az, #site-id a.opener:focus .az, #site-id.active a.opener .az, #site-id li.hover .az, #site-id li.active .az { background-position: 0 -580px }
+#site-id .ba:hover, #site-id .ba:active, #site-id .ba:focus, #site-id a.opener:hover .ba, #site-id a.opener:active .ba, #site-id a.opener:focus .ba, #site-id.active a.opener .ba, #site-id li.hover .ba, #site-id li.active .ba { background-position: 0 -620px }
+#site-id .bb:hover, #site-id .bb:active, #site-id .bb:focus, #site-id a.opener:hover .bb, #site-id a.opener:active .bb, #site-id a.opener:focus .bb, #site-id.active a.opener .bb, #site-id li.hover .bb, #site-id li.active .bb { background-position: 0 -660px }
+#site-id .bd:hover, #site-id .bd:active, #site-id .bd:focus, #site-id a.opener:hover .bd, #site-id a.opener:active .bd, #site-id a.opener:focus .bd, #site-id.active a.opener .bd, #site-id li.hover .bd, #site-id li.active .bd { background-position: 0 -700px }
+#site-id .be:hover, #site-id .be:active, #site-id .be:focus, #site-id a.opener:hover .be, #site-id a.opener:active .be, #site-id a.opener:focus .be, #site-id.active a.opener .be, #site-id li.hover .be, #site-id li.active .be { background-position: 0 -740px }
+#site-id .bf:hover, #site-id .bf:active, #site-id .bf:focus, #site-id a.opener:hover .bf, #site-id a.opener:active .bf, #site-id a.opener:focus .bf, #site-id.active a.opener .bf, #site-id li.hover .bf, #site-id li.active .bf { background-position: 0 -780px }
+#site-id .bg:hover, #site-id .bg:active, #site-id .bg:focus, #site-id a.opener:hover .bg, #site-id a.opener:active .bg, #site-id a.opener:focus .bg, #site-id.active a.opener .bg, #site-id li.hover .bg, #site-id li.active .bg { background-position: 0 -820px }
+#site-id .bh:hover, #site-id .bh:active, #site-id .bh:focus, #site-id a.opener:hover .bh, #site-id a.opener:active .bh, #site-id a.opener:focus .bh, #site-id.active a.opener .bh, #site-id li.hover .bh, #site-id li.active .bh { background-position: 0 -860px }
+#site-id .bi:hover, #site-id .bi:active, #site-id .bi:focus, #site-id a.opener:hover .bi, #site-id a.opener:active .bi, #site-id a.opener:focus .bi, #site-id.active a.opener .bi, #site-id li.hover .bi, #site-id li.active .bi { background-position: 0 -900px }
+#site-id .bj:hover, #site-id .bj:active, #site-id .bj:focus, #site-id a.opener:hover .bj, #site-id a.opener:active .bj, #site-id a.opener:focus .bj, #site-id.active a.opener .bj, #site-id li.hover .bj, #site-id li.active .bj { background-position: 0 -940px }
+#site-id .bm:hover, #site-id .bm:active, #site-id .bm:focus, #site-id a.opener:hover .bm, #site-id a.opener:active .bm, #site-id a.opener:focus .bm, #site-id.active a.opener .bm, #site-id li.hover .bm, #site-id li.active .bm { background-position: 0 -980px }
+#site-id .bn:hover, #site-id .bn:active, #site-id .bn:focus, #site-id a.opener:hover .bn, #site-id a.opener:active .bn, #site-id a.opener:focus .bn, #site-id.active a.opener .bn, #site-id li.hover .bn, #site-id li.active .bn { background-position: 0 -1020px }
+#site-id .bo:hover, #site-id .bo:active, #site-id .bo:focus, #site-id a.opener:hover .bo, #site-id a.opener:active .bo, #site-id a.opener:focus .bo, #site-id.active a.opener .bo, #site-id li.hover .bo, #site-id li.active .bo { background-position: 0 -1060px }
+#site-id .br:hover, #site-id .br:active, #site-id .br:focus, #site-id a.opener:hover .br, #site-id a.opener:active .br, #site-id a.opener:focus .br, #site-id.active a.opener .br, #site-id li.hover .br, #site-id li.active .br { background-position: 0 -1100px }
+#site-id .bs:hover, #site-id .bs:active, #site-id .bs:focus, #site-id a.opener:hover .bs, #site-id a.opener:active .bs, #site-id a.opener:focus .bs, #site-id.active a.opener .bs, #site-id li.hover .bs, #site-id li.active .bs { background-position: 0 -1140px }
+#site-id .bt:hover, #site-id .bt:active, #site-id .bt:focus, #site-id a.opener:hover .bt, #site-id a.opener:active .bt, #site-id a.opener:focus .bt, #site-id.active a.opener .bt, #site-id li.hover .bt, #site-id li.active .bt { background-position: 0 -1180px }
+#site-id .bv:hover, #site-id .bv:active, #site-id .bv:focus, #site-id a.opener:hover .bv, #site-id a.opener:active .bv, #site-id a.opener:focus .bv, #site-id.active a.opener .bv, #site-id li.hover .bv, #site-id li.active .bv { background-position: 0 -1220px }
+#site-id .bw:hover, #site-id .bw:active, #site-id .bw:focus, #site-id a.opener:hover .bw, #site-id a.opener:active .bw, #site-id a.opener:focus .bw, #site-id.active a.opener .bw, #site-id li.hover .bw, #site-id li.active .bw { background-position: 0 -1260px }
+#site-id .by:hover, #site-id .by:active, #site-id .by:focus, #site-id a.opener:hover .by, #site-id a.opener:active .by, #site-id a.opener:focus .by, #site-id.active a.opener .by, #site-id li.hover .by, #site-id li.active .by { background-position: 0 -1300px }
+#site-id .bz:hover, #site-id .bz:active, #site-id .bz:focus, #site-id a.opener:hover .bz, #site-id a.opener:active .bz, #site-id a.opener:focus .bz, #site-id.active a.opener .bz, #site-id li.hover .bz, #site-id li.active .bz { background-position: 0 -1340px }
+#site-id .ca:hover, #site-id .ca:active, #site-id .ca:focus, #site-id a.opener:hover .ca, #site-id a.opener:active .ca, #site-id a.opener:focus .ca, #site-id.active a.opener .ca, #site-id li.hover .ca, #site-id li.active .ca { background-position: 0 -1380px }
+#site-id .cc:hover, #site-id .cc:active, #site-id .cc:focus, #site-id a.opener:hover .cc, #site-id a.opener:active .cc, #site-id a.opener:focus .cc, #site-id.active a.opener .cc, #site-id li.hover .cc, #site-id li.active .cc { background-position: 0 -1420px }
+#site-id .cd:hover, #site-id .cd:active, #site-id .cd:focus, #site-id a.opener:hover .cd, #site-id a.opener:active .cd, #site-id a.opener:focus .cd, #site-id.active a.opener .cd, #site-id li.hover .cd, #site-id li.active .cd { background-position: 0 -1460px }
+#site-id .cf:hover, #site-id .cf:active, #site-id .cf:focus, #site-id a.opener:hover .cf, #site-id a.opener:active .cf, #site-id a.opener:focus .cf, #site-id.active a.opener .cf, #site-id li.hover .cf, #site-id li.active .cf { background-position: 0 -1500px }
+#site-id .cg:hover, #site-id .cg:active, #site-id .cg:focus, #site-id a.opener:hover .cg, #site-id a.opener:active .cg, #site-id a.opener:focus .cg, #site-id.active a.opener .cg, #site-id li.hover .cg, #site-id li.active .cg { background-position: 0 -1540px }
+#site-id .ch:hover, #site-id .ch:active, #site-id .ch:focus, #site-id a.opener:hover .ch, #site-id a.opener:active .ch, #site-id a.opener:focus .ch, #site-id.active a.opener .ch, #site-id li.hover .ch, #site-id li.active .ch { background-position: 0 -1580px }
+#site-id .ci:hover, #site-id .ci:active, #site-id .ci:focus, #site-id a.opener:hover .ci, #site-id a.opener:active .ci, #site-id a.opener:focus .ci, #site-id.active a.opener .ci, #site-id li.hover .ci, #site-id li.active .ci { background-position: 0 -1620px }
+#site-id .ck:hover, #site-id .ck:active, #site-id .ck:focus, #site-id a.opener:hover .ck, #site-id a.opener:active .ck, #site-id a.opener:focus .ck, #site-id.active a.opener .ck, #site-id li.hover .ck, #site-id li.active .ck { background-position: 0 -1660px }
+#site-id .cl:hover, #site-id .cl:active, #site-id .cl:focus, #site-id a.opener:hover .cl, #site-id a.opener:active .cl, #site-id a.opener:focus .cl, #site-id.active a.opener .cl, #site-id li.hover .cl, #site-id li.active .cl { background-position: 0 -1700px }
+#site-id .cm:hover, #site-id .cm:active, #site-id .cm:focus, #site-id a.opener:hover .cm, #site-id a.opener:active .cm, #site-id a.opener:focus .cm, #site-id.active a.opener .cm, #site-id li.hover .cm, #site-id li.active .cm { background-position: 0 -1740px }
+#site-id .cn:hover, #site-id .cn:active, #site-id .cn:focus, #site-id a.opener:hover .cn, #site-id a.opener:active .cn, #site-id a.opener:focus .cn, #site-id.active a.opener .cn, #site-id li.hover .cn, #site-id li.active .cn { background-position: 0 -1780px }
+#site-id .co:hover, #site-id .co:active, #site-id .co:focus, #site-id a.opener:hover .co, #site-id a.opener:active .co, #site-id a.opener:focus .co, #site-id.active a.opener .co, #site-id li.hover .co, #site-id li.active .co { background-position: 0 -1820px }
+#site-id .cr:hover, #site-id .cr:active, #site-id .cr:focus, #site-id a.opener:hover .cr, #site-id a.opener:active .cr, #site-id a.opener:focus .cr, #site-id.active a.opener .cr, #site-id li.hover .cr, #site-id li.active .cr { background-position: 0 -1860px }
+#site-id .cs:hover, #site-id .cs:active, #site-id .cs:focus, #site-id a.opener:hover .cs, #site-id a.opener:active .cs, #site-id a.opener:focus .cs, #site-id.active a.opener .cs, #site-id li.hover .cs, #site-id li.active .cs { background-position: 0 -1900px }
+#site-id .cu:hover, #site-id .cu:active, #site-id .cu:focus, #site-id a.opener:hover .cu, #site-id a.opener:active .cu, #site-id a.opener:focus .cu, #site-id.active a.opener .cu, #site-id li.hover .cu, #site-id li.active .cu { background-position: 0 -1940px }
+#site-id .cv:hover, #site-id .cv:active, #site-id .cv:focus, #site-id a.opener:hover .cv, #site-id a.opener:active .cv, #site-id a.opener:focus .cv, #site-id.active a.opener .cv, #site-id li.hover .cv, #site-id li.active .cv { background-position: 0 -1980px }
+#site-id .cx:hover, #site-id .cx:active, #site-id .cx:focus, #site-id a.opener:hover .cx, #site-id a.opener:active .cx, #site-id a.opener:focus .cx, #site-id.active a.opener .cx, #site-id li.hover .cx, #site-id li.active .cx { background-position: 0 -2020px }
+#site-id .cy:hover, #site-id .cy:active, #site-id .cy:focus, #site-id a.opener:hover .cy, #site-id a.opener:active .cy, #site-id a.opener:focus .cy, #site-id.active a.opener .cy, #site-id li.hover .cy, #site-id li.active .cy { background-position: 0 -2060px }
+#site-id .cz:hover, #site-id .cz:active, #site-id .cz:focus, #site-id a.opener:hover .cz, #site-id a.opener:active .cz, #site-id a.opener:focus .cz, #site-id.active a.opener .cz, #site-id li.hover .cz, #site-id li.active .cz { background-position: 0 -2100px }
+#site-id .de:hover, #site-id .de:active, #site-id .de:focus, #site-id a.opener:hover .de, #site-id a.opener:active .de, #site-id a.opener:focus .de, #site-id.active a.opener .de, #site-id li.hover .de, #site-id li.active .de { background-position: 0 -2140px }
+#site-id .dj:hover, #site-id .dj:active, #site-id .dj:focus, #site-id a.opener:hover .dj, #site-id a.opener:active .dj, #site-id a.opener:focus .dj, #site-id.active a.opener .dj, #site-id li.hover .dj, #site-id li.active .dj { background-position: 0 -2180px }
+#site-id .dk:hover, #site-id .dk:active, #site-id .dk:focus, #site-id a.opener:hover .dk, #site-id a.opener:active .dk, #site-id a.opener:focus .dk, #site-id.active a.opener .dk, #site-id li.hover .dk, #site-id li.active .dk { background-position: 0 -2220px }
+#site-id .dm:hover, #site-id .dm:active, #site-id .dm:focus, #site-id a.opener:hover .dm, #site-id a.opener:active .dm, #site-id a.opener:focus .dm, #site-id.active a.opener .dm, #site-id li.hover .dm, #site-id li.active .dm { background-position: 0 -2260px }
+#site-id .do:hover, #site-id .do:active, #site-id .do:focus, #site-id a.opener:hover .do, #site-id a.opener:active .do, #site-id a.opener:focus .do, #site-id.active a.opener .do, #site-id li.hover .do, #site-id li.active .do { background-position: 0 -2300px }
+#site-id .dz:hover, #site-id .dz:active, #site-id .dz:focus, #site-id a.opener:hover .dz, #site-id a.opener:active .dz, #site-id a.opener:focus .dz, #site-id.active a.opener .dz, #site-id li.hover .dz, #site-id li.active .dz { background-position: 0 -2340px }
+#site-id .ec:hover, #site-id .ec:active, #site-id .ec:focus, #site-id a.opener:hover .ec, #site-id a.opener:active .ec, #site-id a.opener:focus .ec, #site-id.active a.opener .ec, #site-id li.hover .ec, #site-id li.active .ec { background-position: 0 -2380px }
+#site-id .ee:hover, #site-id .ee:active, #site-id .ee:focus, #site-id a.opener:hover .ee, #site-id a.opener:active .ee, #site-id a.opener:focus .ee, #site-id.active a.opener .ee, #site-id li.hover .ee, #site-id li.active .ee { background-position: 0 -2420px }
+#site-id .eg:hover, #site-id .eg:active, #site-id .eg:focus, #site-id a.opener:hover .eg, #site-id a.opener:active .eg, #site-id a.opener:focus .eg, #site-id.active a.opener .eg, #site-id li.hover .eg, #site-id li.active .eg { background-position: 0 -2460px }
+#site-id .eh:hover, #site-id .eh:active, #site-id .eh:focus, #site-id a.opener:hover .eh, #site-id a.opener:active .eh, #site-id a.opener:focus .eh, #site-id.active a.opener .eh, #site-id li.hover .eh, #site-id li.active .eh { background-position: 0 -2500px }
+#site-id .er:hover, #site-id .er:active, #site-id .er:focus, #site-id a.opener:hover .er, #site-id a.opener:active .er, #site-id a.opener:focus .er, #site-id.active a.opener .er, #site-id li.hover .er, #site-id li.active .er { background-position: 0 -2540px }
+#site-id .es-ct:hover, #site-id .es-ct:active, #site-id .es-ct:focus, #site-id a.opener:hover .es-ct, #site-id a.opener:active .es-ct, #site-id a.opener:focus .es-ct, #site-id.active a.opener .es-ct, #site-id li.hover .es-ct, #site-id li.active .es-ct { background-position: 0 -2580px }
+#site-id .es:hover, #site-id .es:active, #site-id .es:focus, #site-id a.opener:hover .es, #site-id a.opener:active .es, #site-id a.opener:focus .es, #site-id.active a.opener .es, #site-id li.hover .es, #site-id li.active .es { background-position: 0 -2620px }
+#site-id .et:hover, #site-id .et:active, #site-id .et:focus, #site-id a.opener:hover .et, #site-id a.opener:active .et, #site-id a.opener:focus .et, #site-id.active a.opener .et, #site-id li.hover .et, #site-id li.active .et { background-position: 0 -2660px }
+#site-id .eu:hover, #site-id .eu:active, #site-id .eu:focus, #site-id a.opener:hover .eu, #site-id a.opener:active .eu, #site-id a.opener:focus .eu, #site-id.active a.opener .eu, #site-id li.hover .eu, #site-id li.active .eu { background-position: 0 -2700px }
+#site-id .fi:hover, #site-id .fi:active, #site-id .fi:focus, #site-id a.opener:hover .fi, #site-id a.opener:active .fi, #site-id a.opener:focus .fi, #site-id.active a.opener .fi, #site-id li.hover .fi, #site-id li.active .fi { background-position: 0 -2740px }
+#site-id .fj:hover, #site-id .fj:active, #site-id .fj:focus, #site-id a.opener:hover .fj, #site-id a.opener:active .fj, #site-id a.opener:focus .fj, #site-id.active a.opener .fj, #site-id li.hover .fj, #site-id li.active .fj { background-position: 0 -2780px }
+#site-id .fk:hover, #site-id .fk:active, #site-id .fk:focus, #site-id a.opener:hover .fk, #site-id a.opener:active .fk, #site-id a.opener:focus .fk, #site-id.active a.opener .fk, #site-id li.hover .fk, #site-id li.active .fk { background-position: 0 -2820px }
+#site-id .fm:hover, #site-id .fm:active, #site-id .fm:focus, #site-id a.opener:hover .fm, #site-id a.opener:active .fm, #site-id a.opener:focus .fm, #site-id.active a.opener .fm, #site-id li.hover .fm, #site-id li.active .fm { background-position: 0 -2860px }
+#site-id .fo:hover, #site-id .fo:active, #site-id .fo:focus, #site-id a.opener:hover .fo, #site-id a.opener:active .fo, #site-id a.opener:focus .fo, #site-id.active a.opener .fo, #site-id li.hover .fo, #site-id li.active .fo { background-position: 0 -2900px }
+#site-id .fr:hover, #site-id .fr:active, #site-id .fr:focus, #site-id a.opener:hover .fr, #site-id a.opener:active .fr, #site-id a.opener:focus .fr, #site-id.active a.opener .fr, #site-id li.hover .fr, #site-id li.active .fr { background-position: 0 -2940px }
+#site-id .ga:hover, #site-id .ga:active, #site-id .ga:focus, #site-id a.opener:hover .ga, #site-id a.opener:active .ga, #site-id a.opener:focus .ga, #site-id.active a.opener .ga, #site-id li.hover .ga, #site-id li.active .ga { background-position: 0 -2980px }
+#site-id .gb-eng:hover, #site-id .gb-eng:active, #site-id .gb-eng:focus, #site-id a.opener:hover .gb-eng, #site-id a.opener:active .gb-eng, #site-id a.opener:focus .gb-eng, #site-id.active a.opener .gb-eng, #site-id li.hover .gb-eng, #site-id li.active .gb-eng { background-position: 0 -3020px }
+#site-id .gb-sct:hover, #site-id .gb-sct:active, #site-id .gb-sct:focus, #site-id a.opener:hover .gb-sct, #site-id a.opener:active .gb-sct, #site-id a.opener:focus .gb-sct, #site-id.active a.opener .gb-sct, #site-id li.hover .gb-sct, #site-id li.active .gb-sct { background-position: 0 -3060px }
+#site-id .gb-wls:hover, #site-id .gb-wls:active, #site-id .gb-wls:focus, #site-id a.opener:hover .gb-wls, #site-id a.opener:active .gb-wls, #site-id a.opener:focus .gb-wls, #site-id.active a.opener .gb-wls, #site-id li.hover .gb-wls, #site-id li.active .gb-wls { background-position: 0 -3100px }
+#site-id .gb:hover, #site-id .gb:active, #site-id .gb:focus, #site-id a.opener:hover .gb, #site-id a.opener:active .gb, #site-id a.opener:focus .gb, #site-id.active a.opener .gb, #site-id li.hover .gb, #site-id li.active .gb { background-position: 0 -3140px }
+#site-id .gd:hover, #site-id .gd:active, #site-id .gd:focus, #site-id a.opener:hover .gd, #site-id a.opener:active .gd, #site-id a.opener:focus .gd, #site-id.active a.opener .gd, #site-id li.hover .gd, #site-id li.active .gd { background-position: 0 -3180px }
+#site-id .ge:hover, #site-id .ge:active, #site-id .ge:focus, #site-id a.opener:hover .ge, #site-id a.opener:active .ge, #site-id a.opener:focus .ge, #site-id.active a.opener .ge, #site-id li.hover .ge, #site-id li.active .ge { background-position: 0 -3220px }
+#site-id .gf:hover, #site-id .gf:active, #site-id .gf:focus, #site-id a.opener:hover .gf, #site-id a.opener:active .gf, #site-id a.opener:focus .gf, #site-id.active a.opener .gf, #site-id li.hover .gf, #site-id li.active .gf { background-position: 0 -3260px }
+#site-id .gh:hover, #site-id .gh:active, #site-id .gh:focus, #site-id a.opener:hover .gh, #site-id a.opener:active .gh, #site-id a.opener:focus .gh, #site-id.active a.opener .gh, #site-id li.hover .gh, #site-id li.active .gh { background-position: 0 -3300px }
+#site-id .gi:hover, #site-id .gi:active, #site-id .gi:focus, #site-id a.opener:hover .gi, #site-id a.opener:active .gi, #site-id a.opener:focus .gi, #site-id.active a.opener .gi, #site-id li.hover .gi, #site-id li.active .gi { background-position: 0 -3340px }
+#site-id .gl:hover, #site-id .gl:active, #site-id .gl:focus, #site-id a.opener:hover .gl, #site-id a.opener:active .gl, #site-id a.opener:focus .gl, #site-id.active a.opener .gl, #site-id li.hover .gl, #site-id li.active .gl { background-position: 0 -3380px }
+#site-id .gm:hover, #site-id .gm:active, #site-id .gm:focus, #site-id a.opener:hover .gm, #site-id a.opener:active .gm, #site-id a.opener:focus .gm, #site-id.active a.opener .gm, #site-id li.hover .gm, #site-id li.active .gm { background-position: 0 -3420px }
+#site-id .gn:hover, #site-id .gn:active, #site-id .gn:focus, #site-id a.opener:hover .gn, #site-id a.opener:active .gn, #site-id a.opener:focus .gn, #site-id.active a.opener .gn, #site-id li.hover .gn, #site-id li.active .gn { background-position: 0 -3460px }
+#site-id .gp:hover, #site-id .gp:active, #site-id .gp:focus, #site-id a.opener:hover .gp, #site-id a.opener:active .gp, #site-id a.opener:focus .gp, #site-id.active a.opener .gp, #site-id li.hover .gp, #site-id li.active .gp { background-position: 0 -3500px }
+#site-id .gq:hover, #site-id .gq:active, #site-id .gq:focus, #site-id a.opener:hover .gq, #site-id a.opener:active .gq, #site-id a.opener:focus .gq, #site-id.active a.opener .gq, #site-id li.hover .gq, #site-id li.active .gq { background-position: 0 -3540px }
+#site-id .gr:hover, #site-id .gr:active, #site-id .gr:focus, #site-id a.opener:hover .gr, #site-id a.opener:active .gr, #site-id a.opener:focus .gr, #site-id.active a.opener .gr, #site-id li.hover .gr, #site-id li.active .gr { background-position: 0 -3580px }
+#site-id .gs:hover, #site-id .gs:active, #site-id .gs:focus, #site-id a.opener:hover .gs, #site-id a.opener:active .gs, #site-id a.opener:focus .gs, #site-id.active a.opener .gs, #site-id li.hover .gs, #site-id li.active .gs { background-position: 0 -3620px }
+#site-id .gt:hover, #site-id .gt:active, #site-id .gt:focus, #site-id a.opener:hover .gt, #site-id a.opener:active .gt, #site-id a.opener:focus .gt, #site-id.active a.opener .gt, #site-id li.hover .gt, #site-id li.active .gt { background-position: 0 -3660px }
+#site-id .gu:hover, #site-id .gu:active, #site-id .gu:focus, #site-id a.opener:hover .gu, #site-id a.opener:active .gu, #site-id a.opener:focus .gu, #site-id.active a.opener .gu, #site-id li.hover .gu, #site-id li.active .gu { background-position: 0 -3700px }
+#site-id .gw:hover, #site-id .gw:active, #site-id .gw:focus, #site-id a.opener:hover .gw, #site-id a.opener:active .gw, #site-id a.opener:focus .gw, #site-id.active a.opener .gw, #site-id li.hover .gw, #site-id li.active .gw { background-position: 0 -3740px }
+#site-id .gy:hover, #site-id .gy:active, #site-id .gy:focus, #site-id a.opener:hover .gy, #site-id a.opener:active .gy, #site-id a.opener:focus .gy, #site-id.active a.opener .gy, #site-id li.hover .gy, #site-id li.active .gy { background-position: 0 -3780px }
+#site-id .hk:hover, #site-id .hk:active, #site-id .hk:focus, #site-id a.opener:hover .hk, #site-id a.opener:active .hk, #site-id a.opener:focus .hk, #site-id.active a.opener .hk, #site-id li.hover .hk, #site-id li.active .hk { background-position: 0 -3820px }
+#site-id .hn:hover, #site-id .hn:active, #site-id .hn:focus, #site-id a.opener:hover .hn, #site-id a.opener:active .hn, #site-id a.opener:focus .hn, #site-id.active a.opener .hn, #site-id li.hover .hn, #site-id li.active .hn { background-position: 0 -3860px }
+#site-id .hr:hover, #site-id .hr:active, #site-id .hr:focus, #site-id a.opener:hover .hr, #site-id a.opener:active .hr, #site-id a.opener:focus .hr, #site-id.active a.opener .hr, #site-id li.hover .hr, #site-id li.active .hr { background-position: 0 -3900px }
+#site-id .ht:hover, #site-id .ht:active, #site-id .ht:focus, #site-id a.opener:hover .ht, #site-id a.opener:active .ht, #site-id a.opener:focus .ht, #site-id.active a.opener .ht, #site-id li.hover .ht, #site-id li.active .ht { background-position: 0 -3940px }
+#site-id .hu:hover, #site-id .hu:active, #site-id .hu:focus, #site-id a.opener:hover .hu, #site-id a.opener:active .hu, #site-id a.opener:focus .hu, #site-id.active a.opener .hu, #site-id li.hover .hu, #site-id li.active .hu { background-position: 0 -3980px }
+#site-id .id:hover, #site-id .id:active, #site-id .id:focus, #site-id a.opener:hover .id, #site-id a.opener:active .id, #site-id a.opener:focus .id, #site-id.active a.opener .id, #site-id li.hover .id, #site-id li.active .id { background-position: 0 -4020px }
+#site-id .ie:hover, #site-id .ie:active, #site-id .ie:focus, #site-id a.opener:hover .ie, #site-id a.opener:active .ie, #site-id a.opener:focus .ie, #site-id.active a.opener .ie, #site-id li.hover .ie, #site-id li.active .ie { background-position: 0 -4060px }
+#site-id .il:hover, #site-id .il:active, #site-id .il:focus, #site-id a.opener:hover .il, #site-id a.opener:active .il, #site-id a.opener:focus .il, #site-id.active a.opener .il, #site-id li.hover .il, #site-id li.active .il { background-position: 0 -4100px }
+#site-id .in:hover, #site-id .in:active, #site-id .in:focus, #site-id a.opener:hover .in, #site-id a.opener:active .in, #site-id a.opener:focus .in, #site-id.active a.opener .in, #site-id li.hover .in, #site-id li.active .in { background-position: 0 -4140px }
+#site-id .io:hover, #site-id .io:active, #site-id .io:focus, #site-id a.opener:hover .io, #site-id a.opener:active .io, #site-id a.opener:focus .io, #site-id.active a.opener .io, #site-id li.hover .io, #site-id li.active .io { background-position: 0 -4180px }
+#site-id .iq:hover, #site-id .iq:active, #site-id .iq:focus, #site-id a.opener:hover .iq, #site-id a.opener:active .iq, #site-id a.opener:focus .iq, #site-id.active a.opener .iq, #site-id li.hover .iq, #site-id li.active .iq { background-position: 0 -4220px }
+#site-id .ir:hover, #site-id .ir:active, #site-id .ir:focus, #site-id a.opener:hover .ir, #site-id a.opener:active .ir, #site-id a.opener:focus .ir, #site-id.active a.opener .ir, #site-id li.hover .ir, #site-id li.active .ir { background-position: 0 -4260px }
+#site-id .is:hover, #site-id .is:active, #site-id .is:focus, #site-id a.opener:hover .is, #site-id a.opener:active .is, #site-id a.opener:focus .is, #site-id.active a.opener .is, #site-id li.hover .is, #site-id li.active .is { background-position: 0 -4300px }
+#site-id .it:hover, #site-id .it:active, #site-id .it:focus, #site-id a.opener:hover .it, #site-id a.opener:active .it, #site-id a.opener:focus .it, #site-id.active a.opener .it, #site-id li.hover .it, #site-id li.active .it { background-position: 0 -4340px }
+#site-id .jm:hover, #site-id .jm:active, #site-id .jm:focus, #site-id a.opener:hover .jm, #site-id a.opener:active .jm, #site-id a.opener:focus .jm, #site-id.active a.opener .jm, #site-id li.hover .jm, #site-id li.active .jm { background-position: 0 -4380px }
+#site-id .jo:hover, #site-id .jo:active, #site-id .jo:focus, #site-id a.opener:hover .jo, #site-id a.opener:active .jo, #site-id a.opener:focus .jo, #site-id.active a.opener .jo, #site-id li.hover .jo, #site-id li.active .jo { background-position: 0 -4420px }
+#site-id .jp:hover, #site-id .jp:active, #site-id .jp:focus, #site-id a.opener:hover .jp, #site-id a.opener:active .jp, #site-id a.opener:focus .jp, #site-id.active a.opener .jp, #site-id li.hover .jp, #site-id li.active .jp { background-position: 0 -4460px }
+#site-id .ke:hover, #site-id .ke:active, #site-id .ke:focus, #site-id a.opener:hover .ke, #site-id a.opener:active .ke, #site-id a.opener:focus .ke, #site-id.active a.opener .ke, #site-id li.hover .ke, #site-id li.active .ke { background-position: 0 -4500px }
+#site-id .kg:hover, #site-id .kg:active, #site-id .kg:focus, #site-id a.opener:hover .kg, #site-id a.opener:active .kg, #site-id a.opener:focus .kg, #site-id.active a.opener .kg, #site-id li.hover .kg, #site-id li.active .kg { background-position: 0 -4540px }
+#site-id .kh:hover, #site-id .kh:active, #site-id .kh:focus, #site-id a.opener:hover .kh, #site-id a.opener:active .kh, #site-id a.opener:focus .kh, #site-id.active a.opener .kh, #site-id li.hover .kh, #site-id li.active .kh { background-position: 0 -4580px }
+#site-id .ki:hover, #site-id .ki:active, #site-id .ki:focus, #site-id a.opener:hover .ki, #site-id a.opener:active .ki, #site-id a.opener:focus .ki, #site-id.active a.opener .ki, #site-id li.hover .ki, #site-id li.active .ki { background-position: 0 -4620px }
+#site-id .km:hover, #site-id .km:active, #site-id .km:focus, #site-id a.opener:hover .km, #site-id a.opener:active .km, #site-id a.opener:focus .km, #site-id.active a.opener .km, #site-id li.hover .km, #site-id li.active .km { background-position: 0 -4660px }
+#site-id .kn:hover, #site-id .kn:active, #site-id .kn:focus, #site-id a.opener:hover .kn, #site-id a.opener:active .kn, #site-id a.opener:focus .kn, #site-id.active a.opener .kn, #site-id li.hover .kn, #site-id li.active .kn { background-position: 0 -4700px }
+#site-id .kp:hover, #site-id .kp:active, #site-id .kp:focus, #site-id a.opener:hover .kp, #site-id a.opener:active .kp, #site-id a.opener:focus .kp, #site-id.active a.opener .kp, #site-id li.hover .kp, #site-id li.active .kp { background-position: 0 -4740px }
+#site-id .kr:hover, #site-id .kr:active, #site-id .kr:focus, #site-id a.opener:hover .kr, #site-id a.opener:active .kr, #site-id a.opener:focus .kr, #site-id.active a.opener .kr, #site-id li.hover .kr, #site-id li.active .kr { background-position: 0 -4780px }
+#site-id .kw:hover, #site-id .kw:active, #site-id .kw:focus, #site-id a.opener:hover .kw, #site-id a.opener:active .kw, #site-id a.opener:focus .kw, #site-id.active a.opener .kw, #site-id li.hover .kw, #site-id li.active .kw { background-position: 0 -4820px }
+#site-id .ky:hover, #site-id .ky:active, #site-id .ky:focus, #site-id a.opener:hover .ky, #site-id a.opener:active .ky, #site-id a.opener:focus .ky, #site-id.active a.opener .ky, #site-id li.hover .ky, #site-id li.active .ky { background-position: 0 -4860px }
+#site-id .kz:hover, #site-id .kz:active, #site-id .kz:focus, #site-id a.opener:hover .kz, #site-id a.opener:active .kz, #site-id a.opener:focus .kz, #site-id.active a.opener .kz, #site-id li.hover .kz, #site-id li.active .kz { background-position: 0 -4900px }
+#site-id .la:hover, #site-id .la:active, #site-id .la:focus, #site-id a.opener:hover .la, #site-id a.opener:active .la, #site-id a.opener:focus .la, #site-id.active a.opener .la, #site-id li.hover .la, #site-id li.active .la { background-position: 0 -4940px }
+#site-id .lb:hover, #site-id .lb:active, #site-id .lb:focus, #site-id a.opener:hover .lb, #site-id a.opener:active .lb, #site-id a.opener:focus .lb, #site-id.active a.opener .lb, #site-id li.hover .lb, #site-id li.active .lb { background-position: 0 -4980px }
+#site-id .lc:hover, #site-id .lc:active, #site-id .lc:focus, #site-id a.opener:hover .lc, #site-id a.opener:active .lc, #site-id a.opener:focus .lc, #site-id.active a.opener .lc, #site-id li.hover .lc, #site-id li.active .lc { background-position: 0 -5020px }
+#site-id .li:hover, #site-id .li:active, #site-id .li:focus, #site-id a.opener:hover .li, #site-id a.opener:active .li, #site-id a.opener:focus .li, #site-id.active a.opener .li, #site-id li.hover .li, #site-id li.active .li { background-position: 0 -5060px }
+#site-id .lk:hover, #site-id .lk:active, #site-id .lk:focus, #site-id a.opener:hover .lk, #site-id a.opener:active .lk, #site-id a.opener:focus .lk, #site-id.active a.opener .lk, #site-id li.hover .lk, #site-id li.active .lk { background-position: 0 -5100px }
+#site-id .lr:hover, #site-id .lr:active, #site-id .lr:focus, #site-id a.opener:hover .lr, #site-id a.opener:active .lr, #site-id a.opener:focus .lr, #site-id.active a.opener .lr, #site-id li.hover .lr, #site-id li.active .lr { background-position: 0 -5140px }
+#site-id .ls:hover, #site-id .ls:active, #site-id .ls:focus, #site-id a.opener:hover .ls, #site-id a.opener:active .ls, #site-id a.opener:focus .ls, #site-id.active a.opener .ls, #site-id li.hover .ls, #site-id li.active .ls { background-position: 0 -5180px }
+#site-id .lt:hover, #site-id .lt:active, #site-id .lt:focus, #site-id a.opener:hover .lt, #site-id a.opener:active .lt, #site-id a.opener:focus .lt, #site-id.active a.opener .lt, #site-id li.hover .lt, #site-id li.active .lt { background-position: 0 -5220px }
+#site-id .lu:hover, #site-id .lu:active, #site-id .lu:focus, #site-id a.opener:hover .lu, #site-id a.opener:active .lu, #site-id a.opener:focus .lu, #site-id.active a.opener .lu, #site-id li.hover .lu, #site-id li.active .lu { background-position: 0 -5260px }
+#site-id .lv:hover, #site-id .lv:active, #site-id .lv:focus, #site-id a.opener:hover .lv, #site-id a.opener:active .lv, #site-id a.opener:focus .lv, #site-id.active a.opener .lv, #site-id li.hover .lv, #site-id li.active .lv { background-position: 0 -5300px }
+#site-id .ly:hover, #site-id .ly:active, #site-id .ly:focus, #site-id a.opener:hover .ly, #site-id a.opener:active .ly, #site-id a.opener:focus .ly, #site-id.active a.opener .ly, #site-id li.hover .ly, #site-id li.active .ly { background-position: 0 -5340px }
+#site-id .ma:hover, #site-id .ma:active, #site-id .ma:focus, #site-id a.opener:hover .ma, #site-id a.opener:active .ma, #site-id a.opener:focus .ma, #site-id.active a.opener .ma, #site-id li.hover .ma, #site-id li.active .ma { background-position: 0 -5380px }
+#site-id .mc:hover, #site-id .mc:active, #site-id .mc:focus, #site-id a.opener:hover .mc, #site-id a.opener:active .mc, #site-id a.opener:focus .mc, #site-id.active a.opener .mc, #site-id li.hover .mc, #site-id li.active .mc { background-position: 0 -5420px }
+#site-id .md:hover, #site-id .md:active, #site-id .md:focus, #site-id a.opener:hover .md, #site-id a.opener:active .md, #site-id a.opener:focus .md, #site-id.active a.opener .md, #site-id li.hover .md, #site-id li.active .md { background-position: 0 -5460px }
+#site-id .me:hover, #site-id .me:active, #site-id .me:focus, #site-id a.opener:hover .me, #site-id a.opener:active .me, #site-id a.opener:focus .me, #site-id.active a.opener .me, #site-id li.hover .me, #site-id li.active .me { background-position: 0 -5500px }
+#site-id .mg:hover, #site-id .mg:active, #site-id .mg:focus, #site-id a.opener:hover .mg, #site-id a.opener:active .mg, #site-id a.opener:focus .mg, #site-id.active a.opener .mg, #site-id li.hover .mg, #site-id li.active .mg { background-position: 0 -5540px }
+#site-id .mh:hover, #site-id .mh:active, #site-id .mh:focus, #site-id a.opener:hover .mh, #site-id a.opener:active .mh, #site-id a.opener:focus .mh, #site-id.active a.opener .mh, #site-id li.hover .mh, #site-id li.active .mh { background-position: 0 -5580px }
+#site-id .mk:hover, #site-id .mk:active, #site-id .mk:focus, #site-id a.opener:hover .mk, #site-id a.opener:active .mk, #site-id a.opener:focus .mk, #site-id.active a.opener .mk, #site-id li.hover .mk, #site-id li.active .mk { background-position: 0 -5620px }
+#site-id .ml:hover, #site-id .ml:active, #site-id .ml:focus, #site-id a.opener:hover .ml, #site-id a.opener:active .ml, #site-id a.opener:focus .ml, #site-id.active a.opener .ml, #site-id li.hover .ml, #site-id li.active .ml { background-position: 0 -5660px }
+#site-id .mm:hover, #site-id .mm:active, #site-id .mm:focus, #site-id a.opener:hover .mm, #site-id a.opener:active .mm, #site-id a.opener:focus .mm, #site-id.active a.opener .mm, #site-id li.hover .mm, #site-id li.active .mm { background-position: 0 -5700px }
+#site-id .mn:hover, #site-id .mn:active, #site-id .mn:focus, #site-id a.opener:hover .mn, #site-id a.opener:active .mn, #site-id a.opener:focus .mn, #site-id.active a.opener .mn, #site-id li.hover .mn, #site-id li.active .mn { background-position: 0 -5740px }
+#site-id .mo:hover, #site-id .mo:active, #site-id .mo:focus, #site-id a.opener:hover .mo, #site-id a.opener:active .mo, #site-id a.opener:focus .mo, #site-id.active a.opener .mo, #site-id li.hover .mo, #site-id li.active .mo { background-position: 0 -5780px }
+#site-id .mp:hover, #site-id .mp:active, #site-id .mp:focus, #site-id a.opener:hover .mp, #site-id a.opener:active .mp, #site-id a.opener:focus .mp, #site-id.active a.opener .mp, #site-id li.hover .mp, #site-id li.active .mp { background-position: 0 -5820px }
+#site-id .mq:hover, #site-id .mq:active, #site-id .mq:focus, #site-id a.opener:hover .mq, #site-id a.opener:active .mq, #site-id a.opener:focus .mq, #site-id.active a.opener .mq, #site-id li.hover .mq, #site-id li.active .mq { background-position: 0 -5860px }
+#site-id .mr:hover, #site-id .mr:active, #site-id .mr:focus, #site-id a.opener:hover .mr, #site-id a.opener:active .mr, #site-id a.opener:focus .mr, #site-id.active a.opener .mr, #site-id li.hover .mr, #site-id li.active .mr { background-position: 0 -5900px }
+#site-id .ms:hover, #site-id .ms:active, #site-id .ms:focus, #site-id a.opener:hover .ms, #site-id a.opener:active .ms, #site-id a.opener:focus .ms, #site-id.active a.opener .ms, #site-id li.hover .ms, #site-id li.active .ms { background-position: 0 -5940px }
+#site-id .mt:hover, #site-id .mt:active, #site-id .mt:focus, #site-id a.opener:hover .mt, #site-id a.opener:active .mt, #site-id a.opener:focus .mt, #site-id.active a.opener .mt, #site-id li.hover .mt, #site-id li.active .mt { background-position: 0 -5980px }
+#site-id .mu:hover, #site-id .mu:active, #site-id .mu:focus, #site-id a.opener:hover .mu, #site-id a.opener:active .mu, #site-id a.opener:focus .mu, #site-id.active a.opener .mu, #site-id li.hover .mu, #site-id li.active .mu { background-position: 0 -6020px }
+#site-id .mv:hover, #site-id .mv:active, #site-id .mv:focus, #site-id a.opener:hover .mv, #site-id a.opener:active .mv, #site-id a.opener:focus .mv, #site-id.active a.opener .mv, #site-id li.hover .mv, #site-id li.active .mv { background-position: 0 -6060px }
+#site-id .mw:hover, #site-id .mw:active, #site-id .mw:focus, #site-id a.opener:hover .mw, #site-id a.opener:active .mw, #site-id a.opener:focus .mw, #site-id.active a.opener .mw, #site-id li.hover .mw, #site-id li.active .mw { background-position: 0 -6100px }
+#site-id .mx:hover, #site-id .mx:active, #site-id .mx:focus, #site-id a.opener:hover .mx, #site-id a.opener:active .mx, #site-id a.opener:focus .mx, #site-id.active a.opener .mx, #site-id li.hover .mx, #site-id li.active .mx { background-position: 0 -6140px }
+#site-id .my:hover, #site-id .my:active, #site-id .my:focus, #site-id a.opener:hover .my, #site-id a.opener:active .my, #site-id a.opener:focus .my, #site-id.active a.opener .my, #site-id li.hover .my, #site-id li.active .my { background-position: 0 -6180px }
+#site-id .mz:hover, #site-id .mz:active, #site-id .mz:focus, #site-id a.opener:hover .mz, #site-id a.opener:active .mz, #site-id a.opener:focus .mz, #site-id.active a.opener .mz, #site-id li.hover .mz, #site-id li.active .mz { background-position: 0 -6220px }
+#site-id .na:hover, #site-id .na:active, #site-id .na:focus, #site-id a.opener:hover .na, #site-id a.opener:active .na, #site-id a.opener:focus .na, #site-id.active a.opener .na, #site-id li.hover .na, #site-id li.active .na { background-position: 0 -6260px }
+#site-id .nc:hover, #site-id .nc:active, #site-id .nc:focus, #site-id a.opener:hover .nc, #site-id a.opener:active .nc, #site-id a.opener:focus .nc, #site-id.active a.opener .nc, #site-id li.hover .nc, #site-id li.active .nc { background-position: 0 -6300px }
+#site-id .ne:hover, #site-id .ne:active, #site-id .ne:focus, #site-id a.opener:hover .ne, #site-id a.opener:active .ne, #site-id a.opener:focus .ne, #site-id.active a.opener .ne, #site-id li.hover .ne, #site-id li.active .ne { background-position: 0 -6340px }
+#site-id .nf:hover, #site-id .nf:active, #site-id .nf:focus, #site-id a.opener:hover .nf, #site-id a.opener:active .nf, #site-id a.opener:focus .nf, #site-id.active a.opener .nf, #site-id li.hover .nf, #site-id li.active .nf { background-position: 0 -6380px }
+#site-id .ng:hover, #site-id .ng:active, #site-id .ng:focus, #site-id a.opener:hover .ng, #site-id a.opener:active .ng, #site-id a.opener:focus .ng, #site-id.active a.opener .ng, #site-id li.hover .ng, #site-id li.active .ng { background-position: 0 -6420px }
+#site-id .ni:hover, #site-id .ni:active, #site-id .ni:focus, #site-id a.opener:hover .ni, #site-id a.opener:active .ni, #site-id a.opener:focus .ni, #site-id.active a.opener .ni, #site-id li.hover .ni, #site-id li.active .ni { background-position: 0 -6460px }
+#site-id .nl:hover, #site-id .nl:active, #site-id .nl:focus, #site-id a.opener:hover .nl, #site-id a.opener:active .nl, #site-id a.opener:focus .nl, #site-id.active a.opener .nl, #site-id li.hover .nl, #site-id li.active .nl { background-position: 0 -6500px }
+#site-id .no:hover, #site-id .no:active, #site-id .no:focus, #site-id a.opener:hover .no, #site-id a.opener:active .no, #site-id a.opener:focus .no, #site-id.active a.opener .no, #site-id li.hover .no, #site-id li.active .no { background-position: 0 -6540px }
+#site-id .np:hover, #site-id .np:active, #site-id .np:focus, #site-id a.opener:hover .np, #site-id a.opener:active .np, #site-id a.opener:focus .np, #site-id.active a.opener .np, #site-id li.hover .np, #site-id li.active .np { background-position: 0 -6580px }
+#site-id .nr:hover, #site-id .nr:active, #site-id .nr:focus, #site-id a.opener:hover .nr, #site-id a.opener:active .nr, #site-id a.opener:focus .nr, #site-id.active a.opener .nr, #site-id li.hover .nr, #site-id li.active .nr { background-position: 0 -6620px }
+#site-id .nu:hover, #site-id .nu:active, #site-id .nu:focus, #site-id a.opener:hover .nu, #site-id a.opener:active .nu, #site-id a.opener:focus .nu, #site-id.active a.opener .nu, #site-id li.hover .nu, #site-id li.active .nu { background-position: 0 -6660px }
+#site-id .nz:hover, #site-id .nz:active, #site-id .nz:focus, #site-id a.opener:hover .nz, #site-id a.opener:active .nz, #site-id a.opener:focus .nz, #site-id.active a.opener .nz, #site-id li.hover .nz, #site-id li.active .nz { background-position: 0 -6700px }
+#site-id .om:hover, #site-id .om:active, #site-id .om:focus, #site-id a.opener:hover .om, #site-id a.opener:active .om, #site-id a.opener:focus .om, #site-id.active a.opener .om, #site-id li.hover .om, #site-id li.active .om { background-position: 0 -6740px }
+#site-id .pa:hover, #site-id .pa:active, #site-id .pa:focus, #site-id a.opener:hover .pa, #site-id a.opener:active .pa, #site-id a.opener:focus .pa, #site-id.active a.opener .pa, #site-id li.hover .pa, #site-id li.active .pa { background-position: 0 -6780px }
+#site-id .pe:hover, #site-id .pe:active, #site-id .pe:focus, #site-id a.opener:hover .pe, #site-id a.opener:active .pe, #site-id a.opener:focus .pe, #site-id.active a.opener .pe, #site-id li.hover .pe, #site-id li.active .pe { background-position: 0 -6820px }
+#site-id .pf:hover, #site-id .pf:active, #site-id .pf:focus, #site-id a.opener:hover .pf, #site-id a.opener:active .pf, #site-id a.opener:focus .pf, #site-id.active a.opener .pf, #site-id li.hover .pf, #site-id li.active .pf { background-position: 0 -6860px }
+#site-id .pg:hover, #site-id .pg:active, #site-id .pg:focus, #site-id a.opener:hover .pg, #site-id a.opener:active .pg, #site-id a.opener:focus .pg, #site-id.active a.opener .pg, #site-id li.hover .pg, #site-id li.active .pg { background-position: 0 -6900px }
+#site-id .ph:hover, #site-id .ph:active, #site-id .ph:focus, #site-id a.opener:hover .ph, #site-id a.opener:active .ph, #site-id a.opener:focus .ph, #site-id.active a.opener .ph, #site-id li.hover .ph, #site-id li.active .ph { background-position: 0 -6940px }
+#site-id .pk:hover, #site-id .pk:active, #site-id .pk:focus, #site-id a.opener:hover .pk, #site-id a.opener:active .pk, #site-id a.opener:focus .pk, #site-id.active a.opener .pk, #site-id li.hover .pk, #site-id li.active .pk { background-position: 0 -6980px }
+#site-id .pl:hover, #site-id .pl:active, #site-id .pl:focus, #site-id a.opener:hover .pl, #site-id a.opener:active .pl, #site-id a.opener:focus .pl, #site-id.active a.opener .pl, #site-id li.hover .pl, #site-id li.active .pl { background-position: 0 -7020px }
+#site-id .pm:hover, #site-id .pm:active, #site-id .pm:focus, #site-id a.opener:hover .pm, #site-id a.opener:active .pm, #site-id a.opener:focus .pm, #site-id.active a.opener .pm, #site-id li.hover .pm, #site-id li.active .pm { background-position: 0 -7060px }
+#site-id .pn:hover, #site-id .pn:active, #site-id .pn:focus, #site-id a.opener:hover .pn, #site-id a.opener:active .pn, #site-id a.opener:focus .pn, #site-id.active a.opener .pn, #site-id li.hover .pn, #site-id li.active .pn { background-position: 0 -7100px }
+#site-id .pr:hover, #site-id .pr:active, #site-id .pr:focus, #site-id a.opener:hover .pr, #site-id a.opener:active .pr, #site-id a.opener:focus .pr, #site-id.active a.opener .pr, #site-id li.hover .pr, #site-id li.active .pr { background-position: 0 -7140px }
+#site-id .ps:hover, #site-id .ps:active, #site-id .ps:focus, #site-id a.opener:hover .ps, #site-id a.opener:active .ps, #site-id a.opener:focus .ps, #site-id.active a.opener .ps, #site-id li.hover .ps, #site-id li.active .ps { background-position: 0 -7180px }
+#site-id .pt:hover, #site-id .pt:active, #site-id .pt:focus, #site-id a.opener:hover .pt, #site-id a.opener:active .pt, #site-id a.opener:focus .pt, #site-id.active a.opener .pt, #site-id li.hover .pt, #site-id li.active .pt { background-position: 0 -7220px }
+#site-id .pw:hover, #site-id .pw:active, #site-id .pw:focus, #site-id a.opener:hover .pw, #site-id a.opener:active .pw, #site-id a.opener:focus .pw, #site-id.active a.opener .pw, #site-id li.hover .pw, #site-id li.active .pw { background-position: 0 -7260px }
+#site-id .py:hover, #site-id .py:active, #site-id .py:focus, #site-id a.opener:hover .py, #site-id a.opener:active .py, #site-id a.opener:focus .py, #site-id.active a.opener .py, #site-id li.hover .py, #site-id li.active .py { background-position: 0 -7300px }
+#site-id .qa:hover, #site-id .qa:active, #site-id .qa:focus, #site-id a.opener:hover .qa, #site-id a.opener:active .qa, #site-id a.opener:focus .qa, #site-id.active a.opener .qa, #site-id li.hover .qa, #site-id li.active .qa { background-position: 0 -7340px }
+#site-id .re:hover, #site-id .re:active, #site-id .re:focus, #site-id a.opener:hover .re, #site-id a.opener:active .re, #site-id a.opener:focus .re, #site-id.active a.opener .re, #site-id li.hover .re, #site-id li.active .re { background-position: 0 -7380px }
+#site-id .ro:hover, #site-id .ro:active, #site-id .ro:focus, #site-id a.opener:hover .ro, #site-id a.opener:active .ro, #site-id a.opener:focus .ro, #site-id.active a.opener .ro, #site-id li.hover .ro, #site-id li.active .ro { background-position: 0 -7420px }
+#site-id .rs:hover, #site-id .rs:active, #site-id .rs:focus, #site-id a.opener:hover .rs, #site-id a.opener:active .rs, #site-id a.opener:focus .rs, #site-id.active a.opener .rs, #site-id li.hover .rs, #site-id li.active .rs { background-position: 0 -7460px }
+#site-id .ru:hover, #site-id .ru:active, #site-id .ru:focus, #site-id a.opener:hover .ru, #site-id a.opener:active .ru, #site-id a.opener:focus .ru, #site-id.active a.opener .ru, #site-id li.hover .ru, #site-id li.active .ru { background-position: 0 -7500px }
+#site-id .rw:hover, #site-id .rw:active, #site-id .rw:focus, #site-id a.opener:hover .rw, #site-id a.opener:active .rw, #site-id a.opener:focus .rw, #site-id.active a.opener .rw, #site-id li.hover .rw, #site-id li.active .rw { background-position: 0 -7540px }
+#site-id .sa:hover, #site-id .sa:active, #site-id .sa:focus, #site-id a.opener:hover .sa, #site-id a.opener:active .sa, #site-id a.opener:focus .sa, #site-id.active a.opener .sa, #site-id li.hover .sa, #site-id li.active .sa { background-position: 0 -7580px }
+#site-id .sb:hover, #site-id .sb:active, #site-id .sb:focus, #site-id a.opener:hover .sb, #site-id a.opener:active .sb, #site-id a.opener:focus .sb, #site-id.active a.opener .sb, #site-id li.hover .sb, #site-id li.active .sb { background-position: 0 -7620px }
+#site-id .sc:hover, #site-id .sc:active, #site-id .sc:focus, #site-id a.opener:hover .sc, #site-id a.opener:active .sc, #site-id a.opener:focus .sc, #site-id.active a.opener .sc, #site-id li.hover .sc, #site-id li.active .sc { background-position: 0 -7660px }
+#site-id .sd:hover, #site-id .sd:active, #site-id .sd:focus, #site-id a.opener:hover .sd, #site-id a.opener:active .sd, #site-id a.opener:focus .sd, #site-id.active a.opener .sd, #site-id li.hover .sd, #site-id li.active .sd { background-position: 0 -7700px }
+#site-id .se:hover, #site-id .se:active, #site-id .se:focus, #site-id a.opener:hover .se, #site-id a.opener:active .se, #site-id a.opener:focus .se, #site-id.active a.opener .se, #site-id li.hover .se, #site-id li.active .se { background-position: 0 -7740px }
+#site-id .sg:hover, #site-id .sg:active, #site-id .sg:focus, #site-id a.opener:hover .sg, #site-id a.opener:active .sg, #site-id a.opener:focus .sg, #site-id.active a.opener .sg, #site-id li.hover .sg, #site-id li.active .sg { background-position: 0 -7780px }
+#site-id .sh:hover, #site-id .sh:active, #site-id .sh:focus, #site-id a.opener:hover .sh, #site-id a.opener:active .sh, #site-id a.opener:focus .sh, #site-id.active a.opener .sh, #site-id li.hover .sh, #site-id li.active .sh { background-position: 0 -7820px }
+#site-id .si:hover, #site-id .si:active, #site-id .si:focus, #site-id a.opener:hover .si, #site-id a.opener:active .si, #site-id a.opener:focus .si, #site-id.active a.opener .si, #site-id li.hover .si, #site-id li.active .si { background-position: 0 -7860px }
+#site-id .sj:hover, #site-id .sj:active, #site-id .sj:focus, #site-id a.opener:hover .sj, #site-id a.opener:active .sj, #site-id a.opener:focus .sj, #site-id.active a.opener .sj, #site-id li.hover .sj, #site-id li.active .sj { background-position: 0 -7900px }
+#site-id .sk:hover, #site-id .sk:active, #site-id .sk:focus, #site-id a.opener:hover .sk, #site-id a.opener:active .sk, #site-id a.opener:focus .sk, #site-id.active a.opener .sk, #site-id li.hover .sk, #site-id li.active .sk { background-position: 0 -7940px }
+#site-id .sl:hover, #site-id .sl:active, #site-id .sl:focus, #site-id a.opener:hover .sl, #site-id a.opener:active .sl, #site-id a.opener:focus .sl, #site-id.active a.opener .sl, #site-id li.hover .sl, #site-id li.active .sl { background-position: 0 -7980px }
+#site-id .sm:hover, #site-id .sm:active, #site-id .sm:focus, #site-id a.opener:hover .sm, #site-id a.opener:active .sm, #site-id a.opener:focus .sm, #site-id.active a.opener .sm, #site-id li.hover .sm, #site-id li.active .sm { background-position: 0 -8020px }
+#site-id .sn:hover, #site-id .sn:active, #site-id .sn:focus, #site-id a.opener:hover .sn, #site-id a.opener:active .sn, #site-id a.opener:focus .sn, #site-id.active a.opener .sn, #site-id li.hover .sn, #site-id li.active .sn { background-position: 0 -8060px }
+#site-id .so:hover, #site-id .so:active, #site-id .so:focus, #site-id a.opener:hover .so, #site-id a.opener:active .so, #site-id a.opener:focus .so, #site-id.active a.opener .so, #site-id li.hover .so, #site-id li.active .so { background-position: 0 -8100px }
+#site-id .sr:hover, #site-id .sr:active, #site-id .sr:focus, #site-id a.opener:hover .sr, #site-id a.opener:active .sr, #site-id a.opener:focus .sr, #site-id.active a.opener .sr, #site-id li.hover .sr, #site-id li.active .sr { background-position: 0 -8140px }
+#site-id .st:hover, #site-id .st:active, #site-id .st:focus, #site-id a.opener:hover .st, #site-id a.opener:active .st, #site-id a.opener:focus .st, #site-id.active a.opener .st, #site-id li.hover .st, #site-id li.active .st { background-position: 0 -8180px }
+#site-id .sv:hover, #site-id .sv:active, #site-id .sv:focus, #site-id a.opener:hover .sv, #site-id a.opener:active .sv, #site-id a.opener:focus .sv, #site-id.active a.opener .sv, #site-id li.hover .sv, #site-id li.active .sv { background-position: 0 -8220px }
+#site-id .sy:hover, #site-id .sy:active, #site-id .sy:focus, #site-id a.opener:hover .sy, #site-id a.opener:active .sy, #site-id a.opener:focus .sy, #site-id.active a.opener .sy, #site-id li.hover .sy, #site-id li.active .sy { background-position: 0 -8260px }
+#site-id .sz:hover, #site-id .sz:active, #site-id .sz:focus, #site-id a.opener:hover .sz, #site-id a.opener:active .sz, #site-id a.opener:focus .sz, #site-id.active a.opener .sz, #site-id li.hover .sz, #site-id li.active .sz { background-position: 0 -8300px }
+#site-id .tc:hover, #site-id .tc:active, #site-id .tc:focus, #site-id a.opener:hover .tc, #site-id a.opener:active .tc, #site-id a.opener:focus .tc, #site-id.active a.opener .tc, #site-id li.hover .tc, #site-id li.active .tc { background-position: 0 -8340px }
+#site-id .td:hover, #site-id .td:active, #site-id .td:focus, #site-id a.opener:hover .td, #site-id a.opener:active .td, #site-id a.opener:focus .td, #site-id.active a.opener .td, #site-id li.hover .td, #site-id li.active .td { background-position: 0 -8380px }
+#site-id .tf:hover, #site-id .tf:active, #site-id .tf:focus, #site-id a.opener:hover .tf, #site-id a.opener:active .tf, #site-id a.opener:focus .tf, #site-id.active a.opener .tf, #site-id li.hover .tf, #site-id li.active .tf { background-position: 0 -8420px }
+#site-id .tg:hover, #site-id .tg:active, #site-id .tg:focus, #site-id a.opener:hover .tg, #site-id a.opener:active .tg, #site-id a.opener:focus .tg, #site-id.active a.opener .tg, #site-id li.hover .tg, #site-id li.active .tg { background-position: 0 -8460px }
+#site-id .th:hover, #site-id .th:active, #site-id .th:focus, #site-id a.opener:hover .th, #site-id a.opener:active .th, #site-id a.opener:focus .th, #site-id.active a.opener .th, #site-id li.hover .th, #site-id li.active .th { background-position: 0 -8500px }
+#site-id .tj:hover, #site-id .tj:active, #site-id .tj:focus, #site-id a.opener:hover .tj, #site-id a.opener:active .tj, #site-id a.opener:focus .tj, #site-id.active a.opener .tj, #site-id li.hover .tj, #site-id li.active .tj { background-position: 0 -8540px }
+#site-id .tk:hover, #site-id .tk:active, #site-id .tk:focus, #site-id a.opener:hover .tk, #site-id a.opener:active .tk, #site-id a.opener:focus .tk, #site-id.active a.opener .tk, #site-id li.hover .tk, #site-id li.active .tk { background-position: 0 -8580px }
+#site-id .tl:hover, #site-id .tl:active, #site-id .tl:focus, #site-id a.opener:hover .tl, #site-id a.opener:active .tl, #site-id a.opener:focus .tl, #site-id.active a.opener .tl, #site-id li.hover .tl, #site-id li.active .tl { background-position: 0 -8620px }
+#site-id .tm:hover, #site-id .tm:active, #site-id .tm:focus, #site-id a.opener:hover .tm, #site-id a.opener:active .tm, #site-id a.opener:focus .tm, #site-id.active a.opener .tm, #site-id li.hover .tm, #site-id li.active .tm { background-position: 0 -8660px }
+#site-id .tn:hover, #site-id .tn:active, #site-id .tn:focus, #site-id a.opener:hover .tn, #site-id a.opener:active .tn, #site-id a.opener:focus .tn, #site-id.active a.opener .tn, #site-id li.hover .tn, #site-id li.active .tn { background-position: 0 -8700px }
+#site-id .to:hover, #site-id .to:active, #site-id .to:focus, #site-id a.opener:hover .to, #site-id a.opener:active .to, #site-id a.opener:focus .to, #site-id.active a.opener .to, #site-id li.hover .to, #site-id li.active .to { background-position: 0 -8740px }
+#site-id .tr:hover, #site-id .tr:active, #site-id .tr:focus, #site-id a.opener:hover .tr, #site-id a.opener:active .tr, #site-id a.opener:focus .tr, #site-id.active a.opener .tr, #site-id li.hover .tr, #site-id li.active .tr { background-position: 0 -8780px }
+#site-id .tt:hover, #site-id .tt:active, #site-id .tt:focus, #site-id a.opener:hover .tt, #site-id a.opener:active .tt, #site-id a.opener:focus .tt, #site-id.active a.opener .tt, #site-id li.hover .tt, #site-id li.active .tt { background-position: 0 -8820px }
+#site-id .tv:hover, #site-id .tv:active, #site-id .tv:focus, #site-id a.opener:hover .tv, #site-id a.opener:active .tv, #site-id a.opener:focus .tv, #site-id.active a.opener .tv, #site-id li.hover .tv, #site-id li.active .tv { background-position: 0 -8860px }
+#site-id .tw:hover, #site-id .tw:active, #site-id .tw:focus, #site-id a.opener:hover .tw, #site-id a.opener:active .tw, #site-id a.opener:focus .tw, #site-id.active a.opener .tw, #site-id li.hover .tw, #site-id li.active .tw { background-position: 0 -8900px }
+#site-id .tz:hover, #site-id .tz:active, #site-id .tz:focus, #site-id a.opener:hover .tz, #site-id a.opener:active .tz, #site-id a.opener:focus .tz, #site-id.active a.opener .tz, #site-id li.hover .tz, #site-id li.active .tz { background-position: 0 -8940px }
+#site-id .ua:hover, #site-id .ua:active, #site-id .ua:focus, #site-id a.opener:hover .ua, #site-id a.opener:active .ua, #site-id a.opener:focus .ua, #site-id.active a.opener .ua, #site-id li.hover .ua, #site-id li.active .ua { background-position: 0 -8980px }
+#site-id .ug:hover, #site-id .ug:active, #site-id .ug:focus, #site-id a.opener:hover .ug, #site-id a.opener:active .ug, #site-id a.opener:focus .ug, #site-id.active a.opener .ug, #site-id li.hover .ug, #site-id li.active .ug { background-position: 0 -9020px }
+#site-id .us:hover, #site-id .us:active, #site-id .us:focus, #site-id a.opener:hover .us, #site-id a.opener:active .us, #site-id a.opener:focus .us, #site-id.active a.opener .us, #site-id li.hover .us, #site-id li.active .us { background-position: 0 -9060px }
+#site-id .uy:hover, #site-id .uy:active, #site-id .uy:focus, #site-id a.opener:hover .uy, #site-id a.opener:active .uy, #site-id a.opener:focus .uy, #site-id.active a.opener .uy, #site-id li.hover .uy, #site-id li.active .uy { background-position: 0 -9100px }
+#site-id .uz:hover, #site-id .uz:active, #site-id .uz:focus, #site-id a.opener:hover .uz, #site-id a.opener:active .uz, #site-id a.opener:focus .uz, #site-id.active a.opener .uz, #site-id li.hover .uz, #site-id li.active .uz { background-position: 0 -9140px }
+#site-id .va:hover, #site-id .va:active, #site-id .va:focus, #site-id a.opener:hover .va, #site-id a.opener:active .va, #site-id a.opener:focus .va, #site-id.active a.opener .va, #site-id li.hover .va, #site-id li.active .va { background-position: 0 -9180px }
+#site-id .vc:hover, #site-id .vc:active, #site-id .vc:focus, #site-id a.opener:hover .vc, #site-id a.opener:active .vc, #site-id a.opener:focus .vc, #site-id.active a.opener .vc, #site-id li.hover .vc, #site-id li.active .vc { background-position: 0 -9220px }
+#site-id .ve:hover, #site-id .ve:active, #site-id .ve:focus, #site-id a.opener:hover .ve, #site-id a.opener:active .ve, #site-id a.opener:focus .ve, #site-id.active a.opener .ve, #site-id li.hover .ve, #site-id li.active .ve { background-position: 0 -9260px }
+#site-id .vg:hover, #site-id .vg:active, #site-id .vg:focus, #site-id a.opener:hover .vg, #site-id a.opener:active .vg, #site-id a.opener:focus .vg, #site-id.active a.opener .vg, #site-id li.hover .vg, #site-id li.active .vg { background-position: 0 -9300px }
+#site-id .vi:hover, #site-id .vi:active, #site-id .vi:focus, #site-id a.opener:hover .vi, #site-id a.opener:active .vi, #site-id a.opener:focus .vi, #site-id.active a.opener .vi, #site-id li.hover .vi, #site-id li.active .vi { background-position: 0 -9340px }
+#site-id .vn:hover, #site-id .vn:active, #site-id .vn:focus, #site-id a.opener:hover .vn, #site-id a.opener:active .vn, #site-id a.opener:focus .vn, #site-id.active a.opener .vn, #site-id li.hover .vn, #site-id li.active .vn { background-position: 0 -9380px }
+#site-id .vu:hover, #site-id .vu:active, #site-id .vu:focus, #site-id a.opener:hover .vu, #site-id a.opener:active .vu, #site-id a.opener:focus .vu, #site-id.active a.opener .vu, #site-id li.hover .vu, #site-id li.active .vu { background-position: 0 -9420px }
+#site-id .wf:hover, #site-id .wf:active, #site-id .wf:focus, #site-id a.opener:hover .wf, #site-id a.opener:active .wf, #site-id a.opener:focus .wf, #site-id.active a.opener .wf, #site-id li.hover .wf, #site-id li.active .wf { background-position: 0 -9460px }
+#site-id .ws:hover, #site-id .ws:active, #site-id .ws:focus, #site-id a.opener:hover .ws, #site-id a.opener:active .ws, #site-id a.opener:focus .ws, #site-id.active a.opener .ws, #site-id li.hover .ws, #site-id li.active .ws { background-position: 0 -9500px }
+#site-id .ye:hover, #site-id .ye:active, #site-id .ye:focus, #site-id a.opener:hover .ye, #site-id a.opener:active .ye, #site-id a.opener:focus .ye, #site-id.active a.opener .ye, #site-id li.hover .ye, #site-id li.active .ye { background-position: 0 -9540px }
+#site-id .yt:hover, #site-id .yt:active, #site-id .yt:focus, #site-id a.opener:hover .yt, #site-id a.opener:active .yt, #site-id a.opener:focus .yt, #site-id.active a.opener .yt, #site-id li.hover .yt, #site-id li.active .yt { background-position: 0 -9580px }
+#site-id .za:hover, #site-id .za:active, #site-id .za:focus, #site-id a.opener:hover .za, #site-id a.opener:active .za, #site-id a.opener:focus .za, #site-id.active a.opener .za, #site-id li.hover .za, #site-id li.active .za { background-position: 0 -9620px }
+#site-id .zm:hover, #site-id .zm:active, #site-id .zm:focus, #site-id a.opener:hover .zm, #site-id a.opener:active .zm, #site-id a.opener:focus .zm, #site-id.active a.opener .zm, #site-id li.hover .zm, #site-id li.active .zm { background-position: 0 -9660px }
+#site-id .zw:hover, #site-id .zw:active, #site-id .zw:focus, #site-id a.opener:hover .zw, #site-id a.opener:active .zw, #site-id a.opener:focus .zw, #site-id.active a.opener .zw, #site-id li.hover .zw, #site-id li.active .zw { background-position: 0 -9700px }
+
+/**
+ * Language switch
+ *
+ * The language switch is based on a default layer in the toolbar
+ *
+ * @subsection   =toolbar-language
+ */
+#language .layer {
+	width: 144px;
+}
+#language .layer li {
+	padding: 1px 0 1px 11px;
+	line-height: 1.45;
+	background: url("../images/icon-arrow-right.gif") no-repeat 0 6px;
+}
+#language .layer a {
+	color: #333;
+	text-decoration: none;
+}
+#language .layer a:hover,
+#language .layer a:active,
+#language .layer a:focus {
+	color: #900;
+}
+#language .layer b {
+	color: #900;
+	font-weight: normal;
+}
+
+/**
+ * Contact layer
+ *
+ * The contact layer is based on a default layer in the toolbar
+ *
+ * @subsection   =toolbar-contact
+ */
+#contact .layer {
+	width: 365px;
+	padding-top: 20px;
+	padding-bottom: 20px;
+	line-height: 1.45;
+}
+#contact .layer img {
+	float: left;
+	margin: 4px 12px 12px 0;
+}
+/* Problems with collapsing margins again in IE7 */
+.ie7 #contact .layer img {
+	margin-bottom: 2px;
+}
+#contact .layer h2 {
+	color: #666;
+}
+#contact .layer p {
+	margin-bottom: 8px;
+}
+#contact .layer ul.links li {
+	padding-bottom: 2px;
+}
+#contact .layer ul.links a {
+	color: #333;
+	text-decoration: none;
+}
+#contact .layer ul.links a:hover,
+#contact .layer ul.links a:active,
+#contact .layer ul.links a:focus {
+	color: #900;
+}
+
+/**
+ * Site explorer
+ *
+ * The layer for the site explorer is based on a default layer in the toolbar
+ *
+ * @subsection   =toolbar-site-explorer
+ */
+#site-explorer {
+	margin-right: 16px;
+}
+#site-explorer .layer {
+	width: 300px;
+	padding-top: 20px;
+	padding-bottom: 10px;
+	line-height: 1.45;
+}
+
+/* Breadcrumb on top */
+#site-explorer .layer .breadcrumb a,
+#site-explorer .layer .breadcrumb b {
+	margin-right: 10px;
+	padding-left: 11px;
+	color: #666;
+	text-decoration: none;
+	white-space: no-wrap;
+	background: url("../images/icon-arrow-right.gif") no-repeat 0 4px;
+}
+#site-explorer .layer .breadcrumb a:hover,
+#site-explorer .layer .breadcrumb a:active,
+#site-explorer .layer .breadcrumb a:focus,
+#site-explorer .layer .breadcrumb b {
+	color: #900;
+	font-weight: normal;
+}
+#site-explorer .layer h1 {
+	margin: -1px 0;
+	color: #666;
+}
+
+/* The site explorer itself */
+#site-explorer .layer li li {
+	padding-left: 21px;
+	background: url("../images/tree-line.gif") no-repeat 0 0;
+}
+#site-explorer .layer li li.last {
+	background-position: 0 100%;
+}
+
+#site-explorer .layer li.closed ul {
+	display: none;
+}
+
+#site-explorer .layer li a {
+	display: inline-block;
+	padding: 3px 5px 3px 11px;
+	color: #666;
+	font-weight: normal;
+	text-decoration: none;
+	background: url("../images/icon-arrow-right.gif") no-repeat 0 8px;
+}
+#site-explorer .layer li a:hover,
+#site-explorer .layer li a:active,
+#site-explorer .layer li a:focus {
+	color: #900;
+}
+#site-explorer .layer li.closed>a,
+#site-explorer .layer li.open>a {
+	padding-left: 21px;
+	background-image: url("../images/icon-plus.gif");
+	background-position: 0 5px;
+}
+#site-explorer .layer li.open>a {
+	background-image: url("../images/icon-minus.gif");
+}
+
+#site-explorer .layer li a.path {
+	color: #900;
+}
+
+#site-explorer .layer li a b {
+	margin-left: -3px;
+	padding: 2px 3px;
+	color: #900;
+	font-weight: normal;
+	background: #DDD;
+}
+#site-explorer .layer li.closed>a b,
+#site-explorer .layer li.open>a b {
+	margin-left: -5px;
+	padding-right: 5px;
+	padding-left: 5px;
+}
+
+/* The go button next to clickable elements in the site explorer */
+#site-explorer .layer li a.go {
+	visibility: hidden;
+	margin-left: 2px;
+	border: 1px solid #FFF;
+	border-right-color: #CCC;
+	border-bottom-color: #CCC;
+	padding: 0 6px 2px 16px;
+	color: #666;
+	text-decoration: none;
+	background: #F7F7F7 url("../images/icon-arrow-right.gif") no-repeat 5px 5px;
+}
+#site-explorer .layer li.hover a.go {
+	visibility: visible;
+}
+#site-explorer .layer li.hover li a.go {
+	visibility: hidden;
+}
+.ie6 #site-explorer .layer li a.go,
+.ie7 #site-explorer .layer li a.go {
+	background-position: 6px 5px;
+}
+#site-explorer .layer li a.go:hover,
+#site-explorer .layer li a.go:active,
+#site-explorer .layer li a.go:focus {
+	border-right-color: #FFF;
+	border-right-color: #000;
+	border-bottom-color: #000;
+	border-left-color: #FFF;
+	color: #FFF;
+	background-color: #900;
+	background-image: url("../images/icon-arrow-right-white.gif");
+}
+
+/**
+ * Site search
+ *
+ * The layer for the site search is based on a default layer in the toolbar.
+ * There are two variants for the site-search:
+ * - One with a default look when JS is disabled
+ * - One with the look from the guidelines when JS is enabled
+ *
+ * The flexible positioning and dimensioning from the guidelines paired with
+ * accessibility reasons forced us to position and dimension everything
+ * afterwards via JS. See siemens.siteSearch.js for more details on how
+ * the dynamic positioning works.
+ *
+ * @subsection   =toolbar-site-search
+ * @see          /scripts/siemens.siteSearch.js
+ */
+#site-search {
+	height: 20px;
+	float: right;
+	margin: 1px 0 0;
+	text-align: right;
+}
+#site-search input {
+	width: 100px;
+	font-size: 85%;
+}
+#site-search button {
+	margin-left: 4px;
+	font-size: 85%;
+}
+
+/* Special styles for the js enabled version */
+/* The width of this element is changed via JS afterwards */
+.js #site-search {
+	width: 200px;
+	margin: 0;
+}
+.js #site-search label.overlabel {
+	top: 3px;
+	left: 4px;
+	z-index: 1;
+	color: #999;
+	font-size: 85%;
+}
+.js #site-search label.focus {
+	color: #CCC;
+}
+/* The width of this element is changed via JS afterwards */
+.js #site-search input {
+	position: absolute;
+	top: 2px;
+	left: 0;
+	height: 12px;
+	border: 1px solid #666;
+	padding: 1px 2px;
+}
+.js #site-search a.search-button {
+	position: absolute;
+	top: 2px;
+	right: 0;
+	border-width: 1px;
+	border-style: solid;
+	border-color: #FFF #333 #333 #FFF;
+	padding: 0 5px;
+	color: #FFF;
+	font-size: 85%;
+	text-decoration: none;
+	background: #666;
+}
+.js #site-search a.search-button:hover,
+.js #site-search a.search-button:active,
+.js #site-search a.search-button:focus {
+	background: #900;
+}
+
+.js .no-js-button {
+	display:none;
+}
+
+/* Styling for the autocomplete feature */
+/* See HTML here: jqueryui.com/demos/autocomplete/ => Tab "Theming" */
+#site-search ul.ui-autocomplete {
+	border: 1px solid #999;
+	padding: 1px 5px 3px;
+	font-size: 85%;
+	line-height: 1.45;
+	text-align: left;
+	background: #FFF;
+}
+#site-search ul.ui-autocomplete li{	
+	list-style-type:none;
+}
+#site-search ul.ui-autocomplete a {
+	display: block;
+	border: 1px dotted #FFF;
+	padding: 0 1px;
+	color: #333;
+	cursor: pointer; /* Some browsers had problems with the text cursor from the label */
+	text-decoration: none;
+}
+/* The ui-state-hover class gets triggered when the user navigates with the keyboard */
+#site-search ul.ui-autocomplete a.ui-state-hover,
+#site-search ul.ui-autocomplete a:hover,
+#site-search ul.ui-autocomplete a:active,
+#site-search ul.ui-autocomplete a:focus {
+	border-color: #900;
+	color: #900;
+}
+
+
+
+/**
+ * Breadcrumb
+ *
+ * The global breadcrumb navigation with flyouts.
+ *
+ * @section   =breadcrumb
+ */
+#breadcrumb {
+	width: 952px;
+	padding: 9px 0 10px 44px;
+	font-size: 85%;
+	line-height: 1.45;
+	white-space: nowrap;
+}
+#breadcrumb .wrapper {
+	width: 896px;
+}
+/* For IE... */
+#breadcrumb b {
+	font-weight: normal;
+}
+#breadcrumb a {
+	color: #666;
+	text-decoration: none;
+}
+#breadcrumb a b,
+#breadcrumb a.path,
+#breadcrumb a:hover,
+#breadcrumb a:active,
+#breadcrumb a:focus {
+	color: #900;
+}
+#breadcrumb a:hover b,
+#breadcrumb a:active b,
+#breadcrumb a:focus b {
+	text-decoration: underline;
+}
+#breadcrumb .nav {
+	position: relative;
+	z-index: 100;
+	float: left;
+	margin-right: 12px;
+	padding-bottom: 6px;
+}
+#breadcrumb .nav h1 {
+	font-weight: normal;
+}
+#breadcrumb .nav h1 a {
+	display: block;
+	padding-left: 11px;
+	background: url("../images/icon-arrow-right.gif") no-repeat left center;
+}
+#breadcrumb .nav ul {
+	display: none;
+	position: absolute;
+	top: 14px;
+	left: -1px;
+	min-width: 142px;
+	margin: 6px 0 0;
+	border: 1px solid #FFF;
+	border-top-color: #999;
+	border-bottom-width: 2px;
+	list-style: none;
+	background: #EEE;
+}
+#breadcrumb .nav li {
+	border-bottom: 1px solid #999;
+	padding: 2px 0;
+}
+#breadcrumb .nav li a {
+	display: block;
+	padding: 0 10px 0 21px;
+	background: url("../images/icon-arrow-right.gif") no-repeat 10px 5px;
+}
+#breadcrumb .hover ul {
+	display: block;
+}
+
+
+
+/**
+ * Content
+ *
+ * All definitions for the grid of the content area. All the different kinds
+ * of page types are documented on paper in the section "Content Grids".
+ *
+ * @section   =content
+ * @see       Documentation
+ */
+#content {
+	display: inline-block; /* Better clearfix: www.yuiblog.com/blog/2010/09/27/clearfix-reloaded-overflowhidden-demystified/ */
+	width: 916px;
+	padding-left: 44px;
+}
+
+/**
+ * Grid: Portal
+ *
+ * This grid consists of up to three columns. There is always one column
+ * on the left and either one or two columns on the right.
+ *
+ * @subsection   =s-portal
+ */
+.s-portal {
+
+}
+.s-portal .s-left {
+	float: left;
+	width: 276px;
+}
+.s-portal .s-right {
+	float: right;
+	width: 596px;
+}
+.s-portal .s-right .s-col-1 {
+	float: left;
+	width: 276px;
+}
+.s-portal .s-right .s-col-2 {
+	float: right;
+	width: 276px;
+}
+
+/**
+ * Grid: Classic
+ *
+ * @subsection   =s-classic
+ */
+.s-classic {
+	
+}
+.s-classic .s-left {
+	float: left;
+	width: 596px;
+}
+.s-classic .s-left .s-wide {
+	width: 458px;
+}
+.s-classic .s-right {
+	float: right;
+	width: 276px;
+}
+
+
+
+/**
+ * Grid: Columns
+ *
+ * @subsection   =s-columns
+ */
+.s-columns {
+	
+}
+.s-columns .s-left,
+.s-columns .s-right {
+	float: left;
+	width: 424px;
+}
+.s-columns .s-right {
+	margin-left: 66px;
+}
+.s-columns .s-column-1,
+.s-columns .s-column-2 {
+	float: left;
+	width: 190px;
+}
+.s-columns .s-column-2 {
+	float: right;
+}
+
+
+
+/**
+ * Grid: Full width
+ *
+ * @subsection   =s-full
+ */
+.s-full {
+	
+}
+.s-full .s-wide {
+	padding-right: 320px;
+}
+
+
+
+/**
+ * Teaser column
+ * 
+ * The teaser column is mostly used for home pages or portfolios. It consists
+ * of navigation lists, teasers etc.
+ *
+ * @section   =c-teaser
+ */
+.c-teaser h1 {
+	padding: 0 0 6px;
+	font-size: 85%;
+	line-height: 1.45;
+}
+.c-teaser p {
+	font-size: 85%;
+	line-height: 1.45;
+}
+
+/* Single link */
+.c-teaser p.more {
+	padding-top: 2px;
+}
+.c-teaser p.more a {
+	padding: 0 0 0 11px;
+	color: #333;
+	text-decoration: none;
+	background: url("../images/icon-arrow-right.gif") no-repeat 0 3px;
+}
+.c-teaser p.more a:hover,
+.c-teaser p.more a:active,
+.c-teaser p.more a:focus {
+	color: #900;
+}
+
+/* Complete paragraph as link */
+.c-teaser p.link a {
+	color: #333;
+	text-decoration: none;
+}
+.c-teaser p.link a:hover,
+.c-teaser p.link a:active,
+.c-teaser p.link a:focus {
+	color: #900;
+}
+.c-teaser p.link .more {
+	padding: 0 0 0 7px;
+	background: url("../images/icon-arrow-right.gif") no-repeat 5px 4px;
+}
+
+/* Images */
+.c-teaser img.full {
+	display: block;
+	margin: 14px 0 10px;
+}
+.c-teaser img.left {
+	display: block;
+	float: left;
+	margin: 4px 12px 4px 0;
+}
+.c-teaser img.right {
+	display: block;
+	float: right;
+	margin: 4px 0 4px 12px;
+}
+
+/* Links */
+.c-teaser ul.links {
+	padding-bottom: 0;
+	font-size: 85%;
+}
+
+/* Navigation*/
+.c-teaser ul.nav {
+	margin: 0 0 -7px;
+	font-size: 85%;
+	font-weight: bold;
+	line-height: 1.28;
+	list-style: none;
+}
+.c-teaser ul.nav li {
+	padding: 1px 0 7px;
+}
+.c-teaser ul.nav a {
+	padding-left: 11px;
+	color: #666;
+	text-decoration: none;
+	background: url("../images/icon-arrow-right.gif") no-repeat 0 4px;
+}
+.c-teaser ul.nav a:hover,
+.c-teaser ul.nav a:active,
+.c-teaser ul.nav a:focus {
+	color: #900;
+}
+
+
+
+/**
+ * Article column
+ * 
+ * The article column is mostly used for default content and consists
+ * of headlines, paraphraphs, media elements with caption etc.
+ *
+ * @section   =c-article
+ */
+.c-article h1 {
+	padding: 1px 0 6px;
+	font-size: 123.1%;
+	line-height: 1.25;
+}
+.c-article h2 {
+	padding: 0 0 12px;
+	color: #999;
+	font-size: 108%;
+	font-weight: normal;
+	line-height: 1.286;
+}
+
+.c-article h3 {
+	margin-top: 3px;
+}
+
+.c-article h4 {
+	padding: 0;
+	color: #666;
+}
+.c-article h3,
+.c-article h4,
+.c-article h5,
+.c-article h6,
+.c-article p,
+.c-article ul,
+.c-article ol {
+	font-size: 85%;
+	line-height: 1.45;
+}
+.c-article p {
+	padding: 0 0 5px;
+}
+.c-article ul,
+.c-article ol {
+	margin-top: -2px;
+	padding: 0 0 5px;
+}
+.c-article ul.links {
+	padding-bottom: 3px;
+}
+.c-article li {
+	padding-top: 2px;
+}
+
+/* Special rule for the link lists */
+.c-article ul.links {
+	margin-top: -1px;
+}
+
+/* Assets can be included on the whole width, left aligned or right aligned */
+.c-article .asset {
+	position: relative;
+}
+/*
+	All assets should be used with the asset class as well.
+	Thus in this case the element should have the class attribute "asset asset-wide".
+*/
+.c-article .asset-wide {
+	margin: 3px 0 14px; /* Using margin instead of padding here because of IE6 */
+}
+.c-article .asset-left {
+	float: left;
+	margin: 3px 12px 6px 0; /* Using margin instead of padding here because of IE6 */
+}
+.c-article .asset-right {
+	float: right;
+	margin: 3px 0 6px 12px; /* Using margin instead of padding here because of IE6 */
+}
+/*
+	We need this class to set a high z-index when an image gets
+	enlarged so that it overlaps all the other content.
+	@see scripts/siemens.enlarger.js
+*/
+.c-article .asset-enlarged {
+	z-index: 900;
+}
+.c-article .asset img {
+	display: block;
+}
+.c-article .asset .image {
+	position: relative;
+}
+/*
+	The wrapper around the anchor is required to support IE6 properly.
+	Direct absolute positioning of the anchor fails there.
+*/
+.c-article .asset .image .enlarge {
+	position: relative;
+}
+.c-article .asset .image .enlarge a {
+	display: block;
+	position: absolute;
+	top: -21px;
+	right: 0;
+	width: 19px;
+	height: 19px;
+	overflow: hidden;
+	border-top: 2px solid #FFF;
+	border-left: 2px solid #FFF;
+	text-indent: -9999em;
+	background: #FFF url("../images/icon-magnifier.gif") no-repeat center center;
+}
+.c-article .asset .image .enlarge a span {
+	display: block;
+	width: 17px;
+	height: 17px;
+	border: 1px solid #CCC;
+	cursor: pointer; /* This is for IE6 only */
+}
+.c-article .asset .caption {
+	padding: 4px 0;
+	color: #999;
+	font-size: 77%;
+	line-height: 1.4;
+}
+.c-article .asset .enlarged {
+	position: absolute;
+	top: 0;
+	left: 0;
+	border-right: 2px solid #FFF;
+	border-bottom: 2px solid #FFF;
+}
+.c-article .asset-right .enlarged {
+	right: 0;
+	left: auto;
+	border-right: 0;
+	border-left: 2px solid #FFF;
+}
+.c-article .asset .enlarged a.close {
+	border: 0;
+	border-bottom: 2px solid #FFF;
+	border-left: 2px solid #FFF;
+	background-color: #FFF;
+}
+.c-article .asset .enlarged a.close span {
+	display: block;
+	border: 1px solid #CCC;
+}
+
+/* A TOC list, mostly used inside of an overview element */
+.c-article ul.toc {
+	margin: 0;
+	padding: 0;
+	list-style: none;
+}
+.c-article ul.toc li {
+	padding: 1px 0;
+}
+.c-article ul.toc a {
+	padding-left: 13px;
+	color: #333;
+	text-decoration: none;
+	background: url("../images/icon-arrow-down.gif") no-repeat 0 5px;
+}
+.c-article ul.toc a:hover,
+.c-article ul.toc a:active,
+.c-article ul.toc a:focus {
+	color: #900;
+}
+
+/* The overview element, mostly displayed on top of an article */
+.c-article .overview {
+	margin: 3px 0 18px;
+	border: 1px solid #999;
+	border-right: 0;
+	border-left: 0;
+	padding: 10px 0;
+}
+.c-article .overview h1 {
+	padding: 0 0 5px;
+	font-size: 85%;
+	line-height: 1.45;
+}
+.c-article .overview p {
+	padding: 0 0 13px;
+}
+
+/* A separator line */
+.c-article .separator {
+	position: relative;
+	margin: 15px 0 15px 0;
+	border-top: 1px dotted #999;
+}
+.c-article .separator a.top {
+	display: block;
+	position: absolute;
+	top: -12px;
+	right: 2px;
+	width: 9px;
+	height: 6px;
+	overflow: hidden;
+	text-indent: -9999em;
+	background: url("../images/icon-arrow-up.gif") no-repeat center center;
+}
+.c-article .separator hr {
+	display: none;
+}
+
+/* A block with additional (greyed out) information */
+.c-article .additional-info {
+	color: #999;
+}
+
+
+
+/**
+ * Related column
+ * 
+ * The related column is normally located on the right
+ * side of the content and is divided into small sections that
+ * are separated by a grey line.
+ * There are vary simple elements in it that can be comined in
+ * any order.
+ *
+ * @section   =c-related
+ */
+.c-related {
+	position: relative;
+}
+
+/* A section */
+.c-related .section {
+	margin: 4px 0 0;
+	border-top: 1px solid #999;
+	padding: 10px 0 0;
+	font-size: 85%;
+	line-height: 1.45;
+}
+/* Section with grey background, mostly the first one */
+.c-related .section .highlighted {
+	margin-top: -6px;
+	padding: 6px 10px 1px;
+	background: #EEE;
+}
+.s-left .highlighted {
+	margin:10px 0 10px 0;
+	padding: 6px 10px 10px 10px;
+	background: #EEE;
+}
+
+/* Headlines & paragraphs */
+.c-related .section h2 {
+	margin: 0 0 7px;
+}
+.c-related .section h3 {
+	margin: 0;
+	color: #666;
+}
+.c-related .section p {
+	padding: 0 0 6px;
+}
+
+/* Complete paragraph as link */
+.c-related .section p.link a {
+	color: #333;
+	text-decoration: none;
+}
+.c-related .section p.link a:hover,
+.c-related .section p.link a:active,
+.c-related .section p.link a:focus {
+	color: #900;
+}
+
+.c-related .section p.link .more {
+	padding: 0 0 0 7px;
+	background: url("../images/icon-arrow-right.gif") no-repeat 5px 4px;
+}
+
+
+
+/**
+ * Tab nav column
+ * 
+ * A special column that is currently only in use in the full width grid.
+ *
+ * @section   =c-tab-nav
+ */
+.c-tab-nav {
+	margin-top: 10px;
+	position: relative;
+}
+
+
+
+/**
+ * Feature column
+ * 
+ * A special column that is currently only in use in the full width grid.
+ *
+ * @section   =c-feature
+ */
+.c-feature {
+	position: relative;
+	margin-bottom: 44px;
+	border-bottom: 1px dotted #999;
+	padding: 6px 0 10px;
+}
+
+
+
+#content  .top-hairline {
+	border-top: 1px dotted #999;
+}
+#content .bottom-hairline {
+	border-bottom:1px dotted #999;
+}
+
+/**
+ * Pagetools
+ *
+ * Can be used in two places: The right column or above the footer.
+ *
+ * @section   =pagetools
+ */
+
+/* Some generic definitions */
+.pagetools {
+	font-size: 85%;
+	line-height: 1.45;
+}
+.pagetools ul {
+	float: right;
+	margin: 0 -10px 4px 0;
+	list-style: none;
+}
+.pagetools li {
+	float: left;
+	padding: 0 10px;
+}
+.pagetools li.first {
+	padding-left: 0;
+}
+.pagetools a {
+	display: block;
+	float: left;
+	width: 11px;
+	height: 12px;
+	overflow: hidden;
+	text-indent: -9999em;
+	background-image: url("../images/icon-pagetools-sprite.gif");
+	background-repeat: no-repeat;
+}
+
+/* Text sizing */
+.pagetools .text-size {
+	display: none;
+}
+.js .pagetools .text-size {
+	display: block;
+}
+.pagetools .text-size .minus {
+	height: 11px;
+	margin-top: 1px;
+	margin-right: 4px;
+	background-position: -22px 0;
+}
+.pagetools .smallest .minus {
+	cursor: default;
+	background-position: -33px 0;
+}
+.pagetools .text-size .plus {
+	height: 11px;
+	margin-top: 1px;
+	margin-right: 6px;
+	background-position: 0 0;
+}
+.pagetools .largest .plus {
+	cursor: default;
+	background-position: -11px 0;
+}
+
+/* Recommendation */
+.js .pagetools .recommend {
+	display: none;
+}
+.pagetools .recommend a {
+	width: 19px;
+	height: 9px;
+	margin-top: 3px;
+	background-position: 0 -11px;
+}
+
+/* Share */
+.pagetools .share {
+	display: none;
+}
+.js .pagetools .share {
+	display: block;
+}
+.pagetools .share a {
+	width: 26px;
+	height: 12px;
+	background-position: 0 -20px;
+}
+
+/* Print */
+.pagetools .print {
+	display: none;
+}
+.js .pagetools .print {
+	display: block;
+}
+.pagetools .print a {
+	width: 12px;
+	height: 12px;
+	background-position: 0 -32px;
+}
+
+/* Some specific styles for the pagetools in the related column */
+.c-related .pagetools {
+	margin: 6px 0 4px;
+}
+.js .c-related .pagetools {
+	margin-bottom: -4px;
+}
+.c-related .pagetools .text-size {
+	float: left;
+}
+
+/* Specific styles for the pagetools when they are in the tab column */
+.c-tab-nav .pagetools {
+	position: absolute;
+	top: 5px;
+	right: 0;
+	width: 276px;
+}
+.c-tab-nav .pagetools .text-size {
+	float: left;
+}
+
+/* Specific styles for the pagetools in the footer */
+#footer .pagetools {
+	position: absolute;
+	top: 9px;
+	left: 44px;
+	width: 916px;
+	border-bottom: 1px solid #999;
+}
+#footer .pagetools ul {
+	margin-bottom: 0;
+}
+
+
+
+/**
+ * Footer
+ *
+ * Global footer for all pages.
+ *
+ * @section   =footer
+ */
+#nav-footer {
+	margin: 30px 22px 0 44px;
+	color: #999;
+	font-size: 77%;
+	line-height: 1.3;
+}
+/* When the pagetools are in the footer, we need to adjust the margin */
+.extended-footer #nav-footer {
+	margin-top: 37px;
+}
+#nav-footer ul {
+	margin: 0;
+	list-style: none;
+}
+#nav-footer li {
+	float: left;
+	padding: 0 5px 0 6px;
+	background: url("../images/divider-footer.gif") no-repeat left center;
+}
+#nav-footer li.first {
+	padding-left: 0;
+	background-image: none;
+}
+#nav-footer li a {
+	color: #999;
+	text-decoration: none;
+}
+#nav-footer li.relevant,
+#nav-footer li.relevant a {
+	color: #333;
+}
+#nav-footer li.relevant a:hover,
+#nav-footer li.relevant a:active,
+#nav-footer li.relevant a:focus {
+	color: #900;
+}
+
+
+
+/**
+ * Simple layer
+ *
+ * A layer module that could be used for almost anything. Right now it's
+ * only in use for the share link.
+ * It's hidden by default, you need to show and position it dynamically
+ * via JS.
+ *
+ * @section   =simple-layer
+ */
+.simple-layer {
+	display: none;
+	position: absolute;
+	top: 20px;
+	left: 20px;
+	z-index: 1000; /* to overlap everything */
+	border: 2px solid #FFF;
+}
+/* Assign this class additionally to the element so that it gets displayed */
+.simple-layer-active {
+	display: block;
+}
+.simple-layer a.close {
+	width: 21px;
+	height: 21px;
+	border: 0;
+	background-color: transparent;
+	background-image: url("../images/icon-cross-simple-layer.gif");
+}
+.simple-layer .content {
+	border: 1px solid #CCC;
+	padding: 19px 14px 9px;
+	font-size: 85%;
+	line-height: 1.45;
+	background: #FFF;
+}
+
+/**
+ * Share layer
+ *
+ * Based on the simple layer.
+ *
+ * @subsection   =simple-layer-share
+ */
+#simple-layer-share .content {
+	width: 246px;
+	padding-top: 10px;
+}
+#simple-layer-share ul {
+	margin: 0;
+	list-style: none;
+}
+#simple-layer-share a {
+	color: #333;
+	text-decoration: none;
+}
+#simple-layer-share a:hover,
+#simple-layer-share a:active,
+#simple-layer-share a:focus {
+	color: #900;
+}
+#simple-layer-share h2 {
+	margin: 5px 0;
+}
+#simple-layer-share p.recommend {
+	margin-bottom: 10px;
+	border-bottom: 1px dotted #999;
+	padding-bottom: 10px;
+}
+#simple-layer-share p.recommend a {
+	display: block;
+}
+#simple-layer-share ul.share {
+	margin-right: -22px;
+}
+#simple-layer-share ul.share li {
+	float: left;
+	width: 112px;
+	margin-right: 22px;
+	padding: 4px 0;
+}
+#simple-layer-share ul.share li a {
+	display: block;
+	height: 16px;
+	overflow: hidden;
+	padding: 1px 0 0 22px;
+	background-image: url("../images/icon-share-sprite.gif");
+	background-repeat: no-repeat;
+}
+a.share-delicious { background-position: 0 -76px }
+a.share-digg { background-position: 0 -101px }
+a.share-facebook { background-position: 0 -151px }
+a.share-faves { background-position: 0 -176px }
+a.share-friendfeed { background-position: 0 -201px }
+a.share-linkagogo { background-position: 0 -277px }
+a.share-linkedin { background-position: 0 -302px }
+a.share-mrwong { background-position: 0 -352px }
+a.share-myspace { background-position: 0 -452px }
+a.share-newsvine { background-position: 0 -527px }
+a.share-oneview { background-position: 0 -577px }
+a.share-stumbleupon { background-position: 0 -779px }
+a.share-twitter { background-position: 0 -881px }
+a.share-xing { background-position: 0 -931px }
+a.share-yigg { background-position: 0 -957px }
+
+/**
+ * Search page specific styles
+ *
+ * @subsection   =search-page
+ */
+ 
+.searchform-onpage a.icon {
+	font-size:85%;
+	text-decoration:none;
+	padding-bottom:4px;
+	height:20px;
+	display:block;
+	float:right;
+	margin-top:5px;
+	color:#666;
+}
+.searchform-onpage a.icon:hover {
+	color:#900;
+}
+
+.searchform-onpage {
+	margin-bottom:21px;
+}
+
+.searchform-onpage #site-search  {
+	float:left;
+	width:430px;
+}
+.searchform-onpage #site-search input.replace {
+	float:right;
+	margin-top:4px;
+	width:60px;
+}
+.searchform-onpage a.button {
+	margin:2px 15px 0 4px;
+}
+
+#content #site-search label.overlabel {
+	position: absolute;
+	width: 1px;
+	height: 1px;
+	overflow: hidden;
+	margin: -1px;
+	border: 0;
+	padding: 0;
+	clip: rect(0 0 0 0);
+}
+
+#content .searchform-onpage #site-search input {
+	position:relative;
+	float:left;
+	width:357px;
+	font-size:85%;
+	border:solid 1px #999;
+}
+
+.js #content .searchform-onpage #site-search input {
+	margin-top:1px;
+}
+
+#content .searchform-onpage #site-search input[type='submit'] {
+	/*Prevents jumping when the page loads*/
+	width:60px;
+	margin-top:-1px;
+}
+ 
+.search-suggestion {
+	font-size:85%;
+	margin: 10px 0 5px 0 ;
+}
+.search-suggestion a {
+	font-weight: bold;
+	margin-left: 4px;
+	color: #333;
+	text-decoration: none;
+}
+.search-suggestion a:hover {
+	color:#900;
+}
+.result-container {
+	margin-bottom:16px;
+}
+
+.result-container .highlighted {
+	padding:5px 5px 4px 8px;
+}
+
+.result-container h2 {
+	font-size:85%;
+	margin-bottom:5px;
+}
+
+.result-container  ol {
+	list-style-type:none;
+	margin:0px 0px 4px 0px;
+}
+
+.result-container  li {
+	margin:16px 0px 0px 0px;
+} 
+.result-container  li.first-child {
+	margin-top:0px;
+}
+
+.result-container h3 a{
+	font-weight:normal;
+	font-size:85%;
+	color:#900;
+	text-decoration:underline;
+}
+
+.result-container a {
+	font-size:85%;
+	color:#666;
+	text-decoration:none;
+}
+
+.result-container a:hover {
+	color:#900;
+}
+
+.c-related .section.search-filter {
+	margin:19px 0 18px 0;
+	padding: 11px 0 33px 0;
+}
+
+.c-related .section.dropdown-container-section {
+	padding-bottom:13px;
+}
+
+.search-filter h2 {
+	color:#666;
+}
+
+.search-filter a.selectBox-dropdown {
+	margin-bottom:9px;
+	font-size:100%;
+}
+
+.search-filter a.button {
+	float:right;
+	font-size:100%;
+}
+ 
+/**
+ * Site Explorer without JavaScript
+ *
+ * This whole section is for the Site Explorer without JavaScript enabled.
+ *
+ * @section   =noscript-site-explorer
+ */
+body.noscript-site-explorer {
+	padding: 116px 0 44px 44px;
+	background: #666;
+}
+#noscript-site-explorer-layer {
+	position: relative;
+	width: 898px;
+	padding: 40px 14px 14px;
+	margin-bottom: 44px;
+	background: #FFF;
+}
+#noscript-site-explorer-layer ul,
+#noscript-site-explorer-layer ol {
+	margin: 0;
+	list-style: none;
+}
+#noscript-site-explorer-layer h1 {
+	margin: 0 0 8px -1px;
+	font-size: 123.1%;
+	line-height: 1;
+}
+#noscript-site-explorer-layer h2 {
+	margin-bottom: 4px;
+	font-size: 85%;
+}
+#noscript-site-explorer-layer p {
+	font-size: 85%;
+	line-height: 1.45;
+}
+#noscript-site-explorer-layer a.close {
+	border: 0;
+	border-bottom: 2px solid #666;
+	border-left: 2px solid #666;
+	padding-bottom: 1px;
+	background-color: transparent;
+}
+#noscript-site-explorer-layer a.back {
+	position: absolute;
+	top: 13px;
+	left: 14px;
+	padding-left: 11px;
+	color: #333;
+	font-size: 85%;
+	text-decoration: none;
+	background: url("../images/icon-arrow-left.gif") no-repeat left center;
+}
+#noscript-site-explorer-layer .breadcrumb {
+	margin: 17px 0 12px;
+	border-bottom: 1px dotted #999;
+	padding-bottom: 11px;
+	font-size: 85%;
+}
+#noscript-site-explorer-layer .breadcrumb li {
+	display: inline;
+}
+#noscript-site-explorer-layer .breadcrumb a,
+#noscript-site-explorer-layer .breadcrumb b {
+	margin-right: 11px;
+	padding-left: 11px;
+	background: url("../images/icon-arrow-right.gif") no-repeat left center;
+}
+#noscript-site-explorer-layer .breadcrumb a {
+	color: #666;
+	text-decoration: none;
+}
+#noscript-site-explorer-layer .breadcrumb b,
+#noscript-site-explorer-layer .breadcrumb a:hover,
+#noscript-site-explorer-layer .breadcrumb a:active,
+#noscript-site-explorer-layer .breadcrumb a:focus {
+	color: #900;
+	font-weight: normal;
+}
+#noscript-site-explorer-layer .se {
+	margin-right: -44px;
+	font-size: 85%;
+}
+#noscript-site-explorer-layer .se .section {
+	float: left;
+	width: 270px;
+	margin-right: 44px;
+}
+#noscript-site-explorer-layer .se a {
+	/*color: #666;*/
+	text-decoration: none;
+}
+#noscript-site-explorer-layer .se a:hover,
+#noscript-site-explorer-layer .se a:active,
+#noscript-site-explorer-layer .se a:focus {
+	color: #900;
+}
+#noscript-site-explorer-layer .se li {
+	padding: 5px 0 12px 18px;
+	font-weight: bold;
+	line-height: 1.28;
+	background: url("../images/tree-line.gif") no-repeat left top;
+}
+#noscript-site-explorer-layer .se li.last {
+	padding-bottom: 2px;
+	margin-bottom: 10px;
+	background-position: 0 100%;
+}
+#noscript-site-explorer-layer .se li li {
+	font-weight: normal;
+}
+#noscript-site-explorer-layer .se li li li {
+	padding-bottom: 2px;
+}
+#noscript-site-explorer-layer .se li li li.last {
+	margin-bottom: 0;
+}
+#noscript-site-explorer-layer .se li a {
+	display: block;
+	padding-left: 13px;
+	background: url("../images/icon-arrow-right.gif") no-repeat 3px 3px;
+}
+
+
+
+/**
+ * Non-semantic helper classes
+ *
+ * Styles should be defined before this section.
+ *
+ * @section   =helper
+ */
+/* Image replacement */
+.ir {
+	display: block;
+	overflow: hidden;
+	direction: ltr;
+	text-align: left;
+	text-indent: -999em;
+	background-repeat: no-repeat;
+}
+
+/* Hide for both screenreaders and browsers: css-discuss.incutio.com/wiki/Screenreader_Visibility */
+.hidden {
+	display: none;
+	visibility: hidden;
+}
+
+/* Hide only visually, but have it available for screenreaders:  www.webaim.org/techniques/css/invisiblecontent/  &  j.mp/visuallyhidden */
+.visuallyhidden {
+	position: absolute;
+	width: 1px;
+	height: 1px;
+	overflow: hidden;
+	margin: -1px;
+	border: 0;
+	padding: 0;
+	clip: rect(0 0 0 0);
+}
+/* Extends the .visuallyhidden class to allow the element to be focusable when navigated to via the keyboard: drupal.org/node/897638 */
+.visuallyhidden.focusable:active,
+.visuallyhidden.focusable:focus {
+	position: static;
+	width: auto;
+	height: auto;
+	overflow: visible;
+	margin: 0;
+	clip: auto;
+}
+
+/* Hide visually and from screenreaders, but maintain layout */
+.invisible {
+	visibility: hidden;
+}
+
+
+
+/**
+ * Clearfix
+ *
+ * @section   =clearfix
+ * @author    Thierry Koblentz
+ * @date      2010-09-27
+ * @see       j.mp/bestclearfix
+ * @see       blueprintcss.lighthouseapp.com/projects/15318/tickets/5-extra-margin-padding-bottom-of-page
+ */
+.clearfix:before, .clearfix:after {
+	display: block;
+	height: 0;
+	overflow: hidden;
+	content: "\0020";
+}
+.clearfix:after {
+	clear: both;
+}
+.clearfix {
+	zoom: 1;
+}
+
+
+
+/**
+ * Media queries
+ *
+ * Maybe our solution for responsive design.
+ * In general these should follow after primary styles so they will successfully overwrite.
+ * 
+ * @section   =media-queries
+ * @todo      Find out if this is a preferable solution for mobile devices
+ * @media     mobile
+ */
+@media all and (orientation:portrait) {
+	/* Style adjustments for portrait mode */
+}
+@media all and (orientation:landscape) {
+	/* Style adjustments for landscape mode */
+}
+@media screen and (max-device-width: 480px) {
+	/* Grade-A Mobile Browsers (Opera Mobile, Mobile Safari, Android Chrome), consider this: www.cloudfour.com/css-media-query-for-mobile-is-fools-gold/ */
+}
+
+
+
+/**
+ * Print styles
+ *
+ * Inlined to avoid additional HTTP connection.
+ * 
+ * @section   =print
+ * @todo      These are only some basics, needs more optimization when more styles are in
+ * @media     print
+ * @see       www.phpied.com/delay-loading-your-print-css/
+ */
+@media print {
+	
+	/* Set up page */
+	@page {
+		margin: 0.5cm;
+	}
+	
+	/* Set bigger font size */
+	body {
+		font-size: 20px;
+	}
+	
+	/* Some defaults */
+	/* Black prints faster: sanbeiji.com/archives/953 */
+	* {
+		color: black !important;
+		text-shadow: none !important;
+		filter:none !important;
+		-ms-filter: none !important;
+		background: transparent !important;
+	} 
+	a, a:visited {
+		color: #444 !important;
+		text-decoration: underline;
+	}
+	pre, blockquote {
+		border: 1px solid #999;
+		page-break-inside: avoid;
+	}
+	/* css-discuss.incutio.com/wiki/Printing_Tables */
+	thead {
+		display: table-header-group;
+	} 
+	tr, img {
+		page-break-inside: avoid;
+	}
+	p, h2, h3 {
+		orphans: 3;
+		widows: 3;
+	}
+	h2, h3 {
+		page-break-after: avoid;
+	}
+	
+	/* Add content that's only accessible on screen */
+	a[href]:after {
+		content: " (" attr(href) ")";
+	}
+	abbr[title]:after {
+		content: " (" attr(title) ")";
+	}
+	
+	/* Don't show links for images, or javascript/internal links */
+	.ir a:after,
+	a[href^="javascript:"]:after,
+	a[href^="#"]:after {
+		content: "";
+	}
+	
+	/* Do not display close buttons */
+	a.close {
+		display: none;
+	}
+	
+	/* Do not display grid */
+	#header .visual,
+	#toolbar,
+	#nav-footer li a {
+		display: none;
+	}
+	
+	/* Display print logo */
+	#logo {
+		position: static;
+		background: none;
+	}
+	#logo img {
+		position: static;
+		width: auto;
+		height: 3mm;
+		overflow: visible;
+		margin: 0;
+		clip: auto;
+	}
+	
+	/* Correct padding in the header */
+	#header .headertext {
+		padding: 3mm 0;
+	}
+	
+	/* Display help text for breadcrumb */
+	#breadcrumb .visuallyhidden {
+		position: static;
+		width: auto;
+		height: auto;
+		overflow: visible;
+		margin: 0;
+		clip: auto;
+	}
+	/* Correct margin/padding in breadcrumb */
+	#breadcrumb {
+		width: auto;
+		padding: 0;
+	}
+	#breadcrumb .nav h1 a {
+		padding: 0;
+	}
+	#breadcrumb .nav h1 a:before {
+		content: " > ";
+	}
+	
+	/* Hide the pagetools */
+	.pagetools {
+		display: none;
+	}
+	
+	/* Content DIV */
+	#content {
+		display: block;
+		width: 100%;
+		padding: 0;
+	}
+	
+	/* Portal structure */
+	.s-portal .s-left,
+	.s-portal .s-right,
+	.s-portal .s-right .s-col-1,
+	.s-portal .s-right .s-col-2 {
+		float: none;
+		width: 100%;
+	}
+	
+	/* Classic structure */
+	.s-classic .s-left,
+	.s-classic .s-right {
+		float: none;
+		width: 100%;
+	}
+	.s-classic .s-left .s-wide {
+		width: 100%;
+	}
+	
+	/* Site Explorer without JavaScript */
+	body.noscript-site-explorer {
+		padding: 0;
+		background: #FFF;
+	}
+	#noscript-site-explorer-layer {
+		padding: 1em 0 0;
+	}
+	#noscript-site-explorer-layer a.back {
+		display: none;
+	}
+	#noscript-site-explorer-layer .breadcrumb .visuallyhidden {
+		position: static;
+		width: auto;
+		height: auto;
+		overflow: visible;
+		margin: 0;
+		clip: auto;
+	}
+	#noscript-site-explorer-layer .breadcrumb a,
+	#noscript-site-explorer-layer .breadcrumb b {
+		padding: 0;
+	}
+	#noscript-site-explorer-layer .breadcrumb a:before,
+	#noscript-site-explorer-layer .breadcrumb b:before {
+		content: " > ";
+	}
+	#noscript-site-explorer-layer .se {
+		margin: 0;
+	}
+	#noscript-site-explorer-layer .se .section {
+		float: none;
+		width: 100%;
+		margin: 0;
+	}
+	#noscript-site-explorer-layer .se a {
+		color: #000;
+	}
+	#noscript-site-explorer-layer .se ul {
+		margin-left: 1em;
+	}
+	#noscript-site-explorer-layer .se li {
+		padding-left: 0.5em;
+		list-style-type: disc;
+		background: none;
+	}
+	#noscript-site-explorer-layer .se li a {
+		padding: 0;
+		background: none;
+	}
+	
+	/* Correct margin in the footer */
+	#nav-footer {
+		margin: 0;
+	}
+	
+	/* Do not display the dash in the footer */
+	#nav-footer li .dash {
+		display: none;
+	}
+	
+}

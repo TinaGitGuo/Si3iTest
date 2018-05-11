@@ -1,0 +1,39 @@
+/**
+ * Module siemens.slidermedia stylesheet
+ * individual settings
+ * 
+ * @project   Digital First
+ * @date      2011-04-20
+ * @author    Robin Rush, Sapient GmbH <rrush@sapient.com>
+ * @licensor  Siemens AG
+ * @site      Siemens Healthcare
+ */
+
+
+/**
+ * media module styles
+ */ 
+/* slider container */
+.media-module .slider-media { height: 100px;  padding: 0;}
+/* slider container - no-js */
+.no-js .media-module .slider-media { display: none; }
+/* slider scrollable */
+.media-module .slider-media .scrollable { width: 362px; }
+/* a single item. */
+.media-module .slider-media .items li { width: 82px; margin: 0 12px 0 0; }
+/* an item's image container - needed to support different vertical centered image formats */
+.media-module .slider-media .items .img-container { width: 82px; height: 62px; }
+/* slider browse buttons */
+.media-module .slider-media .slider-nav .browse { margin: 20px 0 0 0; }
+
+/**
+ * media module overlay styles
+ */
+/* slider overlay container */
+.media-overlay .slider-overlay { height: 100px; padding: 0; }
+/* a single item. */
+.media-overlay .slider-overlay .items li { width: 82px; }
+/* an item's image container - needed to support different vertical centered image formats */
+.media-overlay .slider-overlay .items .img-container { width: 82px; height: 62px; }
+/* slider browse buttons */
+.media-overlay .slider-overlay .slider-nav .browse { margin: 20px 0 0 0; }

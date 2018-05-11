@@ -1,0 +1,69 @@
+﻿
+@{
+    ViewBag.Title = "ExampleTextBox";
+}
+<!--TextBox-->
+<h3>ExampleTextBox</h3>
+<h1>simple</h1>
+<form class="nts-form row">
+    <div class="col-lg-3 col-md-6 col-sm-12 col-xs-12">
+        <div class="input-div ie10" data-placeholder="Vehicle Assembler Chinese">
+
+            <input value="" type="text" Watermark="Vehicle Assembler Chinese" />
+        </div>
+    </div>
+</form>
+<!--TextBox-->
+
+
+
+<h1>full</h1>
+
+<form class="nts-form row" >
+    <div class="col-lg-3 col-md-6 col-sm-12 col-xs-12">
+        <div class="input-div ie10" data-placeholder="Vehicle Assembler Chinese" onkeydown="enterSearch(window.event,2)">
+            <input value="plantSearchModelR.PVACSearch" type="hidden" id="h_PVACSearch" />
+            <input value="" type="text" Watermark="Vehicle Assembler Chinese" />
+        </div>
+    </div>
+</form>
+
+
+
+
+
+
+
+
+
+
+
+@section scripts{
+        <script>
+
+
+            function enterSearch(evt, type) {
+                var e = window.event || arguments.callee.caller.arguments[0];
+
+                if (e && e.keyCode == 13) {
+                    if (!(navigator.userAgent.indexOf('Firefox') >= 0)) {
+
+                        if (e && e.preventDefault) {
+                            e.preventDefault();
+                        }
+                        else {
+                            window.event.returnValue = false;
+                        }
+                    } else {
+                        e.stopPropagation();
+                    }
+                    if (type == 1) {
+                        //loadGroupData(1);// 刷新table
+                    } else {
+                        // loadFactoryData(1);
+                    }
+                }
+            }
+
+        </script>
+    }

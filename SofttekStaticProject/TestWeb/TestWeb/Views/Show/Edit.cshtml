@@ -1,0 +1,277 @@
+﻿
+@{
+    ViewBag.Title = "Edit";
+}
+
+<h2>Edit</h2>
+
+ 
+@section styles{
+    <style type="text/css">
+        .input-div {
+            padding-bottom: 0px;
+            margin: 10px 0;
+        }
+
+        .content-wrapper .nts-chapter {
+            padding-top: 0px;
+        }
+
+        .hiddenStyle {
+            display: none;
+        }
+    </style>
+}
+
+@section details{
+    <div class="nts-chapter dark-text">
+        <div class="container">
+            <div class="row">
+                <div class="col-xs-12 col-lg-9">
+                    <div class="nts-comp nts-chaptertitle container">
+                        <div class="nts-headline-wrapper" id="SiemensInnovationdayChina2017">
+                            <p class="P1">
+                                <span class="P1 nts-chaptertitle-title">User properties</span>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="section table">
+                <div class="row">
+                    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                        <form class="nts-form" id="userForm">
+                            <div class="row">
+                                <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                                    <div class="input-div" data-placeholder="User Name">
+                                        <input name="UserName" value="" type="text" Watermark="User Name" id="userName" class="F1" />
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                                    <div class="input-div" data-placeholder="Email Address">
+                                        <input name="LoginAccount" value="" type="text" Watermark="Email Address" id="loginAccount" class="F1" />
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                                    <div class="input-div" id="RoleSelectDiv">
+                                        <select class="F1" name="RoleId" watermark="Role" id="roleSel" selectedvalue="" tabindex="-1">
+                                            <option value="">Please select</option>
+
+                                            <option value="role.Id">role.RoleName</option>
+
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row  hiddenStyle" id="parentUserSelDiv">
+                                <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                                    <div class="input-div" id="parentUserSelectDiv">
+                                        <select class="F1" name="ParentUserId" watermark="Sales Manager" id="parentUserSel" selectedvalue="" tabindex="-1">
+                                            <option value="">Please select</option>
+
+                                            <option value="puser.Id" selected="selected">LoginAccount</option>
+
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row" id="provinceSelDiv">
+                                <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                                    <div class="input-div" id="provinceSelectDiv">
+                                        <select class="F1" name="ProvinceIds" watermark="Competent Area" id="provinceSel" multiple selectedvalue="" tabindex="-1">
+                                            <option value="">Please select</option>
+
+                                            <option value="province.Id">ProvinceName</option>
+
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                            <!--hidden-->
+
+                        </form>
+                        <form class="nts-form">
+                            <div class="row">
+                                <div class="col-xs-8 col-sm-5 col-md-4 col-lg-2 pull-left">
+                                    <div class="nts-button B1 pull-left" id="userEditSubmitBtn">
+                                        <div class="nts-button-container">
+                                            <button type="button" class="">Submit</button>
+                                        </div>
+                                    </div>
+                                    <div class="nts-button B1 pull-left  ml-no-xs-10 mt-xs-10">
+                                        <div class="nts-button-container">
+                                            <a href="" target="_self" class="">Back</a>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+}
+
+
+
+
+@section scripts
+{
+    <script src="@Url.Content("~/Scripts/jquery.form.js")"></script>
+    <script src="@Url.Content("~/Scripts/jquery.validate.js")" type="text/javascript"></script>
+    <script src="@Url.Content("~/Scripts/validate-methods.js")"></script>
+
+    <script type="text/javascript">
+        $(function() {
+            //详情页进来
+
+              //  ResetInputDivStyle();
+                //$('#loginAccount').attr('readonly', true);
+
+                $('#RoleSelectDiv').find('.selectric-wrapper').addClass('enable');
+                $('#parentUserSelectDiv').find('.selectric-wrapper').addClass('enable');
+                $('#provinceSelectDiv').find('.selectric-wrapper').addClass('enable');
+
+            //初始化用户字段校验
+            UserValidateForm();
+
+
+            //用户编辑提交Btn
+            $('#userEditSubmitBtn').click(function() {
+                //ResetErrorStyle();
+                $('#userName').removeData('previousValue');
+                $('#loginAccount').removeData('previousValue');
+                if ($("#userForm").valid()) {
+                    var isValid = true;
+                    //下拉所属角色必选
+                    var roleId = $('#roleSel').val();
+                    if (roleId == '') {
+                        $('#RoleSelectDiv').append('<label class="error">Roles could not be empty</label>');
+                        isValid = false;
+                    }
+                    if ($("#provinceSelDiv").css("display") != 'none') {
+                        //下拉销售主管区域必选
+                        var provinceIds = $('#provinceSel').val();
+                        if (provinceIds == '') {
+                            $('#provinceSelectDiv')
+                                .append('<label class="error">Competent area could not be empty</label>');
+                            isValid = false;
+                        }
+                    }
+
+                    //验证通过
+                    if (isValid) {
+                        if ($('#pageType').val() == 1) {
+                            //新增用户
+                            $.ajax({
+                                type: "post",
+                                url: "",
+                                data: $("#userForm").serialize(),
+                                dataType: "json",
+                                success: function(json) {
+                                    if (json.Status == 0) {
+                                        SiemensVSSCfg.simpleAlert(json.Message, 1, '');
+                                    } else {
+                                        SiemensVSSCfg.simpleAlert(json.Message, 2);
+                                    }
+                                }
+                            });
+                        } else if ($('#pageType').val() == 2) {
+                            //修改用户
+                            $.ajax({
+                                type: "post",
+                                url: "",
+                                data: $("#userForm").serialize(),
+                                dataType: "json",
+                                success: function(json) {
+                                    if (json.Status == 0) {
+                                        SiemensVSSCfg.simpleAlert(json.Message, 1, '');
+                                    } else {
+                                        SiemensVSSCfg.simpleAlert(json.Message, 2);
+                                    }
+                                }
+                            });
+                        }
+                    }
+                } else {
+                    //下拉所属角色必选
+                    var roleId = $('#roleSel').val();
+                    if (roleId == '') {
+                        $('#RoleSelectDiv').append('<label class="error">Roles could not be empty</label>');
+                    }
+                    if ($("#provinceSelDiv").css("display") != 'none') {
+                        //下拉销售主管区域必选
+                        var provinceIds = $('#provinceSel').val();
+                        if (provinceIds == '') {
+                            $('#provinceSelectDiv')
+                                .append('<label class="error">Competent area could not be empty</label>');
+                        }
+                    }
+                }
+            });
+
+
+
+            //用户字段校验
+            function UserValidateForm() {
+                 $("#userForm").validate({
+                    rules: {
+                        UserName: {
+                            required: true,
+                            maxlength: 50,
+                            special: true
+                        },
+                        LoginAccount: {
+                            required: true,
+                            maxlength: 50,
+                            userEmailReg: true
+                            //,
+                            //remote: {
+                            //    url: '@Url.Action( )',
+                            //    type: 'get',
+                            //    cache: false,
+                            //    async: false,
+                            //    data: {
+                            //        loginAccount: function () {
+                            //            return $("#loginAccount").val();
+                            //        },
+                            //        userId: function () {
+                            //            return $('#UserDetailId').val();
+                            //        }
+                            //    }
+                            //}
+                        }
+                    },
+                    messages: {
+                        UserName: {
+                            required: 'User name could not be empty',
+                            maxlength: 'User name could not exceed 50 characters',
+                            special: 'could not contain < or >'
+                        },
+                        LoginAccount: {
+                            required: 'Email address could not be empty',
+                            maxlength: 'Email address could not exceed 50 characters',
+                            userEmailReg: 'Incorrect email address format',
+                            remote: 'Duplicated email address'
+                        }
+                    },
+                    ignore: ".ignore",
+                    errorPlacement: function(error, element) {
+                        error.appendTo(element.parent());
+                    },
+                    success: function(label) {
+                        $(label).remove();
+                    }
+                });
+                }
+        });
+
+    </script>
+}
+

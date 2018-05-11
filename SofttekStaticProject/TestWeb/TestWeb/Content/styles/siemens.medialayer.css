@@ -1,0 +1,33 @@
+/**
+ * Module siemens.medialayer
+ * basic stylesheet
+ * 
+ * @project   Digital First
+ * @date      2011-04-20
+ * @author    Robin Rush, Sapient GmbH <rrush@sapient.com>
+ * @licensor  Siemens AG
+ * @site      Siemens Healthcare
+ */
+
+
+/**
+ * media module styles
+ /*
+/* general styles */
+.media-module{ position: relative; width: 402px; background: #eeeeee; overflow: hidden; }
+/* media container */
+.media-container { width: 400px; height: 300px; margin: 0; background: #ffffff  url(../images/progress-indicator.gif) no-repeat 50% 50%; border: 1px solid #999999; color: #ffffff; text-align: center; }
+.media-container img { margin: 0 auto; }
+.no-js .media-container img { display: block; width: 300px; height: 300px; }
+.media-text { min-height: 65px; margin: 5px 20px; overflow: hidden; }
+* html .media-text { height: expression( this.scrollHeight < 66 ? "65px" : "auto" ); /* sets min-height for IE6 */ }
+a.fs { cursor: pointer; }
+.media-fullscreen { position:absolute; top:301px; right: 0px; width:20px; height:20px; background:#ffffff url(../images/icon-magnifier.gif) no-repeat 50% 50%; border: 1px solid #999999; }
+
+
+/* general */
+.media-overlay { display: none; padding: 0; background: #eeeeee; border: 1px solid #ffffff; overflow: hidden; }
+.media-overlay .close { cursor: pointer; border-top: none; border-bottom: none; }
+.media-overlay .media-title { display: block; height: 18px; margin: 0 0 0 20px; }
+.media-overlay .media-container { border: none; overflow: hidden; }
+.media-overlay .media-description { display: block; height: 50px; padding: 5px 20px; overflow: hidden; }

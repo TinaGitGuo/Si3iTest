@@ -1,0 +1,15 @@
+/**
+ * Module siemens.download
+ * basic stylesheet
+ * 
+ * @project   Digital First
+ * @date      2011-04-20
+ * @author    Robin Rush, Sapient GmbH <rrush@sapient.com>
+ * @licensor  Siemens AG
+ * @site      Siemens Healthcare
+ */
+
+/* downloads - general styles */
+.download-submit-button { width: 28px; margin: 1px 0 0 0; padding-bottom:4px;background: url(../images/custom_select/cs_bg.gif) no-repeat 0 0; color: #ffffff; line-height: 14px; border: none; cursor: pointer; }
+select.selectBox-list { float: left; width: 222px; height: 20px; margin: 0 5px 0 0; padding: 0 0 0 6px; }
+.selectBox-dropdown { height: 18px; }

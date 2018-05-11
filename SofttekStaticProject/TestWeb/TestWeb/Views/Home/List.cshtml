@@ -1,0 +1,554 @@
+﻿
+@{
+    ViewBag.Title = "Vendor Management";
+}
+
+@section styles{
+    <style type="text/css">
+        .nts-tab .tab-pane.active {
+            padding-top: 0px;
+        }
+    </style>
+}
+
+<div class="tab section">
+    <div class="nts-comp nts-tab container nts-comp--last" data-ste-component="tab">
+        <div class="tab-content">
+            <div role="tabpanel" class="tab-pane fade active in">
+                <div class="section table">
+                    <div class="row">
+                        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-8">
+                            <form class="nts-form row" id="vendorSearchForm">
+                                <div class="col-lg-3 col-md-6 col-sm-12 col-xs-12">
+                                    <div class="input-div" data-placeholder="Vendor Name">
+                                        <input name="vendorName" value="" type="text" Watermark="Vendor Name" onkeydown="enterSearch(window.event)" id="vendorNameSearch" class="F1" />
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                        <div class="col-xs-8 col-sm-5 col-md-4 col-lg-3 pull-right mt-24">
+                            <div class="nts-button B1 pull-left" onclick="DoVendorSearch(); return false;">
+                                <div class="nts-button-container">
+                                    <button type="button" class="search">Search</button>
+                                </div>
+                            </div>
+                            <div class="nts-button B1 pull-left ml-no-xs-10 mt-xs-10" id="NewVendorBtn">
+                                <div class="nts-button-container">
+                                    <button type="button" class="assign">Add Vendor</button>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <div class="row">
+                        <div class="nts-table">
+                            <div class="col-xs-12">
+                                <div class="nts-table-scrollpane">
+                                    <table class="nts-table-scroll" id="vendorDataGrid">
+                                        <thead>
+                                            <tr>
+                                                <th style="width: 7%" class="header">
+                                                    <div class="Ps">No.</div>
+                                                </th>
+                                                <th style="width: 20%" class="header">
+                                                    <div class="Ps ">Vendor Name</div>
+                                                </th>
+                                                <th style="width: 16.6%" class="header">
+                                                    <div class="Ps ">Create Time</div>
+                                                </th>
+                                                <th style="width: 16.6%" class="header">
+                                                    <div class="Ps ">Modify Time</div>
+                                                </th>
+                                                <th style="width: 13%" class="header">
+                                                    <div class="Ps ">State</div>
+                                                </th>
+
+                                                <th style="width: 25%" class="header">
+                                                    <div class="Ps ">Operation</div>
+                                                </th>
+                                            </tr>
+                                        </thead>
+                                        <tbody></tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                        @*<div class="pagination-bottom clearfix" style="border-top:none;float:right">
+                                <div class="pagination" id="vendorPagination">
+                                </div>
+                            </div>*@
+                    </div>
+                    <br />
+                    <div class="row">
+                        <div class="col-xs-12 aligncenter">
+                            <div id="vendorPagination"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section popup{
+    <!--新增/修改供应商弹窗start-->
+    <div class="div-assign popup" id="VendorEditPopup">
+        <div class="row">
+            <div class="col-lg-2 col-md-2 col-sm-1 hidden-xs"></div>
+            <div class="popup-main col-lg-8 col-md-8 col-sm-10 col-xs-12">
+                <div class="popup-head">
+                    <div class="col-xs-8 col-sm-6 col-md-5 col-lg-6 H3 alignleft">
+                        <h3 id="VendorEditPopTitle"></h3>
+                    </div>
+                </div>
+                <div class="popup-body">
+                    <div class="section">
+                        <div class="row">
+                            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                                <form class="nts-form row" id="VendorEditPopForm">
+                                    <div class="col-lg-4 col-md-6 col-sm-12 col-xs-12">
+                                        <div class="input-div" data-placeholder="Vendor Name">
+                                            <input name="VendorName" type="text" Watermark="Vendor Name" id="VendorNamePop" class="F1" />
+                                        </div>
+                                    </div>
+                                    <!--hidden value-->
+                                    <input type="hidden" value="" id="PopupType" />
+                                    <input type="hidden" name="VendorDetailId" value="" id="VendorDetailId" />
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="popup-foot">
+                    <div class="nts-button B1 pull-right nts-button-md" id="VendorEditSubmitBtn">
+                        <div class="nts-button-container">
+                            <button type="button" class="submit">Submit</button>
+                        </div>
+                    </div>
+                    <div class="nts-button B2 pull-right nts-button-md" id="VendorEditCancleBtn">
+                        <div class="nts-button-container">
+                            <button type="button" class="cancel">Cancel</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-2 col-md-2 col-sm-1 hidden-xs"></div>
+        </div>
+    </div>
+    <!--新增/修改供应商弹窗end-->
+    <!--阴影背景-->
+    <div class="nts-navbar-full-overlay"></div>
+
+}
+
+
+@section scripts{
+    <script src="@Url.Content("~/Scripts/jquery.form.js")"></script>
+    <script src="@Url.Content("~/Scripts/jquery.validate.js")" type="text/javascript"></script>
+    <script src="@Url.Content("~/Scripts/validate-methods.js")"></script>
+    <script src="@Url.Content("~/Scripts/jsrender.js")"></script>
+    <script src="@Url.Content("~/Content/laypage/laypage.js")"></script>
+
+    <!--供应商列表render模板-->
+    <script type="text/x-jsrender" id="vendorTemplate">
+        {{for rows}}
+        <tr>
+            <td class="P">
+                {{> RowNum}}
+            </td>
+            <td class="P">
+                {{> VendorName}}
+            </td>
+            <td class="P">
+                {{:CreateDate}}
+            </td>
+            <td class="P">
+                {{:ModifiedDate}}
+            </td>
+            <td class="P">
+                {{if Status==0}}
+                Enable
+                {{else Status==1}}
+                Disable
+                {{else}}
+                {{/if}}
+            </td>
+            <td class="P">
+                <div class="nts-button B1 pull-left" onclick="DoVendorDetail({{:Id}})">
+                    <div class="nts-button-container">
+                        <button type="button" class="detail">Details</button>
+                    </div>
+                </div>
+                <div class="nts-button B1 pull-left" onclick="ChangeVendorStatus({{:Id}},{{:Status}})">
+                    <div class="nts-button-container">
+                        <button type="button" class="delete">
+                            {{if Status==0}}
+                            Disable
+                            {{else Status==1}}
+                            Enable
+                            {{else}}
+                            {{/if}}
+                        </button>
+                    </div>
+                </div>
+            </td>
+        </tr>
+        {{/for}}
+    </script>
+
+    <script type="text/javascript">
+        var currentIndex = 1;
+
+        $(function () {
+            //初始化供应商字段校验
+            VendorValidateForm();
+
+            //加载供应商数据
+            loadVendorData(currentIndex);
+
+            //新增供应商Btn
+            $('#NewVendorBtn').click(function () {
+                $('#VendorEditPopTitle').text('Add Vendor');
+                $('#PopupType').val(1);
+                $('#VendorDetailId').val('');
+                $('#VendorNamePop').val('');
+                ResetErrorStyle();
+                ResetInputDivStyle();
+                $('.nts-navbar-full-overlay').css({ 'height': document.body.scrollHeight });
+                $('.nts-navbar-full-overlay').show();
+                $('#VendorEditPopup').show();
+                $('html, body').animate({
+                    scrollTop: 0
+                });
+            });
+
+            //新增/修改供应商->弹窗->取消Btn
+            $('#VendorEditCancleBtn').click(function () {
+                $('.nts-navbar-full-overlay').hide();
+                $(this).parents('.popup').hide();
+            });
+
+            //新增/修改供应商->弹窗->提交Btn
+            $('#VendorEditSubmitBtn').click(function () {
+                ResetErrorStyle();
+                $('#VendorNamePop').removeData('previousValue');
+                if ($("#VendorEditPopForm").valid()) {
+                    var popupType = $('#PopupType').val();
+                    if (popupType == 1) {
+                        //新增供应商
+                        $.ajax({
+                            type: "post",
+                            url: "@Url.Action("AddVendor", "Vendor")",
+                            data: $("#VendorEditPopForm").serialize(),
+                            dataType: "json",
+                            success: function (json) {
+                                if (json.Status == 0) {
+                                    $('.nts-navbar-full-overlay').hide();
+                                    $('#VendorEditPopup').hide();
+                                    SiemensVSSCfg.simpleAlert(json.Message, 1, function () {
+                                        //加载供应商数据
+                                        loadVendorData(1);
+                                    });
+                                }
+                                else {
+                                    $('.nts-navbar-full-overlay').hide();
+                                    $('#VendorEditPopup').hide();
+                                    SiemensVSSCfg.simpleAlert(json.Message, 2);
+                                }
+                            }
+                        });
+                    } else if (popupType == 2) {
+                        //修改供应商
+                        $.ajax({
+                            type: "post",
+                            url: "@Url.Action("UpdateVendor", "Vendor")",
+                            data: $("#VendorEditPopForm").serialize(),
+                            dataType: "json",
+                            success: function (json) {
+                                if (json.Status == 0) {
+                                    $('.nts-navbar-full-overlay').hide();
+                                    $('#VendorEditPopup').hide();
+                                    SiemensVSSCfg.simpleAlert(json.Message, 1, function () {
+                                        //加载供应商数据
+                                        loadVendorData(1);
+                                    });
+                                }
+                                else {
+                                    $('.nts-navbar-full-overlay').hide();
+                                    $('#VendorEditPopup').hide();
+                                    SiemensVSSCfg.simpleAlert(json.Message, 2);
+                                }
+                            }
+                        });
+                    }
+                }
+            });
+        });
+
+        function enterSearch(evt) {
+            var e = window.event || arguments.callee.caller.arguments[0];
+
+            if (e && e.keyCode == 13) {
+                if (!(navigator.userAgent.indexOf('Firefox') >= 0)) {
+
+                    if (e && e.preventDefault) {
+                        e.preventDefault();
+                    }
+                    else {
+                        window.event.returnValue = false;
+                    }
+                } else {
+                    e.stopPropagation();
+                }
+                loadVendorData(1);
+            }
+
+        }
+ <script type="text/javascript">
+        var currentIndex = 1;
+
+        $(function () {
+            //初始化供应商字段校验
+            VendorValidateForm();
+
+            //加载供应商数据
+            loadVendorData(currentIndex);
+
+            //新增供应商Btn
+            $('#NewVendorBtn').click(function () {
+                $('#VendorEditPopTitle').text('Add Vendor');
+                $('#PopupType').val(1);
+                $('#VendorDetailId').val('');
+                $('#VendorNamePop').val('');
+                ResetErrorStyle();
+                ResetInputDivStyle();
+                $('.nts-navbar-full-overlay').css({ 'height': document.body.scrollHeight });
+                $('.nts-navbar-full-overlay').show();
+                $('#VendorEditPopup').show();
+                $('html, body').animate({
+                    scrollTop: 0
+                });
+            });
+
+            //新增/修改供应商->弹窗->取消Btn
+            $('#VendorEditCancleBtn').click(function () {
+                $('.nts-navbar-full-overlay').hide();
+                $(this).parents('.popup').hide();
+            });
+
+            //新增/修改供应商->弹窗->提交Btn
+            $('#VendorEditSubmitBtn').click(function () {
+                ResetErrorStyle();
+                $('#VendorNamePop').removeData('previousValue');
+                if ($("#VendorEditPopForm").valid()) {
+                    var popupType = $('#PopupType').val();
+                    if (popupType == 1) {
+                        //新增供应商
+                        $.ajax({
+                            type: "post",
+                            url: "@Url.Action("AddVendor", "Vendor")",
+                            data: $("#VendorEditPopForm").serialize(),
+                            dataType: "json",
+                            success: function (json) {
+                                if (json.Status == 0) {
+                                    $('.nts-navbar-full-overlay').hide();
+                                    $('#VendorEditPopup').hide();
+                                    SiemensVSSCfg.simpleAlert(json.Message, 1, function () {
+                                        //加载供应商数据
+                                        loadVendorData(1);
+                                    });
+                                }
+                                else {
+                                    $('.nts-navbar-full-overlay').hide();
+                                    $('#VendorEditPopup').hide();
+                                    SiemensVSSCfg.simpleAlert(json.Message, 2);
+                                }
+                            }
+                        });
+                    } else if (popupType == 2) {
+                        //修改供应商
+                        $.ajax({
+                            type: "post",
+                            url: "@Url.Action("UpdateVendor", "Vendor")",
+                            data: $("#VendorEditPopForm").serialize(),
+                            dataType: "json",
+                            success: function (json) {
+                                if (json.Status == 0) {
+                                    $('.nts-navbar-full-overlay').hide();
+                                    $('#VendorEditPopup').hide();
+                                    SiemensVSSCfg.simpleAlert(json.Message, 1, function () {
+                                        //加载供应商数据
+                                        loadVendorData(1);
+                                    });
+                                }
+                                else {
+                                    $('.nts-navbar-full-overlay').hide();
+                                    $('#VendorEditPopup').hide();
+                                    SiemensVSSCfg.simpleAlert(json.Message, 2);
+                                }
+                            }
+                        });
+                    }
+                }
+            });
+        });
+
+        function enterSearch(evt) {
+            var e = window.event || arguments.callee.caller.arguments[0];
+
+            if (e && e.keyCode == 13) {
+                if (!(navigator.userAgent.indexOf('Firefox') >= 0)) {
+
+                    if (e && e.preventDefault) {
+                        e.preventDefault();
+                    }
+                    else {
+                        window.event.returnValue = false;
+                    }
+                } else {
+                    e.stopPropagation();
+                }
+                loadVendorData(1);
+            }
+
+        }
+
+        //查询Btn
+        function DoVendorSearch() {
+            loadVendorData(1);
+        }
+
+        //启用/禁用供应商
+        function ChangeVendorStatus(VendorId, StatusId) {
+            SiemensVSSCfg.simpleConfirm(null, "Confirm to " + (StatusId == 0 ? "disable" : "enable") + " the vendor?", null, function () {
+                $.getJSON('@Url.Action("ChangeVendorStatus", "Vendor")', { Id: VendorId, Status: (StatusId == 0 ? 1 : 0) }, function (json) {
+                    if (json.status) {
+                        SiemensVSSCfg.simpleAlert("Operate Successully!", 1, function () {
+                            loadVendorData(1);
+                        });
+                    }
+                    else {
+                        SiemensVSSCfg.simpleAlert("Operate Failed!", 2);
+                    }
+                });
+            });
+        }
+
+        //供应商详情Btn
+        function DoVendorDetail(vendorId) {
+            ResetErrorStyle();
+            $.ajax({
+                type: "GET",
+                url: "@Url.Action("GetVendorDetail", "Vendor")",
+                data: { vendorId: vendorId },
+                dataType: "json",
+                success: function (json) {
+                    if (json.data != null) {
+                        $('#VendorEditPopTitle').text('Edit Vendor');
+                        $('#PopupType').val(2);
+                        $('#VendorDetailId').val(vendorId);
+                        $('#VendorNamePop').val(json.data.VendorName);
+                        ResetInputDivStyle();
+                        $('.nts-navbar-full-overlay').css({ 'height': document.body.scrollHeight });
+                        $('.nts-navbar-full-overlay').show();
+                        $('#VendorEditPopup').show();
+                        $('html, body').animate({
+                            scrollTop: 0
+                        });
+                    }
+                }
+            });
+        }
+
+        //分页加载供应商数据列表
+        function loadVendorData(pageIndex) {
+            var vendorName = $("#vendorNameSearch").val();
+            //根据条件获取供应商列表 加个时间戳 防止ie不刷新
+            $.getJSON('@Url.Action("GetVendorList", "Vendor")?t=' + Date.parse(new Date()),
+                { vendorName: vendorName, currentPage: pageIndex }, function (json) {
+                    //渲染数据
+                    if (json.rows.length == 0) {
+                        if (pageIndex == 1) {
+                            $("#vendorDataGrid tbody").empty().append('<tr><td colspan="' + $("#vendorDataGrid thead th").length + '" style="text-align:center;">No data currently！</td></tr>');
+                            $('#vendorPagination').fadeOut();
+                            ResetTableHeight();
+                        } else {
+                            pageIndex = pageIndex - 1;
+                            loadVendorData(pageIndex);
+                        }
+                        return;
+                    }
+                    var html = $("#vendorTemplate").render(json);
+                    $("#vendorDataGrid tbody").empty().append(html);
+                    $('#vendorPagination').fadeIn();
+                    ResetTableHeight();
+
+                    //渲染分页
+                    laypage({
+                        cont: $('#vendorPagination'), //容器。值支持id名、原生dom对象，jquery对象,
+                        pages: json.total, //总页数
+                        totalCount: json.totalCount,
+                        curr: pageIndex || 1,
+                        //hash: 'fenye', //自定义hash值
+                        first: 'first', //将首页显示为数字1,。若不显示，设置false即可
+                        last: 'last', //将尾页显示为总页数。若不显示，设置false即可
+                        prev: 'previous', //若不显示，设置false即可
+                        next: 'next', //若不显示，设置false即可
+                        //skip: true, //是否开启跳页
+                        groups: 5, //连续显示分页数
+                        jump: function (obj, first) {
+                            if (!first) { //一定要加此判断，否则初始时会无限刷新
+                                loadVendorData(obj.curr);
+                            }
+                            currentIndex = obj.curr;
+                        }
+                    });
+                });
+        }
+
+        //供应商字段校验
+        function VendorValidateForm() {
+            VendorEditPopFormValid = $("#VendorEditPopForm").validate({
+                rules: {
+                    VendorName: {
+                        required: true,
+                        maxlength: 50,
+                        special: true,
+                        remote: {
+                            url: '@Url.Action("CheckVendorName", "Vendor")',
+                            type: 'get',
+                            cache: false,
+                            async: false,
+                            data: {
+                                vendorName: function () {
+                                    return $("#VendorNamePop").val();
+                                },
+                                vendorId: function () {
+                                    return $('#VendorDetailId').val();
+                                }
+                            }
+                        }
+                    }
+                },
+                messages: {
+                    VendorName: {
+                        required: 'Vendor name could not be empty',
+                        maxlength: 'Vendor name could not exceed 50 characters',
+                        special: 'could not contain < or >',
+                        remote: 'Duplicated vendor'
+                    }
+                },
+                ignore: ".ignore",
+                errorPlacement: function (error, element) {
+                    error.appendTo(element.parent());
+                },
+                success: function (label) {
+                    $(label).remove();
+                }
+            });
+        }
+
+    </script>
+}
+

@@ -1,0 +1,131 @@
+﻿
+@{
+    ViewBag.Title = "ExamplePop";
+}
+<!--Pop-->
+<h3>ExamplePop</h3>
+
+<div class="row">
+    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-8">
+        <form class="nts-form row" id="vendorSearchForm">
+            <div class="col-lg-3 col-md-6 col-sm-12 col-xs-12">
+                <div class="input-div" data-placeholder="Vendor Name">
+                    <input name="vendorName" value="" type="text" Watermark="Vendor Name" class="F1" />
+                </div>
+            </div>
+        </form>
+    </div>
+    <div class="col-xs-8 col-sm-5 col-md-4 col-lg-3 pull-right mt-24">
+        <div class="nts-button B1 pull-left" >
+            <div class="nts-button-container">
+                <button type="button" class="search">Search</button>
+            </div>
+        </div>
+        <div class="nts-button B1 pull-left ml-no-xs-10 mt-xs-10" id="NewVendorBtn">
+            <div class="nts-button-container">
+                <button type="button" class="assign">Add Vendor</button>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+
+
+@section popup{
+    <!--新增/修改供应商弹窗start-->
+    <div class="div-assign popup" id="VendorEditPopup">
+        <div class="row">
+            <div class="col-lg-2 col-md-2 col-sm-1 hidden-xs"></div>
+            <div class="popup-main col-lg-8 col-md-8 col-sm-10 col-xs-12">
+                <div class="popup-head">
+                    <div class="col-xs-8 col-sm-6 col-md-5 col-lg-6 H3 alignleft">
+                        <h3 id="VendorEditPopTitle"></h3>
+                        
+
+                    </div>
+                </div>
+                <div class="popup-body">
+                    <div class="section">
+                        <div class="row">
+                            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                                <form class="nts-form row" id="VendorEditPopForm">
+                                    <div class="col-lg-4 col-md-6 col-sm-12 col-xs-12">
+                                        
+                                        
+
+                                        <div class="input-div" data-placeholder="Vendor Name">
+                                            <input name="VendorName" type="text" Watermark="Vendor Name" id="VendorNamePop" class="F1"/>
+                                        </div>
+                                    </div>
+                                    <!--hidden value-->
+                                    <input type="hidden" value="" id="PopupType" />
+                                    <input type="hidden" name="VendorDetailId" value="" id="VendorDetailId" />
+                                    
+                                    
+
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="popup-foot">
+                    <div class="nts-button B1 pull-right nts-button-md" id="VendorEditSubmitBtn">
+                        <div class="nts-button-container">
+                            <button type="button" class="submit">Submit</button>
+                        </div>
+                    </div>
+                    <div class="nts-button B2 pull-right nts-button-md" id="VendorEditCancleBtn">
+                        <div class="nts-button-container">
+                            <button type="button" class="cancel">Cancel</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-2 col-md-2 col-sm-1 hidden-xs"></div>
+        </div>
+    </div>
+    <!--新增/修改供应商弹窗end-->
+    <!--阴影背景-->
+    <div class="nts-navbar-full-overlay"></div>
+
+}
+@section scripts
+{
+    
+    <script type="text/javascript">
+        //弹出层
+        var currentIndex = 1;
+
+        $(function() {
+     
+            //新增供应商Btn
+            $('#NewVendorBtn').click(function() {
+                $('#VendorEditPopTitle').text('Add Vendor');
+                $('#PopupType').val(1);
+                $('#VendorDetailId').val('');
+                $('#VendorNamePop').val('');
+                //ResetErrorStyle();
+                //ResetInputDivStyle();
+                $('.nts-navbar-full-overlay').css({ 'height': document.body.scrollHeight });
+                $('.nts-navbar-full-overlay').show();
+                $('#VendorEditPopup').show();
+                $('html, body').animate({
+                    scrollTop: 0
+                });
+            });
+
+            //新增/修改供应商->弹窗->取消Btn
+            $('#VendorEditCancleBtn').click(function() {
+                $('.nts-navbar-full-overlay').hide();
+                $(this).parents('.popup').hide();
+            });
+
+            //新增/修改供应商->弹窗->提交Btn
+            $('#VendorEditSubmitBtn').click(function() {
+                $('#VendorNamePop').removeData('previousValue');
+            });
+        });
+    </script>
+}
+<!--Pop-->

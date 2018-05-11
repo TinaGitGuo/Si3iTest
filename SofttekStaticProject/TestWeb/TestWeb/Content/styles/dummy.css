@@ -1,0 +1,19 @@
+	
+/**
+ * Dummy CSS for layout tests
+ * 
+ * @project   Digital First
+ * @date      2011-04-14
+ * @author    Robin Rush, Sapient GmbH <rrush@sapient.com>
+ * @licensor  Siemens AG
+ * @site      Siemens Healtcare
+ */
+
+/* formatting content contain */
+#col1 { float: left; width: 638px; }
+#col2 { width: auto; margin: 0 0 0 638px}
+#col1_content { padding: 0 0 0 44px; }
+#col2_content { padding: 0 0 0 44px }
+ 
+/* formatting content container left */
+#col1_content .col1_fullCol { width: 100%; margin: 0 0 10px 0; }

@@ -1,0 +1,48 @@
+/**
+ * Stylesheet for largest text size
+ * 
+ * @project   HTML5 template set
+ * @date      2011-04-06
+ * @author    Finn Pröpper, Sapient GmbH <fproepper@sapient.com>
+ * @licensor  Siemens AG
+ * @site      Siemens Healtcare
+ * @see       text-size-larger.css
+ */
+#content legend,
+#content a.button,
+#content input.label,
+#content .input input.text,
+#content .input textarea,
+#content .input select,
+a.selectBox-dropdown,
+ul.selectBox-options,
+#content .tabs,
+#content .tab-links,
+#content table,
+.pagination,
+#breadcrumb,
+.c-teaser h1,
+.c-teaser p,
+.c-teaser ul.links,
+.c-teaser ul.nav,
+.c-article h3,
+.c-article h4,
+.c-article h5,
+.c-article h6,
+.c-article p,
+.c-article ul,
+.c-article ol,
+.c-article .overview h1,
+.c-related .section,
+.entry-layer h1,
+.entry-layer p {
+	font-size: 116%;
+}
+
+.c-article .asset .caption {
+	font-size: 108%;
+}
+
+.accordion .opener a {
+	font-size: 15px;
+}

@@ -1,0 +1,305 @@
+/**
+ * Module siemens.webfonts
+ * basic stylesheet
+ * 
+ * @project   - 
+ * @date      2011-09-26
+ * @author    Timo Mayer, Virtual Identity AG
+ * @licensor  Siemens AG
+
+font face syntax from http://www.fontspring.com/blog/further-hardening-of-the-bulletproof-syntax
+compatible browsers: IE 6-9, Firefox 3.5+, Chrome 4+, Safari 3+, iOS 3.2+, Android 2.2+, Opera 10.50+
+there can be some issues when the used font is installed localy too in Mac OS X environments see: http://paulirish.com/2010/font-face-gotchas/#smiley but we decided to NOT use the smiley hack to be android compatible
+DEV-NOTE: IE9 supports woff but uses eot because of woff mime-type problem in IIS webserver. if you use apache u can change format('embedded-opentype') to format('eot')
+DEV-NOTE: ?#iefix could cause problems with apache mod-security. try ?iefix instead if you have problems
+
+**/
+
+@font-face
+{
+	font-family: 'SiemensSlab';
+	src: url('fonts/siemensslab-roman-webfont.eot'); /* IE9 Compat Modes */
+	src: url('fonts/siemensslab-roman-webfont.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
+		url('fonts/siemensslab-roman-webfont.woff') format('woff'), /* Modern Browsers */
+		url('fonts/siemensslab-roman-webfont.ttf') format('truetype'), /* Safari, Android, iOS */
+		url('fonts/siemensslab-roman-webfont.svg#SiemensSlabRegular') format('svg'); /* Legacy iOS */
+
+	font-weight: normal;
+	font-style: normal;
+}
+
+@font-face
+{
+	font-family: 'SiemensSlab';
+	src: url('fonts/siemensslab-bold-webfont.eot'); /* IE9 Compat Modes */
+	src: url('fonts/siemensslab-bold-webfont.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
+		url('fonts/siemensslab-bold-webfont.woff') format('woff'), /* Modern Browsers */
+		url('fonts/siemensslab-bold-webfont.ttf') format('truetype'); /* Safari, Android, iOS */
+		/* no svg here because of iOS <= 3.1.x is crashing http://www.456bereastreet.com/archive/201012/font-face_tip_define_font-weight_and_font-style_to_keep_your_css_simple/ */
+
+	font-weight: bold;
+	font-style: normal;
+}
+
+@font-face
+{
+	font-family: 'SiemensSlab';
+	src: url('fonts/siemensslab-italic-webfont.eot'); /* IE9 Compat Modes */
+	src: url('fonts/siemensslab-italic-webfont.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
+		url('fonts/siemensslab-italic-webfont.woff') format('woff'), /* Modern Browsers */
+		url('fonts/siemensslab-italic-webfont.ttf') format('truetype'); /* Safari, Android, iOS */
+		/* no svg here because of iOS <= 3.1.x is crashing http://www.456bereastreet.com/archive/201012/font-face_tip_define_font-weight_and_font-style_to_keep_your_css_simple/ */
+
+	font-weight: normal;
+	font-style: italic;
+}
+
+@font-face
+{
+	font-family: 'SiemensSlab';
+	src: url('fonts/siemensslab-bolditalic-webfont.eot'); /* IE9 Compat Modes */
+	src: url('fonts/siemensslab-bolditalic-webfont.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
+		url('fonts/siemensslab-bolditalic-webfont.woff') format('woff'), /* Modern Browsers */
+		url('fonts/siemensslab-bolditalic-webfont.ttf') format('truetype'); /* Safari, Android, iOS */
+		/* no svg here because of iOS <= 3.1.x is crashing http://www.456bereastreet.com/archive/201012/font-face_tip_define_font-weight_and_font-style_to_keep_your_css_simple/ */
+
+	font-weight: bold;
+	font-style: italic;
+}
+
+/**
+internet explorer 6-8 and iOS 3.1.x are not able to display different font-weight and font-style values for a single font.
+note: according to our test cases this works for ie 6-8 with Siemens Slab. seems like it depends on the used webfont.
+
+naming:
+-n = normal
+-i = italic
+400 = font-weight normal
+700 = font weight bold
+
+**/
+
+@font-face
+{
+	font-family: 'SiemensSlab-n700';
+	src: url('fonts/siemensslab-bold-webfont.eot'); /* IE9 Compat Modes */
+	src: url('fonts/siemensslab-bold-webfont.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
+		url('fonts/siemensslab-bold-webfont.woff') format('woff'), /* Modern Browsers */
+		url('fonts/siemensslab-bold-webfont.ttf') format('truetype'), /* Safari, Android, iOS */
+		url('fonts/siemensslab-bold-webfont.svg#SiemensSlabBold') format('svg'); /* Legacy iOS */
+
+	font-weight: normal;
+	font-style: normal;
+}
+
+@font-face
+{
+	font-family: 'SiemensSlab-i400';
+	src: url('fonts/siemensslab-italic-webfont.eot'); /* IE9 Compat Modes */
+	src: url('fonts/siemensslab-italic-webfont.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
+		url('fonts/siemensslab-italic-webfont.woff') format('woff'), /* Modern Browsers */
+		url('fonts/siemensslab-italic-webfont.ttf') format('truetype'), /* Safari, Android, iOS */
+		url('fonts/siemensslab-italic-webfont.svg#SiemensSlabItalic') format('svg'); /* Legacy iOS */
+
+	font-weight: normal;
+	font-style: normal;
+}
+
+@font-face
+{
+	font-family: 'SiemensSlab-i700';
+	src: url('fonts/siemensslab-bolditalic-webfont.eot'); /* IE9 Compat Modes */
+	src: url('fonts/siemensslab-bolditalic-webfont.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
+		url('fonts/siemensslab-bolditalic-webfont.woff') format('woff'), /* Modern Browsers */
+		url('fonts/siemensslab-bolditalic-webfont.ttf') format('truetype'), /* Safari, Android, iOS */
+		url('fonts/siemensslab-bolditalic-webfont.svg#SiemensSlabBoldItalic') format('svg'); /* Legacy iOS */
+
+	font-weight: normal;
+	font-style: normal;
+}
+
+/* fix strange text-size behaviors with iphone, text-size-adjust:auto and (some) webfonts. android devices get this too but they ignore webkit-text-size-adjust */
+@media screen and (max-device-width: 480px), screen and (-webkit-min-device-pixel-ratio: 2) {
+	body
+	{
+		-webkit-text-size-adjust: 100%;
+	}
+}
+
+/* SiemensSlab is our webfont delievered with the webfonts module. this is always our first choice */
+/* Siemens Slab is the name of the local installed Siemens Slab font. This is our fallback if webfonts are blocked and Siemens Slab is installed locally  */
+
+#header h1,
+#header p.main,
+#header h2,
+#header h3,
+#header h4,
+#header h5,
+#header h6,
+
+#toolbar a.opener,
+
+.c-teaser ul.nav a,
+.c-teaser h1,
+.c-teaser h2,
+
+.c-article .hgroup h1,
+.c-article .hgroup h2,
+.s-right .c-article h1,
+.s-right .c-article h2
+{
+	font-family: "SiemensSlab", "Siemens Slab", Arial, sans-serif;
+}
+
+/* hide fonts while loading in browsers with FOUT bug (IE, FF3.x) */
+html.wf-loading #header h1,
+html.wf-loading #header p.main,
+html.wf-loading #header h2,
+html.wf-loading #header h3,
+html.wf-loading #header h4,
+html.wf-loading #header h5,
+html.wf-loading #header h6,
+
+html.wf-loading #toolbar a.opener,
+
+html.wf-loading .c-teaser ul.nav a,
+html.wf-loading .c-teaser h1,
+html.wf-loading .c-teaser h2,
+
+html.wf-loading .c-article .hgroup h1,
+html.wf-loading .c-article .hgroup h2,
+html.wf-loading .s-right .c-article h1,
+html.wf-loading .s-right .c-article h2
+{
+	visibility: hidden;
+}
+
+/* changes between Arial and Siemens Slab. Siemens Web Guidelines v1.5.1 pages 10 and 11 */
+
+#header h1,
+#header p.main,
+.c-article .hgroup h1,
+.s-right .c-article h1
+{
+	font-size: 138.5%;
+	font-weight: normal;
+	line-height: 22px;
+}
+
+#header.type-1 h1,
+#header.type-2 h1,
+#header.type-3 h1
+{
+	font-size: 169.2%;
+}
+
+.c-article .hgroup h1,
+.s-right .c-article h1
+{
+	padding: 0 0 6px;
+}
+
+.c-teaser ul.nav a
+{
+	font-size: 108.6%;
+	font-weight: normal;
+	color: #333;
+}
+
+#toolbar a.opener
+{
+	font-size: 92.3%;
+}
+
+.c-teaser h1
+{
+	font-size: 92.3%;
+	font-weight: normal;
+}
+
+/* not yet defined in core.css */
+.c-teaser h2
+{
+	font-size: 123.1%;
+	font-weight: normal;
+	line-height: 1.4;
+	color: #999;
+	padding-bottom: 1px;
+}
+
+/* fallback if font smoothing is disabled */
+
+html.wf-false #header h1,
+html.wf-false #header p.main,
+html.wf-false #header h2,
+html.wf-false #header h3,
+html.wf-false #header h4,
+html.wf-false #header h5,
+html.wf-false #header h6,
+
+html.wf-false #toolbar a.opener,
+
+html.wf-false .c-teaser ul.nav a,
+html.wf-false .c-teaser h1,
+html.wf-false .c-teaser h2,
+
+html.wf-false .c-article .hgroup h1,
+html.wf-false .c-article .hgroup h2,
+html.wf-false .s-right .c-article h1,
+html.wf-false .s-right .c-article h2
+{
+	font-family: Arial, sans-serif !important;
+}
+
+/* Siemens Slab fallback changes between Arial and Siemens Slab. Siemens Web Guidelines v1.5.1 pages 10 and 11 */
+
+html.wf-false #header h1,
+html.wf-false #header p.main,
+html.wf-false .c-article .hgroup h1,
+html.wf-false .s-right .c-article h1
+{
+	font-size: 123.1%;
+	font-weight: bold;
+	line-height: 1.25;
+}
+
+html.wf-false #header.type-1 h1,
+html.wf-false #header.type-2 h1,
+html.wf-false #header.type-3 h1
+{
+	font-size: 153.9%;
+}
+
+html.wf-false .c-article .hgroup h1,
+html.wf-false .s-right .c-article h1
+{
+	padding: 1px 0 6px;
+}
+
+html.wf-false .c-teaser ul.nav a
+{
+	font-size: 100%;
+	font-weight: bold;
+	color: #666;
+}
+
+html.wf-false #toolbar a.opener
+{
+	font-size: 85%;
+}
+
+html.wf-false .c-teaser h1
+{
+	font-size: 85%;
+	font-weight: bold;
+}
+
+/* not yet defined in core.css */
+html.wf-false .c-teaser h2
+{
+	font-size: 123.1%;
+	font-weight: normal;
+	line-height: 1.4;
+	color: #999;
+	padding-bottom: 1px;
+}

@@ -1,0 +1,12 @@
+
+/* download styles */
+.download { display: block; padding: 0 0 0 18px; }
+.download.dl-excel { background: url(../images/mobile/downloads/icon_file_excel.gif) no-repeat 0 0; }
+.download.dl-gif { background: url(../images/mobile/downloads/icon_file_gif.gif) no-repeat 0 0; }
+.download.dl-htm { background: url(../images/mobile/downloads/icon_file_htm.gif) no-repeat 0 0; }
+.download.dl-jpg { background: url(../images/mobile/downloads/icon_file_jpg.gif) no-repeat 0 0; }
+.download.dl-pdf { background: url(../images/mobile/downloads/icon_file_pdf.gif) no-repeat 0 0; }
+.download.dl-ppt { background: url(../images/mobile/downloads/icon_file_ppt.gif) no-repeat 0 0; }
+.download.dl-tif { background: url(../images/mobile/downloads/icon_file_tif.gif) no-repeat 0 0; }
+.download.dl-word { background: url(../images/mobile/downloads/icon_file_word.gif) no-repeat 0 0; }
+.download.dl-zip { background: url(../images/mobile/downloads/icon_file_zip.gif) no-repeat 0 0; }

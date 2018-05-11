@@ -1,0 +1,38 @@
+
+/* slider.container */
+.slider { position:relative; width: 100%; height: 120px; background: #eeeeee; overflow: hidden; padding: 0; margin: 0; }
+
+/* next / previous button styles */
+.slider .slider-nav { position:absolute; height: 100%; margin: 0; padding: 0 4px; }
+.slider .slider-nav.left-side { left: 0; }
+.slider .slider-nav.right-side { right: 0; }
+.slider .slider-nav .browse { display: block; width: 12px; height: 22px; margin: 40px 0 0 0; cursor: pointer; }
+.slider .slider-nav .browse.left { background: url(../images/slider/slider_arrows_left_12x44.gif) no-repeat 0 -22px; }
+.slider .slider-nav .browse.right { background: url(../images/slider/slider_arrows_right_12x44.gif) no-repeat 0 -22px; }
+.slider .slider-nav .browse.disabled { background-position: 0 0; cursor: default; }	
+  
+/* root element for the scrollable */
+/* width = slider.container.width - 2 x browse.width */
+/* height = 100% of parent container .slider */
+.slider .scrollable { position: relative; float: left; display:inline; width: 276px; height: 100%; margin: 0 0 0 20px; overflow: hidden; }
+
+/* root element for scrollable items. */
+/* set a big value for width if you want to style by css */
+.slider .scrollable .items { position: absolute; width: 20000em; margin: 0; padding: 0; }
+
+/* a single item. */
+.slider .items li { float:left; margin: 0 5px 0 0; list-style: none; width: 102px; overflow: hidden; }
+
+/* media title link */
+.slider .items a { display: block; padding: 0 0 0 7px; color: #333333; font-weight: bold; text-decoration: none; background: url(../images/icon-arrow-right.gif) no-repeat 0 5px; }
+.slider .items a:hover, .items a:focus { color: #990000; text-decoration: underline; }
+
+/* an item's image container - needed to support different vertical centered image formats */
+.slider .items .img-container { width: 102px; height: 77px; text-align: center; background: #eeeeee url(../images/progress-indicator.gif) no-repeat 50% 50%; }
+
+/* item image styles - white 1px solid border in normal state - red 1px solid border in hover state */
+.media-module .slider .items .img-container img{ display: none; width: 80px; height: 60px; border: 1px solid #ffffff; }
+
+/* item image link */
+.slider .items .img-container a { padding: 0; background: none; }
+.slider .items .img-container a:hover img, .items .img-container a:focus img{ border: 1px solid #990000; }

@@ -1,0 +1,58 @@
+/**
+ * Stylesheet for larger text size
+ * 
+ * The only purpose of this stylesheet is to serve larger font sizes
+ * for the content area of the Siemens HTML5 template set.
+ *
+ * As the styleguide of Siemens is very strict in terms of pixel
+ * perfect dimensions for certain elements, this was the only chance
+ * to balance accessibility and layout. Normally you could simply
+ * set a different font-size for the body element and all other elements
+ * would adjust to it. But this would cause some breaking elements,
+ * especially in the header and footer zone so that it was not an
+ * option.
+ * 
+ * @project   HTML5 template set
+ * @date      2011-04-06
+ * @author    Finn Pröpper, Sapient GmbH <fproepper@sapient.com>
+ * @licensor  Siemens AG
+ * @site      Siemens Healtcare
+ */
+#content legend,
+#content a.button,
+#content input.label,
+#content .input input.text,
+#content .input textarea,
+#content .input select,
+a.selectBox-dropdown,
+ul.selectBox-options,
+#content .tabs,
+#content .tab-links,
+#content table,
+.pagination,
+#breadcrumb,
+.c-teaser h1,
+.c-teaser p,
+.c-teaser ul.links,
+.c-teaser ul.nav,
+.c-article h3,
+.c-article h4,
+.c-article h5,
+.c-article h6,
+.c-article p,
+.c-article ul,
+.c-article ol,
+.c-article .overview h1,
+.c-related .section,
+.entry-layer h1,
+.entry-layer p {
+	font-size: 100%;
+}
+
+.c-article .asset .caption {
+	font-size: 93%;
+}
+
+.accordion .opener a {
+	font-size: 13px;
+}

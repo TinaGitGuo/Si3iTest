@@ -1,0 +1,416 @@
+.costumer-references .c-article h3 {
+	font-family: "SiemensSlab", "Siemens Slab", Arial, sans-serif;
+	font-size:20px;
+	color:#666666;
+}
+
+.costumer-references .c-article .overview {
+	margin-top:20px;
+	margin-bottom:10px;
+	border-style: dotted;
+	padding: 10px 0 24px 0;
+}
+
+.costumer-references .testimonial {
+	background-color: #eeeeee;
+	overflow: hidden;/* Makes #outer contain its floated children */
+	width: 100%;
+	margin-top:4px;
+}
+
+.costumer-references .testimonial .testimonial-img {
+	display:block;
+	float: left;/* Make this div as wide as its contents */
+}
+
+.costumer-references .testimonial .testimonial-text {
+	padding: 7px 50px 18px 20px;
+	overflow: hidden;/* Make this div take up the rest of the horizontal space, and no more */
+	color: #666666;
+	font-family: "SiemensSlab","Siemens Slab",Arial,sans-serif;
+	font-size: 16px;
+	line-height:20px;
+}
+
+.costumer-references .testimonial .testimonial-text p {
+	line-height:20px;
+	width:auto;
+}
+
+.costumer-references .testimonial .testimonial-text .quote {
+	margin-top:-10px;
+}
+
+.costumer-references .testimonial .testimonial-text .quote:before {
+	content: "„";
+	font-size:320%;
+	vertical-align:super;
+}
+
+.costumer-references .testimonial .testimonial-text .quote:after {
+	content: "”";
+}
+
+.costumer-references .video-link {
+	min-height: 46px;
+	min-width: 46px;
+	background:url(../images/customer-reference/play-btn.png) no-repeat 0 0 transparent;
+	padding-left:56px;
+	display:block;
+	text-decoration:none;
+
+	display: -webkit-box;
+	display: -moz-box;
+	display: box;
+	-webkit-box-align: center;
+	-moz-box-align: center;
+	box-align: center;
+
+	font-size:11px;
+	line-height:14px;
+	color:#333333;
+	font-family:Arial, sans-serif;
+}
+
+.ie9 .costumer-references .video-link,
+.ie8 .costumer-references .video-link {
+	display: table-cell ;
+	vertical-align: middle;
+	text-align: center;
+}
+
+.ie7 .costumer-references .video-link {
+	height:46px;
+	display:block;
+}
+
+.costumer-references .testimonial .video-link {
+	margin-top:14px;
+}
+
+.costumer-references .s-left .share-container {
+	position:absolute;
+	right:0;
+	top:-16px;
+}
+
+.costumer-references .slideshow {
+	position:relative;
+}
+
+.costumer-references .share-container .share-trigger {
+	height:15px;
+	background:url(../images/icon-share-2-sprite.gif) no-repeat 0 -20px transparent;
+	text-decoration:none;
+	font-size:11px;
+	padding-left:16px;
+}
+
+.costumer-references .share-links a {
+	width:20px;
+	height:20px;
+	display:inline-block;
+	background-image:url(../images/customer-reference/share-icons.png);
+	background-repeat: no-repeat;
+	margin-right:4px;
+}
+
+.costumer-references .share-links a.share-facebook {
+	background-position: 0 -180px;
+}
+.costumer-references .share-links a.share-twitter {
+	background-position: 0 -510px;
+}
+.costumer-references .share-links a.share-linkedin{
+	background-position: 0 -270px;
+}
+.costumer-references .share-links a.share-xing {
+	background-position: 0 -30px;
+}
+
+.costumer-references .share-dialog.simple-layer {
+	left:auto;
+	right:-2px;
+	z-index:10;
+}
+
+.costumer-references .s-right .share-dialog.simple-layer {
+	top:25px;
+	left:-3px;
+	right:auto;
+}
+
+.costumer-references .share-dialog .content {
+	width:140px;
+	padding-bottom:8px;
+}
+
+.costumer-references .share-right .share-dialog .content {
+	padding-top: 8px;
+	width:247px;
+}
+
+.costumer-references .share-dialog .share-label {
+	margin-top:-10px;
+	margin-bottom:6px;
+}
+
+.costumer-references .twocol {
+	margin-bottom:8px;
+}
+
+.costumer-references .twocol .col {
+	width:276px;
+	float:left;
+	padding-right:0;
+}
+
+.costumer-references .twocol .col.first {
+	padding-right:44px;
+}
+
+.costumer-references .twocol .col h4 {
+	background-color: #dddddd;
+	color: #666666;
+	height:18px;
+	padding: 2px 8px 0 0;
+	margin: 8px 0 11px 0;
+}
+
+.costumer-references .twocol .col.first h4 {
+	margin-right:-44px;
+	padding-right:38px;
+	padding-left:8px;
+}
+
+.costumer-references .share-right {
+	border: 1px solid #cccccc;
+	display:inline-block;
+	height:24px;
+	margin-bottom: 10px;
+  margin-top: 4px;
+	position:relative;
+}
+
+.costumer-references .share-right .share-label {
+	display:inline-block;
+	background:  url(../images/icon-share-2-sprite.gif) no-repeat 0 -2px transparent;
+	padding-left:20px;
+	vertical-align:top;
+	margin: 5px 3px 3px 6px;
+	height: 17px;
+}
+
+.costumer-references .share-right .content .share-label {
+	display:block;
+	background: none;
+	padding: 0;
+	margin:2px 0 0 0;
+	font-weight:bold;
+	color:#666666;
+	font-size:11px;
+}
+
+
+.ie7 .costumer-references .share-right .share-label {
+	width:40px;
+	float:left;
+}
+
+.costumer-references .share-right .share-links {
+	display:inline-block;
+}
+
+.costumer-references .share-right .share-links a {
+	width:20px;
+	height:20px;
+	background-image:  url(../images/customer-reference/share-icons.png);
+	background-repeat: no-repeat;
+	display:inline-block;
+	vertical-align:top;
+	margin: 2px 5px 2px 2px;
+}
+
+.costumer-references .share-right .share-links .share-mail {
+	background-position: 0 0;
+}
+.costumer-references .share-right .share-links .share-facebook {
+	background-position: 0 -180px;
+}
+.costumer-references .share-right .share-links .share-twitter {
+	background-position: 0 -510px;
+}
+.costumer-references .share-right .share-links .share-googleplus {
+	background-position: 0 -210px;
+}
+.costumer-references .share-right .share-links .share-myspace {
+	background-position: 0 -300px;
+}
+.costumer-references .share-right .share-links .share-arrow {
+	background-image:  url(../images/customer-reference/share-more-arrow.png);
+	background-position: 2px 1px;
+	margin-right:0;
+	border-left: 1px solid #cccccc;
+	margin: 0;
+	padding: 2px;
+}
+
+.costumer-references .share-right .share-links .share-arrow.opened {
+	background-position: 2px -18px;
+}
+
+
+.costumer-references .contact-data {
+	line-height:14px;
+}
+
+.costumer-references .contact-data p {
+	margin: 0;
+	padding: 0;
+}
+
+.costumer-references .contact-data .contact-name {
+	margin-bottom: 1px;
+	font-weight:bold;
+	text-align: left;
+}
+
+.costumer-references .contact-data .contact-photo {
+	float:left;
+	margin-right:9px;
+}
+
+.costumer-references .lightbox-content .s-left {
+	width:458px;
+}
+
+.costumer-references .lightbox-content .s-right {
+	width:276px;
+	margin-left:43px;
+}
+
+.costumer-references .lightbox-content .c-related .section.last {
+  border-bottom: 1px solid #999999;
+  padding: 10px 0 10px 0;
+}
+
+.costumer-references .c-article .separator {
+  margin: 28px 0 12px 0;
+}
+
+.costumer-references .c-article h3,
+.lightbox-content .c-article h1,
+.lightbox-content .s-classic h1 {
+	font-family: "SiemensSlab", "Siemens Slab", Arial, sans-serif;
+	font-weight:normal;
+	font-size:16px;
+	margin-bottom:5px;
+	color: #666666;
+	line-height:20px;
+	margin-top:-1px;
+}
+
+.costumer-references .s-left .c-article h1,
+.costumer-references .s-left .c-article h2,
+.costumer-references .s-left .c-article h3,
+.costumer-references .s-left .c-article h4,
+.costumer-references .s-left .c-article p,
+.costumer-references .s-left .c-article ul {
+	width: 458px;
+}
+
+.costumer-references .s-left .c-article ul.pageslider,
+.costumer-references .s-left .c-article ul.testimonial-slider,
+	.costumer-references .s-left .c-article ul.testimonial-slider p,
+.costumer-references .s-left .c-article .twocol p,
+.costumer-references .s-left .c-article .twocol ul,
+.costumer-references .s-left .c-article .twocol h4 {
+	width:auto;
+}
+
+.costumer-references .c-related .section .highlighted {
+	margin-top:4px;
+}
+
+.costumer-references .s-left .c-article p + .separator,
+.costumer-references .s-left .c-article ul + .separator {
+	margin-top:20px;
+}
+
+.costumer-references #cboxClose.hover {
+	color:#990000;
+}
+
+.costumer-references .contact-box .contact-nav {
+	position:absolute;
+	right:14px;
+	display:none;
+}
+
+.costumer-references .contact-box .contact-nav .prev,
+.costumer-references .contact-box .contact-nav .next {
+	height:9px;
+	width:9px;
+	display:inline-block;
+	background-image:url(../images/customer-reference/contactbox-arrows.png);
+	background-repeat: no-repeat;
+	background-color:transparent;
+}
+
+.costumer-references .contact-box .contact-nav .prev {
+	background-position:3px -28px;
+}
+
+.costumer-references .contact-box .contact-nav .next {
+	background-position:3px -72px;
+}
+
+.costumer-references .contact-box h2 {
+	margin-bottom:10px;
+	font-size:100%;
+	font-family: Arial,sans-serif;
+	font-weight:bold;
+}
+
+.costumer-references .contact-box .contact-list-wrapper {
+	width:100%;
+	overflow: hidden;
+}
+
+.costumer-references .contact-box .contact-list {
+	list-style-type: none;
+	list-style-position: outside;
+	margin: 0;
+	overflow: hidden;
+	width:1400%;
+}
+
+.costumer-references .contact-box .contact-list > li {
+	float:left;
+	width:250px;
+	padding-right:40px;
+}
+
+.costumer-references .contact-box .contact-content {
+	margin-left:81px;
+	margin-top:-3px;
+	line-height:1.4;
+}
+
+.costumer-references .contact-box .highlighted {
+	padding-bottom:8px;
+}
+
+.costumer-references .contact-intro {
+	margin-bottom:4px;
+}
+
+.contact-mail {
+	text-decoration: none;
+	word-wrap: break-word;
+	color: #333;
+}
+
+.contact-mail:hover {
+	color: #990000;
+}

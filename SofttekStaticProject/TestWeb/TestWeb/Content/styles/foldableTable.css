@@ -1,0 +1,101 @@
+/**
+ * Complex table with collapsibles
+ * 
+ * The styles in this file are for the module "foldableTable" which
+ * represents a table with collapsibles (labeled "High complexity"
+ * in the styleguide).
+ * 
+ * @project   HTML5 template set
+ * @date      2011-05-09
+ * @author    Finn Pröpper, Sapient GmbH <fproepper@sapient.com>
+ * @licensor  Siemens AG
+ * @site      Siemens Healthcare
+ */
+
+/**
+ * Default/desktop
+ *
+ * @section   =default
+ * @section   =desktop
+ */
+table.foldable {
+	width: 100%;
+	margin: 5px 0 16px;
+}
+table.foldable caption {
+	border-bottom: 1px solid #FFF;
+	font-weight: bold;
+	text-align: left;
+	background: #DDD;
+}
+table.foldable caption,
+table.foldable th,
+table.foldable td {
+	padding: 3px 6px 3px 6px;
+}
+table.foldable thead th,
+table.foldable thead td {
+	border-bottom: 1px solid #FFF;
+	color: #666;
+	font-weight: bold;
+	background: #DDD;
+}
+table.foldable tbody th,
+table.foldable tbody td {
+	border-bottom: 1px dotted #DDD;
+	font-weight: normal;
+}
+table.foldable tbody .level-1 th,
+table.foldable tbody .level-1 td {
+	border-top: 1px solid #FFF;
+	border-bottom: 1px solid #DDD;
+	padding-top: 9px;
+	padding-bottom: 8px;
+	font-weight: bold;
+	background: #EEE;
+}
+table.foldable tbody .level-2 th,
+table.foldable tbody .level-2 td {
+	padding-top: 5px;
+	padding-bottom: 4px;
+}
+table.foldable tbody .level-2 th {
+	padding-left: 23px;
+}
+table.foldable tbody .level-3 th {
+	padding-left: 40px;
+}
+table.foldable tbody a.steerer {
+	padding-left: 17px;
+	color: #333;
+	text-decoration: none;
+	background: url("../images/icon-plus.gif") no-repeat 0 1px;
+}
+table.foldable tbody .open a.steerer {
+	background-image: url("../images/icon-minus.gif");
+}
+table.foldable tbody .highlight {
+	padding-left: 11px;
+	background: url("../images/icon-arrow-right.gif") no-repeat 0 3px;
+}
+
+
+
+/**
+ * Print
+ *
+ * @section   =print
+ */
+@media print {
+	
+	/* Display the whole table on paper */
+	table.foldable tbody tr.hidden {
+		display: table-row;
+		visibility: visible;
+	}
+	.ie6 table.foldable tbody tr.hidden,
+	.ie7 table.foldable tbody tr.hidden {
+		display: block;
+	}
+	
+}

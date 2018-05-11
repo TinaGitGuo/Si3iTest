@@ -1,0 +1,486 @@
+/* generic */
+.datacapture-form .dc-float-right{
+    float: right;
+}
+
+.datacapture-form div.clear{
+    clear: both;
+}
+
+.datacapture-form p.description{
+    margin-bottom: 0.35714285714285714285714285714286em;
+}
+
+.datacapture-form .input-div{
+    padding-bottom: 1.4285714285714285714285714285714em;
+}
+
+.datacapture-form input:required,
+.datacapture-form textarea:required{
+    box-shadow: none;
+}
+
+.datacapture-form .selectric span.selectric-label,
+.datacapture-form .input-div input,
+.datacapture-form .input-div textarea {
+    position: relative;
+    background-color: #ffffff;
+    border: 0.07142857142857142857142857142857em solid #cdd9e1;
+    outline: 0;
+    outline-offset: 0;
+}
+
+.datacapture-form a:hover, .datacapture-form a:hover{
+    text-decoration: none;
+}
+
+/* error labels/spans */
+.datacapture-form .error-label{
+    display: none;
+    /*visibility: hidden;*/
+}
+
+.datacapture-form p.error-label{
+    margin-bottom: 0px;
+}
+
+.datacapture-form .error .error-label{
+    display: inline-block;
+    /*visibility: visible;*/
+}
+
+.datacapture-form .checkboxgroup .error-label-div{
+    clear: left;
+}
+
+.datacapture-form .input-div p.error-label, .datacapture-form div.disclaimer p.error-label{
+    padding-left: 1.0714285714285714285714285714286em;
+    padding-right: 1.0714285714285714285714285714286em;
+    padding-top: 0.14285714285714285714285714285714em;
+    padding-bottom: 0.21428571428571428571428571428571em;
+}
+
+.datacapture-form .input-div .selectric-error-label p.error-label{
+//padding-top: 0.42857142857142857142857142857143em;
+}
+
+.datacapture-form .error p.error-label, .datacapture-form span.error, .datacapture-form div.error label:not(.disclaimer1){
+    color: #ffffff;
+    background-color: #dc0000;
+}
+
+/* text input */
+.datacapture-form .input-div input,
+.datacapture-form .input-div textarea{
+    line-height: 1em;
+    padding-left: 1em;
+    padding-right: 1em;
+    padding-top: 0.78571428571428571428571428571429em;
+    padding-bottom: 0.78571428571428571428571428571429em;
+    width: 100%;
+    color: #788791;
+    border-top: 0.07142857142857142857142857142857em solid #879baa;
+}
+
+.datacapture-form .input-div textarea{
+    height: 7.1428571428571428571428571428571em;
+    resize: none;
+    display: block;
+}
+
+.datacapture-form .input-div.focused input,
+.datacapture-form .input-div.focused textarea{
+    padding-top: 1.1428571428571428571428571428571em;
+    padding-bottom: 0.42857142857142857142857142857143em;
+//color: #2d373c;
+}
+
+.datacapture-form .input-div .enable{
+    color: #2d373c;
+}
+
+.datacapture-form .input-div.focused input:focus,
+.datacapture-form .input-div.focused textarea:focus{
+    border: 0.07142857142857142857142857142857em solid #005578;
+    color: #2d373c;
+}
+
+.datacapture-form .input-div.focused::after{
+    position: absolute;
+    left: 3.2857142857142857142857142857143em;
+    top: 0.5em;
+    content: attr(data-placeholder);
+    pointer-events: none;
+    font-size: 0.64285714285714285714285714285714em;
+    color: #788791;
+
+    /*    -webkit-transition: font-size 2s;
+           -moz-transition: font-size 2s;
+             -o-transition: font-size 2s;
+                transition: font-size 2s;*/
+
+    /*animation: sheen 1s forwards;*/
+
+    /* Doesn't work in web kit browsers for pseudo element (::after) */
+    /*font-size: 14px;
+  	transform: scale(0.65);
+  	transition: transform 0.3s ease-out;*/
+}
+.datacapture-form .input-div input:focus::-webkit-input-placeholder,
+.datacapture-form .input-div textarea:focus::-webkit-input-placeholder{
+    opacity: 0;
+}
+.datacapture-form .input-div input:focus:-moz-placeholder,
+.datacapture-form .input-div textarea:focus:-moz-placeholder{
+    opacity: 0;
+}
+.datacapture-form .input-div input:focus::-moz-placeholder,
+.datacapture-form .input-div textarea:focus::-moz-placeholder{
+    opacity: 0;
+}
+.datacapture-form .input-div input:focus:-ms-input-placeholder,
+.datacapture-form .input-div textarea:focus:-ms-input-placeholder{
+    opacity: 0;
+}
+
+.datacapture-form .input-div.error input,
+.datacapture-form .input-div.error textarea,
+.datacapture-form .input-div.error span.selectric-label{
+    border-color: #dc0000;
+}
+
+.datacapture-form .input-div.error input,
+.datacapture-form .input-div.error textarea,
+.datacapture-form .input-div.error span.selectric-label,
+.datacapture-form .input-div.error::after{
+    color: #dc0000;
+}
+
+/* custom dropdowns (selectric) */
+.datacapture-form .selectric span{
+    line-height: 1em;
+}
+
+.datacapture-form .selectric span.selectric-label{
+    display: block;
+    padding-top: 0.85714285714285714285714285714286em;
+    padding-bottom: 0.85714285714285714285714285714286em;
+    padding-left: 1em;
+    padding-right: 1em;
+    color: #788791;
+    border-bottom: 0.07142857142857142857142857142857em solid #879baa;
+    margin: 0;
+}
+
+/*.datacapture-form .selectric span.selectric-label:after{
+	content: ' ';
+	position: absolute;
+	height: 10px;
+	width: 10px;
+	border-left: 3px solid #005578;
+	border-bottom: 3px solid #005578;
+	transform: rotate(-45deg);
+	top: 13px;
+	right: 17px;
+}*/
+
+.datacapture-form .selectric span.dc-dropdown-arrow{
+    position: absolute;
+    top: 1em;
+    right: 1em;
+    color: #788791;
+}
+
+.datacapture-form .selectric-open .selectric span.dc-dropdown-arrow{
+    transform: rotate(180deg);
+}
+
+.datacapture-form .selectric-open .selectric span.selectric-label{
+}
+
+.datacapture-form .selectric-open .selectric span.selectric-label:after{
+    transform: rotate(135deg);
+    top: 1.2142857142857142857142857142857em;
+}
+
+.datacapture-form .enable .selectric span.selectric-label{
+    padding-top: 1.2142857142857142857142857142857em;
+    padding-bottom: 0.5em;
+    color: #2d373c;
+}
+
+.datacapture-form .enable .selectric span.selectric-label:before{
+    position: absolute;
+    top: 0.42857142857142857142857142857143em;
+    left: 1.6428571428571428571428571428571em;
+    content: attr(data-placeholder);
+    pointer-events: none;
+    font-size: 0.64285714285714285714285714285714em;
+    color: #788791;
+}
+
+.datacapture-form .enable .selectric span.selectric-label, .datacapture-form .selectric-open .selectric span.selectric-label{
+    background-color: #fff;
+}
+
+.datacapture-form .selectric-open .selectric-items{
+    background: #fff;
+    display: block;
+    outline: none;
+}
+
+.datacapture-form .selectric-open .selectric-scroll{
+    border: 0.07142857142857142857142857142857em solid #cdd9e1;
+    border-top: none;
+    max-height: 19.285714285714285714285714285714em;
+}
+
+.datacapture-form .selectric-wrapper .selectric-scroll ul{
+//max-height: 270px;
+    padding: 0;
+    margin: 0;
+    list-style: none;
+    --pointer-events: none;
+}
+.datacapture-form .selectric-wrapper .selectric-scroll ul li{
+    padding-top: 0.35714285714285714285714285714286em;
+    padding-bottom: 0.35714285714285714285714285714286em;
+    padding-left: 0.92857142857142857142857142857143em;
+    padding-right: 0.92857142857142857142857142857143em;
+}
+
+.datacapture-form .selectric-wrapper .selectric-items li:hover, .datacapture-form .selectric-wrapper .selectric-items li.highlighted{
+    background: #005578;
+    display: block;
+    color: #ffffff;
+}
+
+.datacapture-form .selectric-wrapper .selectric-items li:hover:before, .datacapture-form .selectric-wrapper .selectric-items li.highlighted:before{
+    content: ' ';
+    display: block;
+    float: left;
+    height: 0.57142857142857142857142857142857em;
+    width: 0.57142857142857142857142857142857em;
+    border-left: 0.14285714285714285714285714285714em solid #ffffff;
+    border-bottom: 0.14285714285714285714285714285714em solid #ffffff;
+    transform: rotate(-135deg);
+    margin: 0.42857142857142857142857142857143em 0.64285714285714285714285714285714em 0 -0.14285714285714285714285714285714em;
+}
+
+/* Checkboxes (and their labels) */
+
+.datacapture-form input[type="checkbox"]{
+    position: absolute;
+    left: -9999px;
+}
+
+.datacapture-form label.checkbox-text{
+    margin-left: 2em;
+    padding-left: 0.21428571428571428571428571428571em;
+    user-select: none;
+}
+
+.datacapture-form label.checkbox-text,
+.datacapture-form label.checkbox-text a{
+    font-weight: normal;
+}
+
+.datacapture-form label.checkbox-text a{
+    text-decoration:underline;
+}
+
+.datacapture-form label.checkbox-text:before{ /* fake checkbox */
+    cursor: pointer;
+    content: ' ';
+    position: absolute;
+    background-color: #ffffff;
+    width: 1.4285714285714285714285714285714em;
+    height: 1.4285714285714285714285714285714em;
+    border: 0.07142857142857142857142857142857em solid #96a0aa;
+    margin-left: -2.2142857142857142857142857142857em;
+}
+
+.datacapture-form label.checkbox-text.dc-focus:before{
+    border-width: 2px;
+}
+
+.datacapture-form .error label.checkbox-text:before{
+    border-color: #dc0000;
+}
+
+.datacapture-form label.checkbox-text.toggle-active:before{
+    border-color: #005578;
+}
+
+.datacapture-form label.checkbox-text:after { /* fake checkbox tick */
+    cursor: pointer;
+    position: absolute;
+    left: 0.21428571428571428571428571428571em;
+    top: 0.35714285714285714285714285714286em;
+    width: 1em;
+    height: 0.5em;
+    transform: rotate(-45deg);
+}
+
+.datacapture-form .checkboxgroup.special label.checkbox-text:after{ /* slightly different spacing for checkboxgroup ticks */
+    left: 1.2857142857142857142857142857143em;
+}
+
+.datacapture-form label.checkbox-text.toggle-active:after{
+    content: ' ';
+    border-left: 0.21428571428571428571428571428571em solid #005578;
+    border-bottom: 0.21428571428571428571428571428571em solid #005578;
+}
+
+.datacapture-form .consent-config-element:last-child label.config-label{
+    margin-bottom: 0;
+}
+
+.datacapture-form .consent-config-element:last-child .error-label-div{
+    margin-top: 0.35714285714285714285714285714286em;
+}
+
+.datacapture-form h2{
+    margin-top: -0.23333333333333333333333333333333em;
+    margin-bottom: 1.2666666666666666666666666666667em;
+}
+
+.datacapture-form h4{
+    margin-bottom: 1.0714285714285714285714285714286em;
+}
+
+.datacapture-form p{
+//margin-bottom: 1.0714285714285714285714285714286em;
+}
+
+.datacapture-form div.consent-config-element{
+    margin-bottom: 0.5em;
+    position: relative;
+}
+
+.datacapture-form div.consent-config-element:last-child{
+    margin-bottom: -0.21428571428571428571428571428571em;
+}
+
+.datacapture-form div.disclaimer{
+    margin-top: 0.35714285714285714285714285714286em;
+    padding-bottom: 0.71428571428571428571428571428571em;
+}
+
+.datacapture-form div.disclaimer p.error-label{
+    --margin-left: 2em;
+    --padding-left: 0.21428571428571428571428571428571em;
+    --padding-right: 0.21428571428571428571428571428571em;
+}
+
+.datacapture-form .submit-wrapper{
+    margin-top: 0.64285714285714285714285714285714em;
+}
+
+.datacapture-form .submit-wrapper div.submit a:focus{
+    outline-style: solid;
+    outline-width: 2px;
+    outline-color: #96a0aa;
+    outline-offset: 0;
+}
+
+.html-default-class .nts-justify-and-contact .datacapture-form .nts-button{
+    margin-top: 0;
+}
+
+.datacapture-form .bottom.hidden-lg{
+    padding-top: 10px;
+}
+
+/* one column/related forms */
+.datacapture-form .related .bottom{
+    padding-bottom: 0.64285714285714285714285714285714em;
+}
+
+.datacapture-form .related label.checkbox-text:after {
+    left: 1.2857142857142857142857142857143em;
+}
+
+
+/* custom checkbox groups/subscriptions BETA */
+.datacapture-form .checkboxgroup .subgroup-master, .datacapture-form .checkboxgroup .subgroup-item, .datacapture-form .checkboxgroup .single-item{
+    position: relative;
+}
+
+.datacapture-form .checkboxgroup .subgroup{
+    margin-left: 2em;
+}
+
+.datacapture-form .checkboxgroup .checkboxes-label label{
+    margin-bottom: 1.2857142857142857142857142857143em;
+    margin-top: 0.35714285714285714285714285714286em;
+}
+
+/* IE10+ CSS styles go here */
+@media all and (-ms-high-contrast: none), (-ms-high-contrast: active) {
+    .datacapture-form .input-div input{
+    }
+    .datacapture-form .dc-textarea p.error-label{
+        padding-top: 0.21428571428571428571428571428571em;
+    }
+    .datacapture-form .input-div.focused input{
+        padding-bottom: 0.42857142857142857142857142857143em;
+        padding-top: 1.2142857142857142857142857142857em;
+    }
+    .datacapture-form .input-div.focused::after{
+        top: 0.57142857142857142857142857142857em;
+    }
+    .datacapture-form .input-div p.error-label{
+    }
+    .datacapture-form .selectric span.selectric-label{
+        padding-top: 0.92857142857142857142857142857143em;
+    }
+    .datacapture-form h2{
+        margin-top: -0.271em;
+        margin-bottom: 1.3em;
+    }
+
+}
+
+/* Chrome only styles go here */
+@media screen and (-webkit-min-device-pixel-ratio:0)
+and (min-resolution:.001dpcm) {
+}
+
+/* FF only styles go here */
+@-moz-document url-prefix(){
+    .datacapture-form .input-div input, .datacapture-form .input-div textarea{
+        line-height: 1.1428571428571428571428571428571em;
+    }
+}
+
+
+
+/* color schemas */
+/* dark blue  nts-chapter-color-blue2 */
+.nts-chapter-color-blue2 .datacapture-form .selectric span.selectric-label,
+.nts-chapter-color-blue2 .datacapture-form .input-div input,
+.nts-chapter-color-blue2 .datacapture-form .input-div textarea{
+    background-color: #ffffff;
+}
+
+
+.nts-chapter-color-blue2 .datacapture-form .error p.error-label, .nts-chapter-color-blue2 .datacapture-form span.error, .nts-chapter-color-blue2 .datacapture-form div.error label:not(.disclaimer1){
+    color: #ffffff;
+    background-color: #dc0000;
+}
+
+.nts-chapter-color-blue2 .datacapture-form label.checkbox-text,
+.nts-chapter-color-blue2 .datacapture-form label.checkbox-text a,
+.nts-chapter-color-blue2 .datacapture-form .disclaimer span.grey{
+    color: #ffffff;
+}
+
+.nts-chapter-color-blue2 .datacapture-form label.checkbox-text:before{
+    background-color: #ffffff;
+}
+
+/* grey nts-chapter-color-grey2 */
+
+
+/* END color schemas */

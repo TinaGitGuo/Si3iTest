@@ -1,0 +1,76 @@
+﻿
+{
+    ViewBag.Title = "ExampleUpload";
+}
+<!--Upload-->
+<h2>ExampleUpload</h2>
+
+<form id="WorkShopBuForm" enctype="multipart/form-data" class="nts-form">
+    <!--img-->
+    <!--ppt-->
+    *<hr />
+        <p class="P3">
+            <span class="P3 nts-chaptertitle-title">PPT Upload</span>
+        </p>*
+    <div class="row">
+        <input type="file" id="pptFile" name="pptFile" style="display:none;" onchange="FileChange(2);" />
+        <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+            <div class="input-group file">
+                <div style="height:44px;line-height:1;" class="input-div" id="hasPPTDiv" data-placeholder="Add PPT">
+                    <input value="" type="text" Watermark="Add File" id="" class="F1" disabled style="outline:0px solid #cdd9e1;height:44px;" />
+                </div>
+                <div class="input-group-btn">
+                    <input type="button" class="btn" value="Upload" disabled />
+                </div>
+
+                    <div class="input-group-btn" onclick="window.location.href = '@Url.Action("DowloadExcel" )' + '?Url=' + json.ExcelUrl + '&filename=' + json.Name">
+                        <input style="margin-left:10px;" type="button" class="btn" value="Download" />
+                    </div>
+            
+            </div>
+        </div>
+    </div>
+    <!--file-->
+
+</form>
+<!--Upload-->
+@section scripts
+{
+    <script>
+        //文件类型校验(1:图片格式校验,2:PPT格式校验)
+        function FileChange(type) {
+            var file = type == 1 ? $("#imgFile") : $("#pptFile");
+            var fileName = $.trim(file.val());
+            if (file.length != 0) {
+                var exName = fileName.substring(fileName.lastIndexOf(".") + 1).toLowerCase();
+                if (type == 1) {
+                    //图片格式校验
+                    if (exName != "jpg" && exName != "png") {
+                        SiemensVSSCfg.simpleAlert("Please select a correct image file", 0);
+                        var file = $("#imgFile");
+                        file.after(file.clone().val(""));
+                        file.remove();
+                        $('#hasImgDiv').attr('data-placeholder', 'Add Attachment');
+                        return false;
+                    } else {
+                        $('#hasImgDiv').attr('data-placeholder', fileName);
+                    }
+                } else if (type == 2) {
+                    //PPT格式校验
+                    if (exName != "ppt" && exName != "pptx") {
+                        SiemensVSSCfg.simpleAlert("Please select a correct PPT file", 0);
+                        var file = $("#pptFile");
+                        file.after(file.clone().val(""));
+                        file.remove();
+                        $('#hasPPTDiv').attr('data-placeholder', 'Add Attachment');
+                        return false;
+                    } else {
+                        $('#hasPPTDiv').attr('data-placeholder', fileName);
+                    }
+                }
+
+            }
+        }
+    </script>
+
+}

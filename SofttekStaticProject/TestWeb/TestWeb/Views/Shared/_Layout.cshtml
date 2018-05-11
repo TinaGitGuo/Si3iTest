@@ -1,0 +1,527 @@
+﻿@*@using SiemensVSS.Web.Models;
+@using SiemensVSS.Model;
+@{
+    IList<MenuModel> menus = ViewBag.Menus;
+    string login = ViewBag.Login;
+    string currentUrl = Request.Url.AbsoluteUri;
+    string currentMenuName = string.Empty;
+    AccountViewModel currentUser = ViewBag.CurrentUser ?? ViewBag.CurrentUser as AccountViewModel;
+    string userName = currentUser != null ? currentUser.UserName : string.Empty;
+}*@
+<!doctype html>
+<!--
+    paulirish.com/2008/conditional-stylesheets-vs-css-hacks-answer-neither/
+    We stick to the html class approach due to the fact that we will have a lot of
+    modules with separated stylesheets. If we would use conditional comments to
+    implement these additional files for IE there would be a lot of stuff we would
+    have to link to resulting in a less clear arrangement.
+-->
+<!--[if lt IE 7 ]>              <html class="no-js ie6" lang="en"> <![endif]-->
+<!--[if IE 7 ]>                 <html class="no-js ie7" lang="en"> <![endif]-->
+<!--[if IE 8 ]>                 <html class="no-js ie8" lang="en"> <![endif]-->
+<!--[if (gte IE 9)|!(IE)]><!-->
+<html class="html-default-class no-js no-wcm-edit" lang="en">
+<!--<![endif]-->
+<head>
+    <meta charset="utf-8" />
+
+    <!--
+        Always force latest IE rendering engine (even in intranet) & Chrome Frame
+        Remove this if you use a server side approach
+    -->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+
+    <!-- NOTE FOR CMS INTEGRATION: Place your content here -->
+    <title>Siemens VSS Installbase Tool</title>
+    <meta name="description" content="Siemens VSS Installbase Tool" />
+    <meta name="keywords" content="Place your meta keywords here" />
+    <meta name="copyright" content="Copyright Siemens AG - all rights reserved" />
+
+    <!-- Mobile viewport optimized: j.mp/bplateviewport -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1, user-scalable=no" />
+    <meta name="dc.type" content="newton_home">
+    <link rel="shortcut icon" href="/favicon.ico" />
+
+    <link type="text/css" rel="stylesheet" href="@Url.Content("~/Content/etc/designs/publicis/nts/base.min.css")" />
+    <link type="text/css" rel="stylesheet" href="@Url.Content("~/Content/css/selectric.css")" />
+    <link type="text/css" rel="stylesheet" href="@Url.Content("~/Content/css/customer.css")" />
+
+    @RenderSection("styles", false)
+
+    <script src="@Url.Content("~/Scripts/jquery-1.10.2.min.js")"></script>
+    <script>
+        var jq110 = $.noConflict();
+        window.jq110 = jq110;
+    </script>
+
+    <!-- We include jQuery on top so that editors may implement quick fixes easily inline  -->
+    <!-- Grab Google CDN's jQuery, with a protocol relative URL; fall back to local if necessary -->
+    <script src="@Url.Content("~/Content/etc/clientlibs/granite/jquery.min.js")"></script>
+    <script src="@Url.Content("~/Content/layer/layer.js")" type="text/javascript"></script>
+    <script src="@Url.Content("~/Scripts/siemens.config.js")"></script>
+
+    <script type="text/javascript" src="@Url.Content("~/Content/etc/clientlibs/granite/utils.min.js")"></script>
+    <script type="text/javascript" src="@Url.Content("~/Content/etc/designs/publicis/nts/base.min.js")"></script>
+    <script type="text/javascript" src="@Url.Content("~/Scripts/jquery.selectric.js")"></script>
+    <script type="text/javascript" src="@Url.Content("~/Scripts/main.js")"></script>
+
+    <style type="text/css">
+        .table-layout {
+            padding-left: 0px;
+            padding-right: 0px;
+        }
+
+        label.error {
+            color: #dc0000;
+            font-size: 1rem;
+            font-weight: normal;
+            padding: 8px 15px;
+            float: left;
+        }
+
+        form {
+            margin-bottom: 1em;
+        }
+
+        @@media(min-width:992px) {
+            table {
+                table-layout: fixed;
+                word-wrap: break-word;
+            }
+
+            .pcPageSpan {
+                display: block;
+            }
+        }
+
+        @@media(max-width:992px) {
+            .pcPageSpan {
+                display: none;
+            }
+        }
+
+        .nts-table-first-column-border {
+            display: none !important;
+        }
+
+        .jspPane {
+            width: auto !important;
+            /*overflow-x:scroll !important;*/
+        }
+
+        .jspContainer {
+            overflow-x: auto !important;
+        }
+
+        .jspVerticalBar {
+            display: none !important;
+        }
+
+        .jspHorizontalBar {
+            display: none !important;
+        }
+    </style>
+</head>
+<body>
+    <!-- Skip links for better accessibility -->
+    <!--
+        NOTE FOR CMS INTEGRATION:
+        The skiplink is visible on focus so it should contain useful copy
+    -->
+    <!-- header start -->
+    <div class="nts-comp nts-header withbgimage hidden-xs hidden-sm hidden-md" data-ste-component="header">
+        <div class="container header-wrapper">
+            <div class="row">
+                <div class="col-lg-3">
+                    <div class="nts-comp nts-logo">
+                        <a href="http://www.siemens.com.cn" target="_blank" class="logo">
+                            <img src="@Url.Content("~/Content/images/siemens-logo-en-2x.png")" alt="logo image" />
+                        </a>
+                        <a href="http://www.siemens.com.cn" target="_blank" class="logoClaim">
+                            <img src="@Url.Content("~/Content/images/siemens-logo-claim-en-2x.png")" alt="logo image" />
+                        </a>
+                    </div>
+                </div>
+                <div class="col-lg-6 col-lg-push-3 nts-header-buttons in-step-2">
+                    @if ("login" == "login")
+                    {
+                        <div class="nts-comp nts-headerContact N1">
+                            <a class="N1" href="javascript:;">
+                                <i class="icon-user-account icon-left"></i>
+                                <span>Please log in</span>
+                            </a>
+                        </div>
+                    }
+                    else
+                    {
+                        <div class="nts-comp nts-headerContact N1">
+                            <a class="N1" href="javascript:;">
+                                <i class="icon-user-account icon-left"></i>
+                                <span> userName</span>
+                            </a>
+                        </div>
+                        <div class="nts-comp nts-headerContact N1">
+                            <a class="N1" href="javascript:;" onclick="logout()">
+                                <i class="icon-log-out icon-left"></i>
+                                <span>Log Out</span>
+                            </a>
+                        </div>
+                    }
+
+                </div>
+            </div>
+        </div>
+        <div class="container nts-header-navigation">
+            <div class="row nts-header-navigation-row">
+                <div class="col-lg-9">
+                    <div class="nts-comp nts-primary-navigation" data-ste-component="navigation_primary">
+                        <ul>
+                            @if ("login" != "login" @*&& menus != null && menus.Count > 0*@)
+                            {
+                                //foreach (var menu in menus)
+                                //{
+                                //    string url = Request.Url.Scheme + "://" + Request.Url.Host + ":" + Request.Url.Port + WebConfig.SiteName + menu.URL;
+                                //    string className = "N3";
+                                //if (currentUrl == url)
+                                //{
+                                //    currentMenuName = menu.MenuName;
+                                //className = "N3 active";
+                            @*}*@
+                                    @*<li><a href="@url"><span class="@className">@menu.MenuName</span></a></li>*@
+                                <li><a href="#"><span class="N3 active"> Home</span></a></li>
+                                //}
+                            }
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="nts-secondary-navigation">
+            <div class="nts-navbar-header-secondary-navigation__container" data-ste-component="navigation_secondary">
+                <div class="container">
+                    <div class="row nts-secondary-navigation-levelup">
+                        <div class="col-xs-12 col-sm-12 col-md-12">
+                            <ul class="nts-secondary-navigation-levelup-list"></ul>
+                        </div>
+                    </div>
+                    <div class="row go-to-link">
+                        <div class="go-to-link-content col-xs-12 col-sm-12 col-md-12">
+                            <a class="N8 branch-link" href="#"><span class="icon-arrow-right-small icon-left"></span><span class="hidden-xs hidden-sm hidden-md">Go to&nbsp;</span><span class="go-to-text">&nbsp;</span></a>
+                        </div>
+                    </div>
+                    <div class="row navigation-entries" data-ste-component-state="">
+                        <div class="col-lg-4 navigation-entries-column column0">
+                            <ul class="nts-component-linklist"></ul>
+                        </div>
+                        <div class="col-lg-4 navigation-entries-column column1">
+                            <ul class="nts-component-linklist"></ul>
+
+                            <div class="hero-content-teaser">
+                                <a class="hero-content-teaser-link" href="">
+                                    <img class="hero-content-teaser-image nts-adaptive-image" title="" src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" alt="secondary-navigation-image">
+                                    <div class="A4 hero-content-teaser-description">
+                                        <div class="hero-content-teaser-description-text"></div><div class="hero-content-teaser-description-arrow icon-arrow-right-small"></div>
+                                    </div>
+                                </a>
+                            </div>
+                        </div>
+                        <div class="col-lg-4 navigation-entries-column column2">
+                            <ul class="nts-component-linklist"></ul>
+                            <div class="hero-content-teaser">
+                                <a class="hero-content-teaser-link" href="">
+                                    <img class="hero-content-teaser-image nts-adaptive-image" title="" src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" alt="secondary-navigation-image">
+                                    <div class="A4 hero-content-teaser-description">
+                                        <div class="hero-content-teaser-description-text"></div><div class="hero-content-teaser-description-arrow icon-arrow-right-small"></div>
+                                    </div>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row navigation-entries-datasource">
+                        <ul class="navigation-entries-datasource-root">
+                            <li>
+                                <a data-entryid="home-1858777368" data-level="-1" title="Home" class="N9 branch-link" href="@Url.Action("Index","Home")">Home</a>
+                                <ul class="home-1858777368">
+                                    <li>
+                                        <a data-level="0" title="MenuName" class="N9 page-link" href="#">menu.MenuName</a>
+                                    </li>
+                                    
+                                    
+                                    
+
+                                   
+                                </ul>
+                            </li>
+                        </ul>
+                    </div>
+
+
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+
+    <div class="nts-navbar-header  hidden-lg">
+        <div class="container">
+            <div class="row">
+                <div class="col-xs-5 col-sm-5">
+                    <div class="nts-comp nts-logo" data-ste-component="logo">
+                        <a href="http://www.siemens.com/" class="logo">
+                            <img src="@Url.Content("~/Content/images/siemens-logo-en-2x.png")" alt="logo image" class="cq-dd-image">
+                        </a>
+                        <a href="http://www.siemens.com/" class="logoClaim">
+                            <img src="@Url.Content("~/Content/images/siemens-logo-claim-en-2x.png")" alt="logo image" class="cq-dd-image">
+                        </a>
+                    </div>
+                </div>
+                <div class="col-xs-7 col-sm-7">
+                    <ul class="navbar-buttons">
+                        <li class="hidden-xs"><a><span class="icon-user-account"></span></a></li>
+                        <li><a><span class="icon-log-out" onclick="logout()"></span></a></li>
+                        <li><a class="link-icon-menu" href="#" data-initial-id="home-1858777368"><span class="icon-menu active"></span></a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="nts-navbar-sticky-header container">
+            <div class="row"></div>
+        </div>
+        <div class="overlay-content-wrapper">
+            <div class="overlay-content">
+                <div class="nts-navbar-header-navigation hidden-lg">
+                    <div class="nts-navbar-header-secondary-navigation nts-secondary-navigation-nolevelup">
+                        <div class="nts-navbar-header-secondary-navigation__container" data-ste-component="navigation_secondary">
+                            <div class="container">
+                                <div class="row nts-secondary-navigation-levelup" style="display: none;">
+                                    <div class="col-xs-12 col-sm-12 col-md-12">
+                                        <ul class="nts-secondary-navigation-levelup-list"></ul>
+                                    </div>
+                                </div>
+                                <div class="row go-to-link" style="display: none;">
+                                    <div class="go-to-link-content col-xs-12 col-sm-12 col-md-12">
+                                        <a class="N8 branch-link" href="#"><span class="icon-arrow-right-small icon-left"></span><span class="hidden-xs hidden-sm hidden-md">Go to&nbsp;</span><span class="go-to-text">&nbsp;</span></a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="nts-navbar-header-background-placeholder"></div>
+        </div>
+        <div class="nts-navbar-header-overlay hidden-xs">&nbsp;</div>
+    </div>
+    <!-- header end -->
+
+    <div id="wrapper">
+        <div class="content-wrapper">
+            @if ("login1s" != "login")
+            {
+                <div class="nts-introduction-chapter nts-chapter-color-white" data-ste-chapter="chapter_intro">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-lg-8 col-sm-8 col-xs-12">
+                                <div class="nts-breadcrumb hidden-xs hidden-sm" data-ste-component="navigation_breadcrumb">
+                                    <ul class="nts-breadcrumb-list">
+                                        <li class="nts-breadcrumb-entry N4">
+                                            <a href="@Url.Action("Index", "Datashow")" class="N4">
+                                                <span class="icon-home"></span>
+                                            </a>
+                                            <span class="icon-arrow-right-extrasmall"></span>
+                                            <span class="icon-arrow-down-extrasmall"></span>
+                                            <ul class="nts-breadcrumb-child-list">
+                                                <li class="nts-breadcrumb-child-entry">
+                                                    <a href="@Url.Action("Index", "Datashow")" class="N6"><span class="icon-arrow-right-small icon-left hover-indicator"></span>Siemens VSS</a>
+                                                </li>
+                                            </ul>
+                                        </li>
+                                        <li class="nts-breadcrumb-entry N4">
+                                            <a href="#" class="N4">
+                                                <span>Siemens VSS Installbase Tool</span>
+                                            </a>
+                                            <span class="icon-arrow-right-extrasmall"></span>
+                                            <span class="icon-arrow-down-extrasmall"></span>
+                                            <ul class="nts-breadcrumb-child-list">
+                                                <li class="nts-breadcrumb-child-entry">
+                                                    <a class="N6" href="#"><span class="icon-arrow-right-small icon-left hover-indicator"></span> menu.MenuName</a>
+                                                </li>
+                                                @*@if (menus != null && menus.Count > 0)
+                                                {
+                                                    foreach (var menu in menus)
+                                                    {
+                                                        string url = Request.Url.Scheme + "://" + Request.Url.Host + ":" + Request.Url.Port + WebConfig.SiteName + menu.URL;
+                                                        <li class="nts-breadcrumb-child-entry">
+                                                            <a class="N6" href="@url"><span class="icon-arrow-right-small icon-left hover-indicator"></span>@menu.MenuName</a>
+                                                        </li>
+                                                    }
+                                                }*@
+                                            </ul>
+                                        </li>
+                                        <li class="nts-breadcrumb-entry N4">
+                                            <a href="#" class="N4">
+                                                <span> ViewBag.Title</span>
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        @RenderBody()
+                    </div>
+
+                </div>
+            }
+            else
+            {
+                @*@Html.Partial("~/Views/Home/Login.cshtml")*@
+                @*@RenderSection("login", false)*@
+            }
+            @RenderSection("details", false)
+        </div>
+        <!-- The #id.class selector is still a pain in IE6: http://bytesizecss.com/blog/post/the-idclass-selector-in-ie6 -->
+        <!--
+            NOTE FOR CMS INTEGRATION:
+            When you want to add the pagetools to the footer, don't forget to set a
+            class "extended-footer" for the body element!
+        -->
+    </div>
+    @RenderSection("popup", false)
+    <div class="nts-navbar-full-overlay"></div>
+    <!-- footer start -->
+    <footer>
+        <div>
+            <div class="nts-footer" data-ste-component="footer">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-xs-12 col-md-6 col-lg-4 hidden-xs hidden-sm">
+                            <h4 class="H4"> <span class="H4">Contact Us</span> </h4>
+                            <div class="nts-linklist contact-info">
+                                <ul>
+                                    <li>
+                                        <a class="A3" href="http://www.siemens.com/entry/cn/contact/zh/" title="Contact Us" target="_blank" rel="noopener" data-ste-link-id="3398790287.footer/footer:1595661124..com/entry/cn/contact/zh/">
+                                            <span class="icon-email icon-left"></span>Contact Us
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <div class="col-xs-12 col-md-6 col-lg-4">
+                            <h4 class="H4"> <span class="H4">Follow our channels</span> </h4>
+                            <div class="nts-linklist social-channels-list">
+                                <ul>
+                                    <li>
+                                        <a href="http://www.weibo.com/siemens" title="新浪微博" target="_blank" rel="noopener" data-ste-link-id="3398790287.footer/footer:0591860911.p://www.weibo.com/siemens">
+                                            <i class="icon-weibo" aria-hidden="true"></i>
+                                        </a>
+                                    </li>
+
+                                    <li>
+                                        <a href="http://tvs.youku.com/siemens" title="优酷" target="_blank" rel="noopener" data-ste-link-id="3398790287.footer/footer:0241071658.p://tvs.youku.com/siemens">
+                                            <i class="icon-youku" aria-hidden="true"></i>
+                                        </a>
+                                    </li>
+
+                                    <li>
+                                        <a href="http://www.linkedin.com/company/siemens" title="LinkedIn" target="_blank" rel="noopener" data-ste-link-id="3398790287.footer/footer:3540239525.kedin.com/company/siemens">
+                                            <i class="icon-linkedin" aria-hidden="true"></i>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <div class="col-xs-12 footer-links">
+                            <a class="A3 hidden-xs hidden-sm hidden-md" href="https://www.siemens.com/cn/zh/home.html/" title="Resource.SiemensChina" target="_blank">Siemens China</a>
+                            <span class="P3">©  Siemens Ltd. China, 2017</span>
+                            <a class="A3" href="http://w1.siemens.com.cn/footer/Corporateinformation.asp" target="_blank">Company</a>
+                            <a class="A3" href="http://w1.siemens.com.cn/footer/PrivacyPolicy.asp" target="_blank">Privacy Policy</a>
+                            <a class="A3" href="http://w1.siemens.com.cn/footer/TermsofUse.asp" target="_blank">Terms of Use</a>
+                            <a class="A3" href="http://www.miibeian.gov.cn/state/outPortal/loginPortal.action" target="_blank">Digital ID</a>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </footer>
+    <!-- footer end -->
+</body>
+</html>
+<script>
+
+    function logout() {
+        window.location.href = '@Url.Action("Logout", "Account")';
+    }
+
+    //重置文本框内样式
+    function ResetInputDivStyle() {
+        $('.input-div>input').each(function (index, item) {
+            if ($(item).val()) {
+                $(item).parents('.input-div').addClass('focused');
+            } else {
+                $(item).parents('.input-div').removeClass('focused');
+            }
+        });
+
+        $('.input-div>textarea').each(function (index, item) {
+            if ($(item).val()) {
+                $(item).parents('.input-div').addClass('focused');
+            } else {
+                $(item).parents('.input-div').removeClass('focused');
+            }
+        });
+    }
+
+    //重置清除所有error校验label
+    function ResetErrorStyle() {
+        $('.input-div').find('label.error').remove();
+    }
+
+    //重新绑定input focus及blur效果(动态添加元素后需要使用)
+    function RebindInputDivEvent() {
+        $('.input-div>input').focus(function () {
+            if ($(this).val() == '') {
+                $(this).parents('.input-div').addClass('focused');
+            }
+        });
+        $('.input-div>input').blur(function () {
+            if ($(this).val() == '') {
+                $(this).parents('.input-div').removeClass('focused');
+            }
+        });
+        $('.input-div>textarea').focus(function () {
+            if ($(this).val() == '') {
+                $(this).parents('.input-div').addClass('focused');
+            }
+        });
+        $('.input-div>textarea').blur(function () {
+            if ($(this).val() == '') {
+                $(this).parents('.input-div').removeClass('focused');
+            }
+        });
+    }
+
+    //异步加载数据后重新设置列表tbody动态高度
+    function ResetTableHeight() {
+        $('.nts-table-scrollpane').each(function (index, element) {
+            var tbodyHeight = $(this).find('.jspPane').actual("height");
+            $(this).find('.jspContainer').height(tbodyHeight);
+            $(this).height(tbodyHeight + 4);
+            $(this).width($(this).find('.jspContainer').width());
+        });
+    }
+
+    //ie10兼容问题
+    $(function () {
+        $(".input-div").click(function () {
+            $(this).children("input:last").focus();
+        });
+    });
+
+</script>
+<!-- NOTE FOR CMS INTEGRATION: Place your webtracking code here -->
+@RenderSection("scripts", false)

@@ -1,0 +1,48 @@
+/**
+ * Module siemens.tooltip
+ * basic stylesheet
+ * 
+ * @project   Digital First
+ * @date      2011-04-19
+ * @author    Robin Rush, Sapient GmbH <rrush@sapient.com>
+ * @licensor  Siemens AG
+ * @site      Siemens Healthcare
+ */
+ 
+/* tooltip - general styles */
+a.tooltip { padding: 0 0 0 14px; background: url(../images/icon_info.gif) no-repeat 0 1px; text-decoration: underline;}
+/* we use filter: none !important to fix an jquery tools tooltip rendering bug in ie < 9 */
+.tt-container { width: 376px; display: none; z-index:9998; filter: none !important; background: url(../images/tooltip/tooltip_sprite.png) no-repeat 0 0; }
+.tt-container .tt-content { padding: 8px 5px 0 13px; background: url(../images/tooltip/tooltip_sprite.png) no-repeat 0 0; }
+.tt-container .tt-footer { height: 18px; background: url(../images/tooltip/tooltip_sprite.png) no-repeat -376px -4px;}
+/* tooltip small - general styles */
+.tt-container.small { width: 252px; }
+.tt-container.small .tt-content { padding: 10px 15px 0 23px; background: url(../images/tooltip/tooltip_small_sprite.png) no-repeat 0 0; }
+.tt-container.small .tt-footer { height: 18px; background: url(../images/tooltip/tooltip_small_sprite.png) no-repeat -252px -4px;}
+/* tooltip small right - general styles */
+.tt-container.small.right { width: 252px; }
+.tt-container.small.right .tt-content { padding: 10px 25px 0 13px; background: url(../images/tooltip/tooltip_small_sprite_right.png) no-repeat -252px 0; }
+.tt-container.small.right .tt-footer { height: 18px; background: url(../images/tooltip/tooltip_small_sprite_right.png) no-repeat 0 -4px;}
+/* tooltip - content styles */
+.tt-content a { display: block; margin: 0 8px; text-decoration: none; }
+.tt-content a:hover h3, .tt-content a:focus h3, .tt-content a:active h3 { color: #990000; }
+.tt-content a:hover img, .tt-content a:focus img, .tt-content a:active img{ border: 1px solid #990000; }
+.tt-content img { float: left; width: 72px; height: 72px; margin: 0 5px 5px 0; border: 1px solid #ffffff; }
+.tt-content h3 { color: #333333; }
+.tt-content h4 { color: #666666; font-weight: normal; }
+.tt-content-description { color: #333333; margin: 15px 0 0 0; }
+.tt-content-divider { height: 20px; margin: 5px 0 10px 0; padding:0 5px; color: #333333; line-height: 20px; background: #cccccc; border-top: 1px solid #ffffff; border-bottom: 1px solid #ffffff; }
+
+
+/**
+ * IE6 PNG Fallbacks
+ */
+/* tooltip ie6 fallback - general styles */
+* html .tt-container .tt-content { width: 358px; padding: 8px 5px 0 13px; background: url(../images/tooltip/tooltip_sprite_ie6.gif) no-repeat 0 0; }
+* html .tt-container .tt-footer { height: 18px; background: url(../images/tooltip/tooltip_sprite_ie6.gif) no-repeat -376px -4px;}
+/* tooltip small ie6 fallback - general styles */
+* html .tt-container.small .tt-content { width: 214px; padding: 10px 15px 0 23px; background: url(../images/tooltip/tooltip_small_sprite_ie6.gif) no-repeat 0 0; }
+* html .tt-container.small .tt-footer { background: url(../images/tooltip/tooltip_small_sprite_ie6.gif) no-repeat -252px -4px;}
+/* tooltip small right ie6 fallback - general styles */
+* html .tt-container.small.right .tt-content { width: 214px; padding: 10px 25px 0 13px; background: url(../images/tooltip/tooltip_small_sprite_right_ie6.gif) no-repeat -252px 0; }
+* html .tt-container.small.right .tt-footer { background: url(../images/tooltip/tooltip_small_sprite_right_ie6.gif) no-repeat 0 -4px;}

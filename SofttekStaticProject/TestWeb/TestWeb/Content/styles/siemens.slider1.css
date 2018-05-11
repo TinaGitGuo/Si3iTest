@@ -1,0 +1,25 @@
+/**
+ * Module siemens.slider stylesheet
+ * individual settings
+ * 
+ * @project   Digital First
+ * @date      2011-04-14
+ * @author    Robin Rush, Sapient GmbH <rrush@sapient.com>
+ * @licensor  Siemens AG
+ * @site      Siemens Healthcare
+ */
+ 
+/* slider.container */
+
+
+.relatedContent .col1_fullCol{margin-top:12px;width:615px;}
+.relatedContent .slider { height: 130px; padding: 15px 0 0 0; }
+
+/* a single item. */
+.relatedContent .slider .items li { width: 102px; }
+
+/* an item's image container - needed to support different vertical centered image formats */
+.relatedContent .slider .items .img-container { width: 102px; height: 72px; margin-bottom:3px;}
+
+/* item image styles - white 1px solid border in normal state - red 1px solid border in hover state */
+.relatedContent .slider .items .img-container img{  }

@@ -1,0 +1,19 @@
+
+/* collapsible styles */
+.collapsible { margin: 0 0 5px 0; padding: 10px 5px; border: 1px solid #999999; border-radius: 5px; -moz-border-radius: 5px; -webkit-border-radius: 5px; overflow: hidden; }
+.collapsible a.ui-link:link { display: block; text-decoration: none; }
+.collapsible-header h3 { font-size: 12px; font-weight: bold; margin: 0; }
+.collapsible-header p { font-size: 12px; font-weight: normal; margin: 0; color: #999999; }
+.collapsible-body { display: none; }
+.collapsible-body-row { overflow: hidden; }
+.collapsible-body-row:first-child { margin: 10px 0 0 0; }
+.collapsible-body-cell { width: 50%; float: left; }
+.collapsible-body-cell a img { border: 1px solid #ffffff; }
+.collapsible-body-cell a:hover img { border: 1px solid #990000; }
+.collapsible-body-description h3 { margin: 0; padding: 0 0 0 10px; background: url(../images/icon-arrow-right.gif) no-repeat 0 3px; font-size: 11px; font-weight: bold; }
+.collapsible-body-description ul { margin: 0 0 5px 0; padding: 0 0 0 2em; font-size: 11px; font-weight: normal; }
+.collapsible-body-list { margin: 0; padding: 0; font-size: 11px; }
+.collapsible-body-list li { margin: 5px 0 0 0; padding: 0; }
+.collapsible-body-list li:first-child { margin: 0; }
+.collapsible-body-list h3 { padding: 0 0 0 10px; background: url(../images/icon-arrow-right.gif) no-repeat 0 3px; font-weight: normal;}
+.collapsible.special .collapsible-body-list a.ui-link:link { display: block; text-decoration: underline; }

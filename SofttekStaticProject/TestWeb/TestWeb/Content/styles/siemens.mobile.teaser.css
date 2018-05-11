@@ -1,0 +1,7 @@
+
+/* teaser styles */
+.highlight-teaser h3 { font-size: 12px; font-weight: bold; margin: 0 0 5px 0 !important; }
+.highlight-teaser p { margin: 0; font-size: 12px; font-weight: normal; }
+.highlight-teaser a.ui-link { text-decoration: none; }
+.highlight-teaser a.ui-link img { float: left; width: 56px; height: 56px; margin: 0 5px 0 0; border: 1px solid #ffffff; }
+.highlight-teaser a.ui-link:hover img { border: 1px solid #990000; }

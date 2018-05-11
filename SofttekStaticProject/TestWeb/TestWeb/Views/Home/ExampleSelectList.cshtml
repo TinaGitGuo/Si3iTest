@@ -1,0 +1,39 @@
+﻿
+@{
+    ViewBag.Title = "ExampleSelectList";
+}
+
+ 
+<!--SelectList-->
+<h2>ExampleSelectList</h2>
+<div class="row">
+    <div class="col-xs-12 col-sm-12 col-md-12">
+        <form class="nts-form row" id="groupSearchForm" style="margin-bottom:0px;">
+            @*<div class="col-lg-4 col-md-6 col-sm-12 col-xs-12">
+                <div class="input-div" data-placeholder="Vehicle Assembler Chinese" onkeydown="enterSearch(window.event,1)">
+                    <input name="assemblerNameCh" value="" type="text" Watermark="GroupCH" id="GroupCHSearch" class="F1" />
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-6 col-sm-12 col-xs-12">
+                <div class="input-div" data-placeholder="Vehicle Assembler English" onkeydown="enterSearch(window.event,1)">
+                    <input name="assemblerNameEn" value="" type="text" Watermark="GroupEN" id="GroupENSearch" class="F1" />
+                </div>
+            </div>*@
+           
+            @*//如果是管理员或销售主管，显示销售名称筛选项*@
+            <div class="col-lg-2 col-md-6 col-sm-12 col-xs-12">
+                <div class="input-div" id="SalesUserSearchDiv">
+                    <select id="SalesUserSearch" name="userId" watermark="Sales Name"  >
+                        <option value="">Please select</option>
+                        <option value="user.Id" selected="selected">UserName</option>
+                        <option value="user.Id" >UserName1</option>
+                        <option value="user.Id"  >UserName2</option>
+                                
+                    </select>
+                </div>
+            </div>
+          
+        </form>
+    </div>
+</div>
+ 

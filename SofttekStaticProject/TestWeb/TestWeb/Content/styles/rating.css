@@ -1,0 +1,102 @@
+/**
+ * Rating
+ * 
+ * The styles in this file are for the module "rating". It's based on
+ * the jQuery plugin "RateIt".
+ * 
+ * The styling itself has not been described deeply in any styleguide.
+ * There was only one small section in the "Product Pages Cookbook"
+ * without any detailed information about the implementation.
+ * 
+ * @project   HTML5 template set
+ * @date      2011-05-25
+ * @author    Finn Pröpper, Sapient GmbH <fproepper@sapient.com>
+ * @licensor  Siemens AG
+ * @site      Siemens Healthcare
+ * @see       rateit.codeplex.com
+ */
+
+/**
+ * Rating Core Style
+ *
+ * @section   =core
+ */
+.rating {
+	margin: 5px 0;
+	border-top: 1px dotted #999;
+	border-bottom: 1px dotted #999;
+	padding: 5px 0;
+}
+.rating .form {
+	float: left;
+}
+.rating .average {
+	float: left;
+	margin-left: 4px;
+	font-size: 85%;
+	font-weight: bold;
+}
+
+
+
+/**
+ * RateIt stuff
+ * 
+ * Based on the default stylesheet of RateIt.
+ *
+ * @section   =rate-it
+ * @see       www.radioactivethinking.com/rateit/example/example.htm
+ */
+.rating .stars {
+	position: relative;
+	float: left;
+	margin-left: -2px;
+	-webkit-user-select: none;
+	 -khtml-user-select: none;
+	   -moz-user-select: none;
+	     -o-user-select: none;
+	        user-select: none;
+	-webkit-touch-callout: none;
+}
+.rating .stars .rateit-range {
+	display: inline-block;
+	position: relative;
+	background: url("../images/icon-rating-sprite.gif");
+	height: 12px;
+}
+.rating .stars .rateit-hover,
+.rating .stars .rateit-selected {
+	position: absolute;
+}
+.rating .stars .rateit-hover {
+	background: url("../images/icon-rating-sprite.gif") left -12px;
+}
+.rating .stars .rateit-selected {
+	background: url("../images/icon-rating-sprite.gif") left -12px;
+}
+
+
+
+/**
+ * Print
+ *
+ * @section   =print
+ */
+@media print {
+	
+	.rating {
+		border: 0;
+	}
+	.rating .stars {
+		display: none;
+	}
+	.rating .average .visuallyhidden {
+		position: static;
+		width: auto;
+		height: auto;
+		overflow: visible;
+		margin: 0;
+		clip: auto;
+	}
+	
+}

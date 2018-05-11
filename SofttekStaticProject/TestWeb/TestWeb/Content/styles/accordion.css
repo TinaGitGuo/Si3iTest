@@ -1,0 +1,98 @@
+/**
+ * Accordion
+ * 
+ * The styles in this file are for the module "accordion". It's based on
+ * the accordion from jQuery UI.
+ * 
+ * The styling itself has not been described in any styleguide - for this
+ * reason Sapient used the accordion on the following page as a
+ * reference for layout:
+ * www.education.medical.siemens.com/eep/coursehandler/course_selector.faces
+ * 
+ * @project   HTML5 template set
+ * @date      2011-05-25
+ * @author    Finn Pröpper, Sapient GmbH <fproepper@sapient.com>
+ * @licensor  Siemens AG
+ * @site      Siemens Healthcare
+ * @see       jqueryui.com/demos/accordion/
+ */
+
+/**
+ * Accordion Core Style
+ *
+ * @section   =core
+ */
+.accordion {
+	margin-bottom: 16px;
+}
+.accordion .opener {
+	margin-top: -1px;
+	border-top: 1px dotted #333;
+	border-bottom: 1px dotted #333;
+	padding: 5px;
+	background: #FFF;
+}
+.accordion .opener a {
+	display: block;
+	color: #333;
+	font-size: 11px; /* We are using px instead of % here to avoid font sizing issues
+	                    when headlines are used in the opener. Should be an exception!
+	                    See: stackoverflow.com/questions/293247/is-there-really-any-point-to-using-relative-font-sizing-in-css */
+	line-height: 1.28;
+	text-decoration: none;
+}
+.accordion .content {
+	padding: 5px;
+	padding-left: 21px;
+}
+
+
+
+/**
+ * jQuery UI stuff
+ *
+ * @section   =jquery-ui
+ * @see       jqueryui.com/demos/accordion/ => Tab "Theming"
+ */
+.accordion .ui-accordion-header a {
+	padding-left: 16px;
+	background: url("../images/icon-plus.gif") no-repeat 0 2px;
+}
+.accordion .ui-state-active a {
+	background-image: url("../images/icon-minus.gif");
+}
+.ie6 .accordion .ui-accordion-header a,
+.ie7 .accordion .ui-accordion-header a {
+	zoom: 1;
+}
+
+
+
+/**
+ * Print
+ *
+ * @section   =print
+ */
+@media print {
+	
+	.accordion {
+		padding: 0;
+		background: #FFF;
+	}
+	.accordion .opener {
+		border-bottom: 0;
+		padding: 5px 0 0;
+	}
+	.accordion .opener a {
+		padding-left: 0;
+		color: #000;
+		font-size: 100%;
+		background: none;
+	}
+	.accordion .content {
+		display: block !important;
+		height: auto !important;
+		padding: 0 0 5px;
+	}
+	
+}

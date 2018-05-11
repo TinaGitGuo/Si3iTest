@@ -1,0 +1,35 @@
+﻿
+@{
+    ViewBag.Title = "ExampleDate";
+}
+<!--ExampleDate-->
+<h3>ExampleDate</h3>
+<div class="row">
+    
+    <div class="col-lg-3 col-md-6 col-sm-12 col-xs-12">
+        <div class="input-div requiredStyle" data-placeholder="*SOP" id="SopDiv">
+            @*<input name="Sop" value="@System.DateTime.Now.ToString("yyyy-MM-dd")" type="text" Watermark="*SOP" id="SopDate" class="F1 laydate-icon" style="height:42px" />*@
+            <input name="Sop" value="" type="text" Watermark="*SOP" id="SopDate" class="F1 laydate-icon" style="height:42px" />
+        </div>
+    </div>
+</div>
+@section scripts
+{
+<script src="@Url.Content("~/Content/laydate/laydate.js")"></script>
+    <script type="text/javascript">
+       
+            laydate.skin('molv');  //加载皮肤，参数lib为皮肤名
+            var DateOptions = {
+                elem: '#SopDate',
+                format: 'YYYY-MM-DD',
+                //min: laydate.now(),
+                choose: function () {
+                    $("#SopDate").parent().addClass("focused");
+                }
+            };
+            laydate(DateOptions);
+     
+    </script> 
+
+}
+<!--ExampleDate-->

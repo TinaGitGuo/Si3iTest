@@ -1,0 +1,108 @@
+﻿
+@{
+    ViewBag.Title = "ExampleValidate";
+}
+<!--Validate-->
+<h2>ExampleValidate</h2>
+<form class="nts-form row" id="AssemblerEditPopForm">
+    <div class="col-lg-4 col-md-6 col-sm-12 col-xs-12">
+        <div class="input-div" data-placeholder="Vehicle Assembler Chinese Name" id="AssemblerNameChDiv">
+            <input name="AssemblerNameCh" type="text" Watermark="Vehicle Assembler Chinese Name" id="AssemblerNameChPop" class="F1" />
+        </div>
+    </div>
+    <div class="col-lg-4 col-md-6 col-sm-12 col-xs-12">
+        <div class="input-div" data-placeholder="Vehicle Assembler English Name" id="AssemblerNameEnDiv">
+            <input name="AssemblerNameEn" type="text" Watermark="Vehicle Assembler English Name" id="AssemblerNameEnPop" class="F1" />
+        </div>
+    </div>
+    <div class="col-lg-4 col-md-6 col-sm-12 col-xs-12">
+        <div class="input-div" id="SalesUserSelectDiv">
+            <select id="SalesUserSelectPop" name="UserId" watermark="Sales" class="ignore" tabindex="-1">
+                <option value="">Please select</option>
+                
+            </select>
+        </div>
+    </div>
+    <div class="popup-foot">
+        <div class="col-xs-12">
+            <div class="nts-button B1 pull-right"  >
+                <div class="nts-button-container col-lg-12  ">
+                    <button type="submit" class="submit">Submit</button>
+                </div>
+            </div>
+            <div class="nts-button B2 pull-right">
+                <div class="nts-button-container col-lg-12  "  >
+                    <button type="button" class="cancel">Back</button>
+                </div>
+            </div>
+        </div>
+    </div>
+   
+</form>
+<!--Validate-->
+@section scripts
+{
+    <script src="@Url.Content("~/Scripts/jquery.form.js")"></script>
+    <script src="@Url.Content("~/Scripts/jquery.validate.js")" type="text/javascript"></script>
+    <script src="@Url.Content("~/Scripts/validate-methods.js")"></script>
+
+    <script>
+        AssemblerValidateForm();
+
+        // if ($('#AssemblerEditPopForm').valid()){}
+        //字段校验
+        function AssemblerValidateForm() {
+            AssemblerEditPopFormValid = $("#AssemblerEditPopForm").validate({
+                rules: {
+                    AssemblerNameCh: {
+                        required: true,
+                        maxlength: 100,
+                        special: true
+                        @*remote: {
+        url: '@Url.Action("CheckAssemblerNameChOrEn", "SalesData")',
+        type: 'get',
+        cache: false,
+        //async: false,
+        data: {
+            name: function () {
+                return $("#AssemblerNameChPop").val();
+            },
+            assemblerId: function () {
+                return $('#AssemblerDetailId').val();
+            },
+            type: 1
+        }
+    }*@
+                    },
+                    AssemblerNameEn: {
+                        required: true,
+                        maxlength: 200,
+                        special: true
+                    }
+                },
+                messages: {
+                    AssemblerNameCh: {
+                        required: 'Vehicle Assembler Chinese Name could not be empty',
+                        maxlength: 'Vehicle Assembler Chinese Name could not exceed 100 characters',
+                        special: 'could not contain < or >'
+                        //remote: '该集团中文名已存在,请重新输入'
+                    },
+                    AssemblerNameEn: {
+                        required: 'Vehicle Assembler English Name could not be empty',
+                        maxlength: 'Vehicle Assembler English Name could not exceed 100 characters',
+                        special: 'could not contain < or >'
+                        //remote: '该集团英文名已存在,请重新输入'
+                    }
+                },
+                ignore: ".ignore",
+                errorPlacement: function(error, element) {
+                    error.appendTo(element.parent());
+                },
+                success: function(label) {
+                    $(label).remove();
+                }
+            });
+        }
+
+    </script>
+}

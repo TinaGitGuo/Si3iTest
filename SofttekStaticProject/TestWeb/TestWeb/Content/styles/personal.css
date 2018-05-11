@@ -1,0 +1,74 @@
+/**
+ * Personal area
+ * 
+ * The styles in this file are for the module "personal" - an example
+ * module that shows how you could implement the personalized area in the
+ * feature zone. All styles are for demo purpose only, a final
+ * implementation would need more details.
+ * 
+ * Positioning and styling comes partly from the styleguide, page 76.
+ * 
+ * @project   HTML5 template set
+ * @date      2011-05-24
+ * @author    Finn Pröpper, Sapient GmbH <fproepper@sapient.com>
+ * @licensor  Siemens AG
+ * @site      Siemens Healthcare
+ */
+
+/**
+ * Personal area
+ *
+ * @section   =personal
+ */
+#personal {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 975px;
+}
+#personal ul {
+	float: right;
+	margin: 0;
+	list-style: none;
+	font-size: 85%;
+	line-height: 1.28;
+}
+#personal li {
+	float: left;
+}
+#personal a {
+	display: block;
+	margin: 3px 0 0 20px;
+	padding: 2px 0 2px 10px;
+	color: #FFF;
+	text-decoration: none;
+	background: url("../images/icon-arrow-right-white.gif") no-repeat left center;
+}
+#personal a:hover,
+#personal a:active,
+#personal a:focus {
+	color: #900;
+	background-image: url("../images/icon-arrow-right.gif");
+}
+
+
+
+/**
+ * Login layer
+ *
+ * Based on the simple layer.
+ *
+ * @subsection   =login
+ */
+#simple-layer-login {
+	top: 24px;
+	left: 667px;
+	border: 0;
+}
+#simple-layer-login a.close {
+	background-image: url("../images/icon-cross-simple-layer-login.gif");
+}
+#simple-layer-login .content {
+	width: 278px;
+	height: 60px;
+}

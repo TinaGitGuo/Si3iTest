@@ -1,0 +1,359 @@
+﻿
+@{
+    ViewBag.Title = "AllInForm";
+}
+<h2>AllInForm</h2>
+<!--Button-->
+<h3>Compare ExampleButton</h3>
+
+<div class="popup-foot">
+    <div class="col-xs-12">
+        <div class="nts-button B1 pull-right">
+            <div class="nts-button-container col-lg-12  ">
+                <button type="button" class="submit">Submit</button>
+            </div>
+        </div>
+        <div class="nts-button B2 pull-right">
+            <div class="nts-button-container col-lg-12  ">
+                <button type="button" class="cancel">Cancel</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<h3>
+    Back  ExampleButton
+
+</h3>
+<div style="margin-bottom:95px;">
+    <div class="row">
+        <div class="col-xs-8 col-sm-5 col-md-4 col-lg-2 pull-left">
+            <div class="nts-button B1 pull-left" id="DoBackBtn">
+                <div class="nts-button-container">
+                    <a href="#" target="_self" class="">Back</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!--Button-->
+<!--TextBox-->
+<h3>ExampleTextBox</h3>
+<h1>simple</h1>
+<form class="nts-form row">
+    <div class="col-lg-3 col-md-6 col-sm-12 col-xs-12">
+        <div class="input-div ie10" data-placeholder="Vehicle Assembler Chinese">
+
+            <input value="" type="text" Watermark="Vehicle Assembler Chinese" />
+        </div>
+    </div>
+</form>
+<!--TextBox-->
+<!--CheckBox-->
+
+<h3>Example Checkbox and Radio</h3>
+<div class="col-lg-3 col-md-6 col-sm-12 col-xs-12">
+    <div class="checkbox-div">
+        <input type="checkbox" value="SalesManLists.Id" checked="checked" name="subBox"><label class="checkbox-text toggle-active"></label>
+    </div>
+    <label class="F4">UserName</label>
+</div>
+
+<!--CheckBox-->
+<!--Radio-->
+
+
+<div class="radio-div" data-group="puRadio">
+    <input type="radio" name="parentUserRadio" value="{{:Id}}"><span class="radio-text"></span>parentUserRadio
+</div>
+
+<!--Radio-->
+<!--SelectList-->
+<h3>ExampleSelectList</h3>
+<div class="row">
+    <div class="col-xs-12 col-sm-12 col-md-12">
+        <form class="nts-form row" id="groupSearchForm" style="margin-bottom:0px;">
+            <div class="col-lg-2 col-md-6 col-sm-12 col-xs-12">
+                <div class="input-div" id="SalesUserSearchDiv">
+                    <select id="SalesUserSearch" name="userId" watermark="Sales Name">
+                        <option value="">Please select</option>
+                        <option value="user.Id" selected="selected">UserName</option>
+                        <option value="user.Id">UserName1</option>
+                        <option value="user.Id">UserName2</option>
+
+                    </select>
+                </div>
+            </div>
+
+        </form>
+    </div>
+</div>
+<!--ExampleDate-->
+<h3>ExampleDate</h3>
+<div class="row">
+    
+    <div class="col-lg-3 col-md-6 col-sm-12 col-xs-12">
+        <div class="input-div requiredStyle" data-placeholder="*SOP" id="SopDiv">
+            @*<input name="Sop" value="@System.DateTime.Now.ToString("yyyy-MM-dd")" type="text" Watermark="*SOP" id="SopDate" class="F1 laydate-icon" style="height:42px" />*@
+            <input name="Sop" value="" type="text" Watermark="*SOP" id="SopDate" class="F1 laydate-icon" style="height:42px" />
+        </div>
+    </div>
+</div>
+@section scripts
+{
+ 
+    <script src="@Url.Content("~/Content/laydate/laydate.js")"></script>
+    <script type="text/javascript">
+        //日期
+        laydate.skin('molv');  //加载皮肤，参数lib为皮肤名
+        var DateOptions = {
+            elem: '#SopDate',
+            format: 'YYYY-MM-DD',
+            //min: laydate.now(),
+            choose: function () {
+                $("#SopDate").parent().addClass("focused");
+            }
+        };
+        laydate(DateOptions);
+     
+    </script> 
+    <script type="text/javascript">
+        //导出
+        function ExportWorkShopReport() {
+           
+            $.getJSON('@Url.Action("ExportWorkShopReport" )' , function (json) {
+                if (json.stat) {
+                    window.location.href = "@Url.Action("DowloadExcel" )" + "?Url=" + json.ExcelUrl + "&filename=" + json.Name;
+                }
+                else {
+                    SiemensVSSCfg.simpleAlert("Export Failed!", 2);
+                }
+            });
+        }
+    </script>
+   
+    <script type="text/javascript">
+        //弹出层
+        var currentIndex = 1;
+
+        $(function() {
+
+            //新增供应商Btn
+            $('#NewVendorBtn').click(function() {
+                $('#VendorEditPopTitle').text('Add Vendor');
+                $('#PopupType').val(1);
+                $('#VendorDetailId').val('');
+                $('#VendorNamePop').val('');
+                //ResetErrorStyle();
+                //ResetInputDivStyle();
+                $('.nts-navbar-full-overlay').css({ 'height': document.body.scrollHeight });
+                $('.nts-navbar-full-overlay').show();
+                $('#VendorEditPopup').show();
+                $('html, body').animate({
+                    scrollTop: 0
+                });
+            });
+
+            //新增/修改供应商->弹窗->取消Btn
+            $('#VendorEditCancleBtn').click(function() {
+                $('.nts-navbar-full-overlay').hide();
+                $(this).parents('.popup').hide();
+            });
+
+            //新增/修改供应商->弹窗->提交Btn
+            $('#VendorEditSubmitBtn').click(function() {
+                $('#VendorNamePop').removeData('previousValue');
+            });
+        });
+    </script>
+    <script>
+        //上传
+        //文件类型校验(1:图片格式校验,2:PPT格式校验)
+        function FileChange(type) {
+            var file = type == 1 ? $("#imgFile") : $("#pptFile");
+            var fileName = $.trim(file.val());
+            if (file.length != 0) {
+                var exName = fileName.substring(fileName.lastIndexOf(".") + 1).toLowerCase();
+                if (type == 1) {
+                    //图片格式校验
+                    if (exName != "jpg" && exName != "png") {
+                        SiemensVSSCfg.simpleAlert("Please select a correct image file", 0);
+                        var file = $("#imgFile");
+                        file.after(file.clone().val(""));
+                        file.remove();
+                        $('#hasImgDiv').attr('data-placeholder', 'Add Attachment');
+                        return false;
+                    } else {
+                        $('#hasImgDiv').attr('data-placeholder', fileName);
+                    }
+                } else if (type == 2) {
+                    //PPT格式校验
+                    if (exName != "ppt" && exName != "pptx") {
+                        SiemensVSSCfg.simpleAlert("Please select a correct PPT file", 0);
+                        var file = $("#pptFile");
+                        file.after(file.clone().val(""));
+                        file.remove();
+                        $('#hasPPTDiv').attr('data-placeholder', 'Add Attachment');
+                        return false;
+                    } else {
+                        $('#hasPPTDiv').attr('data-placeholder', fileName);
+                    }
+                }
+
+            }
+        }
+    </script>
+
+
+}
+<!--ExampleDate-->
+<!--Export-->
+<h3>ExampleExport</h3>
+<div class="col-xs-8 col-sm-5 col-md-4 col-lg-4 pull-right mt-24 nopadding" style="padding-right:15px;">
+    <div class="nts-button B1 pull-right ml-no-xs-10 mt-xs-10">
+        <div class="nts-button-container">
+            <a href="javascript:void(0);" target="_self" onclick="ExportWorkShopReport()">Export</a>
+        </div>
+    </div>
+</div>
+
+ 
+
+<!--Export-->
+<!--Pop-->
+<h3>ExamplePop</h3>
+
+<div class="row">
+   
+    <div class="col-xs-8 col-sm-5 col-md-4 col-lg-3 pull-right mt-24">
+       
+        <div class="nts-button B1 pull-left ml-no-xs-10 mt-xs-10" id="NewVendorBtn">
+            <div class="nts-button-container">
+                <button type="button" class="assign">Add Vendor</button>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+
+
+@section popup{
+    <!--新增/修改供应商弹窗start-->
+    <div class="div-assign popup" id="VendorEditPopup">
+        <div class="row">
+            <div class="col-lg-2 col-md-2 col-sm-1 hidden-xs"></div>
+            <div class="popup-main col-lg-8 col-md-8 col-sm-10 col-xs-12">
+                <div class="popup-head">
+                    <div class="col-xs-8 col-sm-6 col-md-5 col-lg-6 H3 alignleft">
+                        <h3 id="VendorEditPopTitle"></h3>
+
+
+                    </div>
+                </div>
+                <div class="popup-body">
+                    <div class="section">
+                        <div class="row">
+                            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                                <form class="nts-form row" id="VendorEditPopForm">
+                                    <div class="col-lg-4 col-md-6 col-sm-12 col-xs-12">
+
+
+
+                                        <div class="input-div" data-placeholder="Vendor Name">
+                                            <input name="VendorName" type="text" Watermark="Vendor Name" id="VendorNamePop" class="F1" />
+                                        </div>
+                                    </div>
+                                    <!--hidden value-->
+                                    <input type="hidden" value="" id="PopupType" />
+                                    <input type="hidden" name="VendorDetailId" value="" id="VendorDetailId" />
+
+
+
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="popup-foot">
+                    <div class="nts-button B1 pull-right nts-button-md" id="VendorEditSubmitBtn">
+                        <div class="nts-button-container">
+                            <button type="button" class="submit">Submit</button>
+                        </div>
+                    </div>
+                    <div class="nts-button B2 pull-right nts-button-md" id="VendorEditCancleBtn">
+                        <div class="nts-button-container">
+                            <button type="button" class="cancel">Cancel</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-2 col-md-2 col-sm-1 hidden-xs"></div>
+        </div>
+    </div>
+    <!--新增/修改供应商弹窗end-->
+    <!--阴影背景-->
+    <div class="nts-navbar-full-overlay"></div>
+
+}
+ 
+  
+ 
+<!--Pop-->
+<!--Upload-->
+<h3>ExampleUpload</h3>
+
+<form id="WorkShopBuForm" enctype="multipart/form-data" class="nts-form">
+    <!--img-->
+    <!--ppt-->
+    <hr/>
+    <p class="P3">
+        <span class="P3 nts-chaptertitle-title">PPT Upload*</span>
+    </p>
+    <div class="row">
+        <input type="file" id="pptFile" name="pptFile" style="display:none;" onchange="FileChange(2);" />
+        <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+            <div class="input-group file">
+                <div style="height:44px;line-height:1;" class="input-div" id="hasPPTDiv" data-placeholder="Add PPT">
+                    <input value="" type="text" Watermark="Add File" id="" class="F1" disabled style="outline:0px solid #cdd9e1;height:44px;" />
+                </div>
+                <div class="input-group-btn">
+                    <input type="button" class="btn" value="Upload" disabled />
+                </div>
+
+                <div class="input-group-btn" onclick="window.location.href = '@Url.Action("DowloadExcel" )' + '?Url=' + json.ExcelUrl + '&filename=' + json.Name">
+                    <input style="margin-left:10px;" type="button" class="btn" value="Download" />
+                </div>
+            
+            </div>
+        </div>
+    </div>
+    <!--file-->
+
+</form>
+
+<!--Alert
+/*
+Dialog Icon Value
+0: Warning
+1: OK
+2: Fail
+3: Question
+4: Lock
+5: Sad
+6: Smile
+*/
+-->
+<h3>ExampleAlert</h3>
+<ol>
+    <li><button type="button" onclick="SiemensVSSCfg.simpleAlert('OK', 1, function() { console.log(1) })">OK</button></li>
+    <li><button type="button" onclick="SiemensVSSCfg.simpleAlert('Warning', 0)">Warning</button></li>
+    <li><button type="button" onclick="SiemensVSSCfg.simpleAlert('Fail', 2)">Fail</button></li>
+    <li><button type="button" onclick="SiemensVSSCfg.simpleAlert('Question', 3)">Question</button></li>
+    <li><button type="button" onclick="SiemensVSSCfg.simpleAlert('Lock', 4)">Lock</button></li>
+    <li><button type="button" onclick="SiemensVSSCfg.simpleAlert('Sad',5)">Sad</button></li>
+    <li><button type="button" onclick="SiemensVSSCfg.simpleAlert('Smile', 6)">Smile</button></li>
+    <li><button type="button"  onclick="SiemensVSSCfg.simpleConfirm(null, 'Confirm to log in without changing your initial password?', null, function () {
+    console.log('confirm')});">Confirm</button></li>   
+</ol>
+<!--Alert-->

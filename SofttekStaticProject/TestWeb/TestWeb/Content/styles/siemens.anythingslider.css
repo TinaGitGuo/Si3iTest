@@ -1,0 +1,228 @@
+/*
+	AnythingSlider v1.8+ Siemens theme
+*/
+/* Defaults for slider types */
+.testimonial-slider {
+	width: 596px;
+	height: 235px;
+	list-style: none;
+	overflow-y: auto;
+	overflow-x: hidden;
+	margin-bottom:30px;
+}
+
+.mediaslider {
+	list-style: none;
+	overflow-y: auto;
+	overflow-x: hidden;
+	margin-bottom:30px;
+}
+
+/* Note: ul width must also be set to the size of the li item */
+ul.mediaslider, ul.mediaslider li,
+.s-left .c-article ul.mediaslider {
+	width: 201px;  /* 194 image width + 7 margin */
+	height:125px;
+}
+
+/* Overall Wrapper */
+.anythingSlider-siemens {
+	margin: 0 auto 20px auto;
+	padding: 0;
+}
+/* slider window - top & bottom borders, default state */
+.anythingSlider-siemens .anythingWindow {
+}
+/* Navigation buttons + start/stop button, default state */
+.anythingSlider-siemens .anythingControls a {
+	background-image:url(../images/anythingslider/siemens-slider-controls.png);
+	background-repeat:no-repeat;
+	background-position:-100px -13px;
+	width:12px;
+	height:12px;
+}
+/* Navigation current button, default state */
+.anythingSlider-siemens .anythingControls a.cur,
+.anythingSlider-siemens .anythingControls a:hover {
+	background-position:-100px 0;
+}
+
+.video-slide.panel {
+	position:relative;
+}
+
+.video-slide .video-play-btn {
+	width:100%;
+	height:100%;
+	background:url(../images/customer-reference/play-btn.png) no-repeat center transparent;
+	position:absolute;
+}
+
+/* Navigation Arrows */
+.anythingSlider-siemens .arrow {
+	top: 50%;
+	position: absolute;
+	display: block;
+}
+
+.anythingSlider-siemens .arrow a {
+	display: block;
+	width: 24px;
+	height: 80px;
+	margin: -40px 0 0 0; /* half height of image */
+	text-align: center;
+	outline: 0;
+	background: url(../images/anythingslider/siemens-slider-controls.png) no-repeat;
+}
+
+/* back arrow */
+.anythingSlider-siemens .back { left: 0; }
+.anythingSlider-siemens .back a { background-position: -25px 0; }
+.anythingSlider-siemens .back a:hover,
+.anythingSlider-siemens .back a.hover { background-position: 0 0; }
+/* forward arrow */
+.anythingSlider-siemens .forward { right: 0; }
+.anythingSlider-siemens .forward a { background-position: -75px 0; }
+.anythingSlider-siemens .forward a:hover,
+.anythingSlider-siemens .forward a.hover { background-position: -50px 0; }
+
+.mediaslider-slideshow {
+	overflow: hidden;
+}
+
+.mediaslider-slideshow .slides {
+	background-color:#eeeeee;
+	height:125px;
+	margin-bottom:21px;
+	margin-top:10px;
+}
+
+.mediaslider-slideshow .anythingSlider-siemens .forward {
+	right:7px;
+}
+
+/* Navigation Links */
+.anythingSlider-siemens .anythingControls {
+	height: 15px; /* limit height, needed for IE9 of all things */
+	outline: 0;
+	display: none;
+	width:100%;
+	margin: 7px 0 0 0;
+	text-align:center;
+}
+
+.anythingSlider-siemens .anythingControls ul {
+	margin-left:auto;
+	margin-right:auto;
+	padding: 0;
+}
+.anythingSlider-siemens .anythingControls ul li {
+	list-style: none;
+	display:inline-block;
+	margin: 0;
+	padding: 0;
+}
+
+.ie7 .anythingSlider-siemens .anythingControls ul li {
+	display:inline;
+}
+
+.anythingSlider-siemens .anythingControls ul a {
+	display: inline-block;
+	width: 12px;
+	height: 12px;
+	margin: 2px;
+	padding: 0;
+	text-decoration: none;
+	text-align: center;
+	outline: 0;
+}
+
+.anythingSlider-siemens .anythingControls span {
+	display: none;
+}
+
+/* Overall Wrapper */
+.anythingSlider {
+	display: block;
+	overflow: visible !important;
+	position: relative;
+}
+/* anythingSlider viewport window */
+.anythingSlider .anythingWindow {
+	overflow: hidden;
+	position: relative;
+	width: 100%;
+	height: 100%;
+}
+/* anythingSlider base (original element) */
+.anythingSlider .anythingBase {
+	background: transparent;
+	list-style: none;
+	position: absolute;
+	overflow: visible !important;
+	top: 0;
+	left: 0;
+	margin: 0;
+	padding: 0;
+}
+
+/* Navigation arrow text; indent moved to span inside "a", for IE7;
+	apparently, a negative text-indent on an "a" link moves the link as well as the text */
+.anythingSlider .arrow span {
+	display: block;
+	visibility: hidden;
+}
+/* disabled arrows, hide or reduce opacity: opacity: .5; filter: alpha(opacity=50); */
+.anythingSlider .arrow.disabled {
+	display: none;
+}
+/* all panels inside the slider; horizontal mode */
+.anythingSlider .panel {
+	background: transparent;
+	display: block;
+	overflow: hidden;
+	float: left;
+	padding: 0;
+	margin: 0;
+}
+/* vertical mode */
+.anythingSlider .vertical .panel {
+	float: none;
+}
+
+/* fade mode */
+.anythingSlider .fade .panel {
+	float: none;
+	position: absolute;
+	top: 0;
+	left: 0;
+	z-index: 0;
+}
+/* fade mode active page - visible & on top */
+.anythingSlider .fade .activePage {
+	z-index: 1;
+}
+
+/***********************
+  RTL STYLING
+ ***********************/
+/* slider autoplay right-to-left, reverse order of nav links to look better */
+.anythingSlider.rtl .anythingWindow {
+	direction: ltr;
+	unicode-bidi: bidi-override;
+}
+.anythingSlider.rtl .anythingControls ul { float: left; } /* move nav link group to left */
+.anythingSlider.rtl .anythingControls ul a { float: right; } /* reverse order of nav links */
+.anythingSlider.rtl .start-stop { /* float: right; */ } /* move start/stop button - in case you want to switch sides */
+
+/* probably not necessary, but added just in case */
+.anythingSlider .anythingWindow,
+.anythingSlider .anythingControls ul a,
+.anythingSlider .arrow a,
+.anythingSlider .start-stop {
+	transition-duration: 0;
+	-o-transition-duration: 0;
+	-moz-transition-duration: 0;
+	-webkit-transition-duration: 0;
+}

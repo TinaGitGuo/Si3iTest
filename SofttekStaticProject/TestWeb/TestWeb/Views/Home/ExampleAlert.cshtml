@@ -1,0 +1,31 @@
+﻿
+@{
+    ViewBag.Title = "ExampleAlert";
+}
+<!--Alert
+/*
+Dialog Icon Value
+0: Warning
+1: OK
+2: Fail
+3: Question
+4: Lock
+5: Sad
+6: Smile
+7: Confirm
+*/
+-->
+<h3>ExampleAlert</h3>
+<ol>
+    <li><button type="button" onclick="SiemensVSSCfg.simpleAlert('OK', 1, function() { console.log(1) })">OK</button></li>
+    <li><button type="button"  onclick="SiemensVSSCfg.simpleAlert('Warning', 0)">Warning</button></li>
+    <li><button type="button"  onclick="SiemensVSSCfg.simpleAlert('Fail', 2)">Fail</button></li>
+    <li><button type="button"  onclick="SiemensVSSCfg.simpleAlert('Question', 3)">Question</button></li>
+    <li><button type="button"  onclick="SiemensVSSCfg.simpleAlert('Lock', 4)">Lock</button></li>
+    <li><button type="button"  onclick="SiemensVSSCfg.simpleAlert('Sad',5)">Sad</button></li>
+    <li><button type="button" onclick="SiemensVSSCfg.simpleAlert('Smile', 6)">Smile</button></li>
+    <li><button type="button" onclick="SiemensVSSCfg.simpleAlert('Smile', 6)">Confirm</button></li>
+    <li><button type="button"  onclick="SiemensVSSCfg.simpleConfirm(null, 'Confirm to log in without changing your initial password?', null, function () {
+                console.log('confirm')});">Confirm</button></li>   
+</ol>
+<!--Alert-->

@@ -1,0 +1,313 @@
+﻿
+@{
+    ViewBag.Title = "ExampleTable";
+}
+
+<br />
+<h2>ExampleTable</h2>
+<div class="tab section">
+    <div class="nts-comp nts-tab container nts-comp--last" data-ste-component="tab">
+        <div class="tab-content">
+            <div role="tabpanel" class="tab-pane fade active in">
+                <div class="section table">
+                    <div class="row">
+                        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-8">
+                            <form class="nts-form row" id="vendorSearchForm">
+                                <div class="col-lg-3 col-md-6 col-sm-12 col-xs-12">
+                                    <div class="input-div" data-placeholder="Vendor Name">
+                                        <input name="vendorName" value="" type="text" Watermark="Vendor Name" class="F1" />
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                        <div class="col-xs-8 col-sm-5 col-md-4 col-lg-3 pull-right mt-24">
+                            <div class="nts-button B1 pull-left" >
+                                <div class="nts-button-container">
+                                    <button type="button" class="search">Search</button>
+                                </div>
+                            </div>
+                            <div class="nts-button B1 pull-left ml-no-xs-10 mt-xs-10" id="NewVendorBtn">
+                                <div class="nts-button-container">
+                                    <button type="button" class="assign">Add Vendor</button>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <div class="row">
+                        <div class="nts-table">
+                            <div class="col-xs-12">
+                                <div class="nts-table-scrollpane">
+                                    <table class="nts-table-scroll" id="groupDataGrid">
+                                        <thead>
+                                            <tr>
+                                                <th style="width: 15%">
+                                                    <div class="Ps">Plant Name</div>
+                                                </th>
+                                                <th style="width: 20%">
+                                                    <div class="Ps">Vehicle Assembler Chinese</div>
+                                                </th>
+                                                <th style="width: 20%">
+                                                    <div class="Ps">Vehicle Assembler English</div>
+                                                </th>
+                                                <th style="width: 15%">
+                                                    <div class="Ps">Workshop Name</div>
+                                                </th>
+                                                <th style="width: 10%">
+                                                    <div class="Ps">Sales Name</div>
+                                                </th>
+
+                                                <th style="width: 10%">
+                                                    <div class="Ps">Operation</div>
+                                                </th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            @*<tr>
+                                    <td class="P">
+                                         WorkshopName
+                                    </td>
+                                    <td class="P">
+                                         TypeName
+                                    </td>
+                                    <td class="P">
+                                         PlantName
+                                    </td>
+                                    <td class="P">
+                                        AssemblerNameCh
+                                    </td>
+                                    <td class="P">
+                                         AssemblerNameEn
+                                    </td>
+                                    <td class="P">
+                                        ProvinceName
+                                    </td>
+
+
+                                    <td class="P">
+                                        <div class="nts-button B1 pull-left">
+                                            <div class="nts-button-container">
+                                                <button type="button"  >Details</button>
+                                            </div>
+                                        </div>
+                                    </td>
+                                </tr>*@
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <br />
+
+
+
+                    <div class="row">
+                        <div class="col-xs-12 aligncenter">
+                            <div id="groupPagination"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+@section scripts{
+    <script src="@Url.Content("~/Scripts/jsrender.js")"></script>
+
+    <script src="@Url.Content("~/Content/laypage/laypage.js")"></script>
+
+    <!--车间列表render模板-->
+    <script type="text/x-jsrender" id="groupTemplate">
+        {{for rows}}
+        <tr>
+
+            <td class="P">
+                {{> PlantName}}
+            </td>
+            <td class="P">
+                {{> AssemblerNameCh}}
+            </td>
+            <td class="P">
+                {{> AssemblerNameEn}}
+            </td>
+
+            <td class="P">
+                {{> WorkshopName}}
+            </td>
+            <td class="P">
+                {{> SaleName}}
+            </td>
+
+            <td class="P">
+                <div class="nts-button B1 pull-left" onclick="DoWorkShopDetail({{:Id}})">
+                    <div class="nts-button-container">
+                        <button type="button" class="detail">Details</button>
+                    </div>
+                </div>
+            </td>
+        </tr>
+        {{/for}}
+    </script>
+
+
+    <script>
+        laypage.dir = false; //不加载默认css
+        $.ajaxSetup({ cache: false });
+        var currentIndex = 1;
+
+        loadGroupData(currentIndex);
+        //分页加载数据列表
+        function loadGroupData(pageIndex) {
+
+            $.getJSON('@Url.Action("GetList")',
+                { userId: 1,  currentPage: pageIndex }, function (json) {
+                    //渲染数据
+                    if (json.rows.length == 0) {
+                        if (pageIndex == 1) {
+                            $("#groupDataGrid tbody").empty().append('<tr><td colspan="' + $("#groupDataGrid thead th").length + '" style="text-align:center;">No data currently！</td></tr>');
+                            $('#groupPagination').fadeOut();
+                            ResetTableHeight();
+                        } else {
+                            pageIndex = pageIndex - 1;
+                            loadGroupData(pageIndex);
+                        }
+                        return;
+                    }
+                    var html = $("#groupTemplate").render(json);
+                    $("#groupDataGrid tbody").empty().append(html);
+                    $('#groupPagination').fadeIn();
+                    ResetTableHeight();
+                    debugger
+                    //渲染分页
+                    laypage({
+                        cont: $('#groupPagination'), //容器。值支持id名、原生dom对象，jquery对象,
+
+                        pages: json.total, //总页数
+                        totalCount: json.totalCount,
+                        curr: pageIndex || 1,
+                        first: 'first', //将首页显示为数字1,。若不显示，设置false即可
+                        last: 'last', //将尾页显示为总页数。若不显示，设置false即可
+                        prev: 'previous', //若不显示，设置false即可
+                        next: 'next', //若不显示，设置false即可
+                        groups: 5, //连续显示分页数
+                        jump: function (obj, first) {
+                            if (!first) { //一定要加此判断，否则初始时会无限刷新
+                                loadGroupData(obj.curr);
+                            }
+                            currentIndex = obj.curr;
+                        }
+                    });
+                });
+        }
+
+        function DoWorkShopDetail(id) {
+            window.location.href = '@Url.Action("ExampleDetail", "Home")?id=' + id;
+        }
+
+
+    </script>
+    
+    <script type="text/javascript">
+        var currentIndex = 1;
+
+        $(function() {
+
+            //新增供应商Btn
+            $('#NewVendorBtn').click(function() {
+                $('#VendorEditPopTitle').text('Add Vendor');
+                $('#PopupType').val(1);
+                $('#VendorDetailId').val('');
+                $('#VendorNamePop').val('');
+                //ResetErrorStyle();
+                //ResetInputDivStyle();
+                $('.nts-navbar-full-overlay').css({ 'height': document.body.scrollHeight });
+                $('.nts-navbar-full-overlay').show();
+                $('#VendorEditPopup').show();
+                $('html, body').animate({
+                    scrollTop: 0
+                });
+            });
+
+            //新增/修改供应商->弹窗->取消Btn
+            $('#VendorEditCancleBtn').click(function() {
+                $('.nts-navbar-full-overlay').hide();
+                $(this).parents('.popup').hide();
+            });
+
+            //新增/修改供应商->弹窗->提交Btn
+            $('#VendorEditSubmitBtn').click(function() {
+                $('#VendorNamePop').removeData('previousValue');
+            });
+        });
+    </script>
+}
+
+
+@section popup{
+    <!--新增/修改供应商弹窗start-->
+    <div class="div-assign popup" id="VendorEditPopup">
+        <div class="row">
+            <div class="col-lg-2 col-md-2 col-sm-1 hidden-xs"></div>
+            <div class="popup-main col-lg-8 col-md-8 col-sm-10 col-xs-12">
+                <div class="popup-head">
+                    <div class="col-xs-8 col-sm-6 col-md-5 col-lg-6 H3 alignleft">
+                        <h3 id="VendorEditPopTitle"></h3>
+
+
+                    </div>
+                </div>
+                <div class="popup-body">
+                    <div class="section">
+                        <div class="row">
+                            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                                <form class="nts-form row" id="VendorEditPopForm">
+                                    <div class="col-lg-4 col-md-6 col-sm-12 col-xs-12">
+
+
+
+                                        <div class="input-div" data-placeholder="Vendor Name">
+                                            <input name="VendorName" type="text" Watermark="Vendor Name" id="VendorNamePop" class="F1" />
+                                        </div>
+                                    </div>
+                                    <!--hidden value-->
+                                    <input type="hidden" value="" id="PopupType" />
+                                    <input type="hidden" name="VendorDetailId" value="" id="VendorDetailId" />
+
+
+
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="popup-foot">
+                    <div class="nts-button B1 pull-right nts-button-md" id="VendorEditSubmitBtn">
+                        <div class="nts-button-container">
+                            <button type="button" class="submit">Submit</button>
+                        </div>
+                    </div>
+                    <div class="nts-button B2 pull-right nts-button-md" id="VendorEditCancleBtn">
+                        <div class="nts-button-container">
+                            <button type="button" class="cancel">Cancel</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-2 col-md-2 col-sm-1 hidden-xs"></div>
+        </div>
+    </div>
+    <!--新增/修改供应商弹窗end-->
+    <!--阴影背景-->
+    <div class="nts-navbar-full-overlay"></div>
+
+}
+ 
+   
+ 
+<!--Pop-->

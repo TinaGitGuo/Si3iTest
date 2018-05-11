@@ -1,0 +1,48 @@
+/**
+ * Module siemens.slider 
+ * basic stylesheet
+ * 
+ * @project   Digital First
+ * @date      2011-04-14
+ * @author    Robin Rush, Sapient GmbH <rrush@sapient.com>
+ * @licensor  Siemens AG
+ * @site      Siemens Healthcare
+ */
+ 
+/* slider.container */
+.slider { position:relative; width: 100%; height: 120px; background: #eeeeee; overflow: hidden; padding: 15px 0 0 0; margin: 0; }
+/* next / previous button styles */
+.slider .slider-nav { position:absolute; height: 100%; margin: 0; padding: 0 4px; width:13px;}
+.slider .slider-nav.left-side { top:0; left: 0; }
+.slider .slider-nav.right-side { top:0; right: 0; }
+.slider .slider-nav .browse { display: block; width: 12px; height: 22px; margin: 40px 0 0 0; cursor: pointer; }
+.slider .slider-nav .browse.left { background: url(../images/slider/slider_arrows_left_12x44.gif) no-repeat 0 -22px; }
+.slider .slider-nav .browse.right { background: url(../images/slider/slider_arrows_right_12x44.gif) no-repeat 0 -22px; }
+.slider .slider-nav .browse.disabled { background-position: 0 0; cursor: default; }	
+/* root element for the scrollable */
+/* width = slider.container.width - 2 x browse.width */
+/* height = 100% of parent container .slider */
+.slider .scrollable { position: relative; float: left; display:inline; width: 554px; height: 100%; margin: 0 0 0 22px; overflow: hidden; }
+/* root element for scrollable items. */
+/* set a big value for width */
+.slider .scrollable .items { position: absolute; width: 20000em; margin: -1px 0 0 0; padding: 0; }
+/* a single item. */
+.slider .items li { float:left; margin: 0 15px 0 0; list-style: none; width: 102px; overflow: hidden; }
+/* media title link */
+.slider .items a { display: block; padding: 0 0 0 9px; color: #333333; text-decoration: none; background: url(../images/icon-arrow-right.gif) no-repeat 0 4px; }
+.slider .items a:hover, .items a:focus { color: #990000; }
+/* an item's image container - needed to support different vertical centered image formats */
+.slider .items .img-container { width: 102px; height: 77px; text-align: center; background: #eeeeee url(../images/progress-indicator.gif) no-repeat 50% 50%; }
+.no-js .slider .items .img-container { overflow: hidden; }
+/* item image styles - white 1px solid border in normal state - red 1px solid border in hover state */
+.slider .items .img-container img{ display: none; border: 1px solid #ffffff; }
+.no-js .slider .items .img-container img{ display: block; width: 100%; }
+/* item image link */
+.slider .items .img-container a { padding: 0; background: none; }
+.slider .items .img-container a:hover img, .items .img-container a:focus img,
+.slider .items .slider-active a img{ border: 1px solid #990000; }
+/* indicator setup */
+.slider .indicator { position: absolute; display: none; bottom: 0; left: 0; width: 100%; height: 8px; padding: 0 0 5px 0; }
+.slider .indicator ul { margin: 0 auto; }
+.slider .indicator li { list-style: none; display: inline; float: left; width: 5px; height: 5px; margin: 0 5px; padding: 0; background: url(../images/slider/slider_indicator_sprite.gif) no-repeat 0 -5px; overflow: hidden;}
+.slider .indicator li.active { background-position: 0 0; }

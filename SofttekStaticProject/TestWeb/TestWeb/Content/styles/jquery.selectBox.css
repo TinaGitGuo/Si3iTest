@@ -1,0 +1,131 @@
+
+/* Dropdown control */
+.selectBox-dropdown {
+	float: left; 
+	width: 247px; /* width = (desired width) - (padding-right+padding-left) */
+	margin: 0 5px 0 0;
+	padding: 0 15px 0 6px;
+	position: relative;
+	border: solid 1px #999999;
+	line-height: 16px;
+	text-decoration: none;
+	color: #666666;
+	outline: none;
+	vertical-align: middle;
+	background: #ffffff;
+	display: inline-block;
+	cursor: pointer;
+}
+
+.selectBox-dropdown:hover,
+.selectBox-dropdown:hover .selectBox-arrow,
+.selectBox-dropdown:focus,
+.selectBox-dropdown:focus .selectBox-arrow {
+	border-color: #990000;
+}
+
+.selectBox-dropdown .selectBox-label {
+	width: 100%;
+	display: inline-block;
+	white-space: nowrap;
+	overflow: hidden;
+}
+
+.selectBox-dropdown .selectBox-arrow {
+	position: absolute;
+	top: 0;
+	right: 0;
+	width: 15px;
+	height: 100%;
+	background: #ffffff url(../images/custom_select/select_handle.gif) 50% 55% no-repeat;
+}
+
+/* Dropdown menu */
+.selectBox-dropdown-menu {
+	position: absolute;
+	z-index: 99999;
+	max-height: 200px;
+	border: solid 1px #999999; /* should be the same border width as .selectBox-dropdown */
+	background: #ffffff;
+	overflow: auto;
+	padding: 1px 0 0 0;
+}
+
+/* Dropdown menu max-height IE6 fix*/
+* html .selectBox-dropdown-menu {
+	height: expression( this.scrollHeight > 199 ? "200px" : "auto" );
+}
+
+/* Inline control */
+.selectBox-inline {
+	width: 250px;
+	outline: none;
+	border: solid 1px #999999;
+	background: #ffffff;
+	display: inline-block;
+	overflow: auto;
+}
+
+.selectBox-inline:focus {
+	border-color: #999999;
+}
+
+
+/* Options */
+.selectBox-options,
+.selectBox-options LI,
+.selectBox-options LI A {
+	list-style: none;
+	display: block;
+	cursor: pointer;
+	margin: 0;
+	color: #333333;
+	text-decoration: none; 
+}
+
+.selectBox-options LI A {
+	line-height: 16px;
+	padding: 0 .3em 0 5px;
+	white-space: nowrap;
+	overflow: hidden;
+	background: 6px center no-repeat;
+	border: 1px dotted #ffffff;
+}
+
+.selectBox-options LI.selectBox-hover A,
+.selectBox-options LI.selectBox-selected A {
+	border: 1px dotted #990000;
+	color: #990000;
+}
+
+.selectBox-options LI.selectBox-disabled A {
+	color: #888;
+	background-color: transparent;
+}
+
+.selectBox-options .selectBox-optgroup {
+	color: #333333;
+	background: #EEE;
+	font-weight: bold;
+	line-height: 16px;
+	padding: 0 .3em;
+	white-space: nowrap;
+}
+
+
+/* Disabled state */
+.selectBox.selectBox-disabled {
+	color: #888 !important;
+}
+
+.selectBox-dropdown.selectBox-disabled .selectBox-arrow {
+	border-color: #999999;
+}
+
+.selectBox-inline.selectBox-disabled {
+	color: #888 !important;
+}
+
+.selectBox-inline.selectBox-disabled .selectBox-options A {
+	background-color: transparent !important;
+}

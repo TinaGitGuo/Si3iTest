@@ -1,0 +1,122 @@
+/**
+ * Entry Layer
+ * 
+ * The styles in this file are for the module "entry layer" - a layer
+ * that is displayed to the user when he opens a special page for the
+ * first time.
+ * 
+ * The styling itself has not been described in any styleguide - for this
+ * reason Sapient used the layer on the following page as a reference for
+ * layout:
+ * www.medical.siemens.com/webapp/wcs/stores/servlet/ProductDisplay~q_catalogId~e_-4~a_catTree~e_100010,1007660,12752,1008408~a_langId~e_-4~a_productId~e_187741~a_storeId~e_10001.htm
+ * 
+ * @project   HTML5 template set
+ * @date      2011-09-21
+ * @author    Finn Pröpper, Sapient GmbH <fproepper@sapient.com>
+ * @licensor  Siemens AG
+ * @site      Siemens Healthcare
+ */
+
+/**
+ * Entry Layer Core Style
+ *
+ * @section   =core
+ */
+.entry-layer-bg {
+	position: fixed;
+	top: 0;
+	left: 0;
+	z-index: 250;
+	width: 100%;
+	height: 100%;
+	overflow: hidden;
+	opacity: 0.5;
+	filter: alpha(opacity = 50); /* For IE */
+	background: #949EAD;
+}
+.ie6 .entry-layer-bg {
+	position: absolute; /* IE6 does not support position:fixed; */
+}
+.entry-layer {
+	position: fixed;
+	top: 0;
+	left: 50%;
+	z-index: 300;
+	width: 450px;
+	margin: 115px 0 0 -255px;
+	border: 1px solid #000;
+	padding: 30px;
+	background: #FFF;
+}
+.ie6 .entry-layer {
+	position: absolute; /* IE6 does not support position:fixed; */
+}
+
+.entry-layer h1 {
+	margin-bottom: 18px;
+	font-size: 85%;
+	text-align: center;
+}
+.entry-layer p {
+	font-size: 85%;
+	line-height: 1.36;
+}
+
+
+
+/**
+ * Entry Layer Elements
+ *
+ * @section   =elements
+ */
+.entry-layer .buttons {
+	margin: 40px 0 10px;
+	padding: 0 20px;
+}
+.entry-layer a.button {
+	margin-left: 0;
+}
+.entry-layer a.button-primary {
+	float: left;
+}
+.entry-layer a.button-secondary {
+	float: right;
+}
+
+
+
+/**
+ * Clearfix
+ *
+ * @section   =clearfix
+ */
+.entry-layer .buttons:before, .entry-layer .buttons:after {
+	display: block;
+	height: 0;
+	overflow: hidden;
+	content: "\0020";
+}
+.entry-layer .buttons:after {
+	clear: both;
+}
+.entry-layer .buttons {
+	zoom: 1;
+}
+
+
+
+/**
+ * Print
+ * 
+ * The layer is completely hidden in the print layout.
+ *
+ * @section   =print
+ */
+@media print {
+	
+	.entry-layer-bg,
+	.entry-layer {
+		display: none;
+	}
+	
+}
