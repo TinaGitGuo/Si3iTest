@@ -7,6 +7,25 @@ using System.Web;
 
 namespace Si3iHP.Models
 {
+    //[System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+    //public News()
+    //{
+    //NewsDetails = new HashSet<NewsDetail>();
+    //}
+    //public class Category
+    //{
+    //    public int Id { get; set; }
+    //    [Required]
+    //    [StringLength(200)]
+    //    public string CategoryName { get; set; }
+
+    //    public DateTime CreateDate { get; set; }
+    //    public virtual ICollection<Blog> Blogs { get; set; }
+    //    public Category()
+    //    {
+    //        Blogs = new HashSet<Blog>();
+    //    }
+    //}
     public class Role
     {
         [Key]
@@ -15,25 +34,30 @@ namespace Si3iHP.Models
         public string Name { get; set; }
         [StringLength(200)]
         public string Description { get; set; }
-
+        
         public DateTime? EditTime { get; set; }
+        [ForeignKey("EditorUser")]
         public Guid? Editor { get; set; }
-        [InverseProperty("EditRoles")]
-        public virtual User EditUser { get; set; }
-
         public byte IsDeleted { get; set; }
         public DateTime? DeletedTime { get; set; }
-
         public DateTime CreateTime { get; set; }
+        [ForeignKey("CreatorUser")]
         public Guid Creator { get; set; }
-        [InverseProperty("CreateRoles")]
-        public virtual User CreateUser { get; set; }
+        public virtual User CreatorUser { get; set; }
+        public virtual User EditorUser { get; set; }
 
-        public virtual ICollection<UserRole> UserRoles { get; set; }
     }
 
     public class User
     {
+     public User()
+     {
+         EditorRoles = new HashSet<Role>();
+         CreatorRoles = new HashSet<Role>();
+         Routes = new HashSet<Route>();
+         RouteChecks = new HashSet<RouteCheck>();
+         RouteContacts = new HashSet<RouteContact>();
+        }
         [Key]
         public Guid Id { get; set; }
         [StringLength(20)]
@@ -49,32 +73,31 @@ namespace Si3iHP.Models
         public string Phone { get; set; }
         [StringLength(50)]
         public string Email { get; set; }
-        public bool IsTop { get; set; }
+
+        public byte IsTop { get; set; }
         [StringLength(20)]
         public string Post { get; set; }
 
         public DateTime? EditTime { get; set; }
+        [ForeignKey("EditorUser")]
         public Guid? Editor { get; set; }
-
-        public byte IsDeleted { get; set; }
+        public byte  IsDeleted{ get; set; }
         public DateTime? DeletedTime { get; set; }
-
         public DateTime CreateTime { get; set; }
+        [ForeignKey("CreatorUser")]
         public Guid Creator { get; set; }
+        public virtual User EditorUser { get; set; }
 
-        [InverseProperty("EditUser")]
-        public virtual ICollection<Role> EditRoles { get; set; }
-        [InverseProperty("CreateUser")]
-        public virtual ICollection<Role> CreateRoles { get; set; }
+        public virtual User CreatorUser { get; set; }
 
-        [InverseProperty("EditUser")]
-        public virtual ICollection<Route> EditRoutes { get; set; }
-        [InverseProperty("CreateUser")]
-        public virtual ICollection<Route> CreateRoutes { get; set; }
+        [InverseProperty("EditorUser")]
+        public virtual ICollection<Role> EditorRoles { get; set; }
+        [InverseProperty("CreatorUser")]
+        public virtual ICollection<Role> CreatorRoles { get; set; }
 
-        public virtual ICollection<UserRole> UserRoles { get; set; }
+        public virtual ICollection<Route> Routes { get; set; }
         public virtual ICollection<RouteCheck> RouteChecks { get; set; }
-
+        public virtual ICollection<RouteContact> RouteContacts { get; set; }
     }
 
     public class UserRole
@@ -85,9 +108,9 @@ namespace Si3iHP.Models
         public Guid UserId { get; set; }
         [ForeignKey("Role")]
         public Guid RoleId { get; set; }
-
         public virtual User User { get; set; }
         public virtual Role Role { get; set; }
+
     }
 
     public class Route
@@ -103,8 +126,8 @@ namespace Si3iHP.Models
         public string RouteDescription { get; set; }
         [StringLength(20)]
         public string FirstContact { get; set; }
-        public bool IsAirport { get; set; }
-        public bool IsScreen { get; set; }
+        public byte IsAirport { get; set; }
+        public byte IsScreen { get; set; }
         [StringLength(200)]
         public string Factory { get; set; }
         [StringLength(20)]
@@ -113,26 +136,19 @@ namespace Si3iHP.Models
         public string Allergy { get; set; }
         [StringLength(200)]
         public string AllergyRemark { get; set; }
+
         public int Status { get; set; }
-
         public DateTime? EditTime { get; set; }
+        [ForeignKey("User")]
         public Guid? Editor { get; set; }
-        [InverseProperty("EditRoutes")]
-        public virtual User EditUser { get; set; }
-
-        public bool IsDeleted { get; set; }
+        public byte IsDeleted { get; set; }
         public DateTime? DeletedTime { get; set; }
-
         public DateTime CreateTime { get; set; }
-        public Guid Creator { get; set; }//修改？？
-        [InverseProperty("CreateRoutes")]
-        public virtual User CreateUser { get; set; }
-
+        [StringLength(20)]
+        public string  CreatorName { get; set; }
         [StringLength(50)]
         public string CompanyName { get; set; }
-
-        public virtual ICollection<RouteCheck> RouteChecks { get; set; }
-        public virtual ICollection<RouteContact> RouteContacts { get; set; }
+        public virtual User User { get; set; }
 
     }
 
@@ -141,20 +157,17 @@ namespace Si3iHP.Models
         [Key]
         public Guid Id { get; set; }
         [ForeignKey("Route")]
-        public Guid RouteId { get; set; }
+        public Guid RouteId { get;set;}
         [StringLength(200)]
-        public string Remark { get; set; }
-
-        public DateTime CreateTime { get; set; }
+        public string Remark { get;set;}
+        public DateTime CreateTime { get;set;}
         [ForeignKey("User")]
-        public Guid Creator { get; set; }
-
+        public Guid Creator { get;set;}
         public virtual User User { get; set; }
         public virtual Route Route { get; set; }
     }
 
-    public class RouteContact
-    {
+    public class RouteContact {
         [Key]
         public Guid Id { get; set; }
         [ForeignKey("Route")]
@@ -163,10 +176,9 @@ namespace Si3iHP.Models
         public string Name { get; set; }
         [StringLength(20)]
         public string Phone { get; set; }
-        public bool IsTop { get; set; }
+        public byte IsTop { get; set; }
         [StringLength(20)]
         public string Post { get; set; }
-
         public virtual Route Route { get; set; }
     }
 

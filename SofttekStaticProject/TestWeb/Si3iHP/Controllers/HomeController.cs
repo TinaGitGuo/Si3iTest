@@ -12,12 +12,13 @@ namespace Si3iHP.Controllers
         Si3IHpContext db = new Si3IHpContext();
         public ActionResult Index()
         {
-            if (db.Database.Exists())
-            {
-                db.Database.Delete();
-            }
-            db.Database.Create();
+            //if (db.Database.Exists())
+            //{
+            //    db.Database.Delete();
+            //}
+            //db.Database.Create();
             //db.Database.Initialize(true);
+            db.Users.ToList();
             return View();
         }
 
