@@ -15,7 +15,7 @@ namespace Si3iHP.Models
             
         {
             //自动创建表，如果Entity有改到就更新到表结构
-            //Database.SetInitializer<Si3IHpContext>(new MigrateDatabaseToLatestVersion<Si3IHpContext, ReportingDbMigrationsConfiguration>());
+            Database.SetInitializer<Si3IHpContext>(new MigrateDatabaseToLatestVersion<Si3IHpContext, ReportingDbMigrationsConfiguration>());
         }
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {

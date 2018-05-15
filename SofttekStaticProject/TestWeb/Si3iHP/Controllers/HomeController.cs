@@ -18,7 +18,7 @@ namespace Si3iHP.Controllers
             //}
             //db.Database.Create();
             //db.Database.Initialize(true);
-            db.Users.ToList();
+            var c=db.Users.ToList();
             return View();
         }
 

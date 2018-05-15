@@ -16,6 +16,7 @@ namespace Si3iHP.Models
             // Add custom user claims here
             return userIdentity;
         }
+        //<add name="DefaultConnection" connectionString="Data Source=(LocalDb)\MSSQLLocalDB;AttachDbFilename=|DataDirectory|\aspnet-Si3iHP-20180511033718.mdf;Initial Catalog=aspnet-Si3iHP-20180511033718;Integrated Security=True" providerName="System.Data.SqlClient" />
     }
 
     public class ApplicationDbContext : IdentityDbContext<ApplicationUser>

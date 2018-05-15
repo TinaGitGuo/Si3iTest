@@ -17,11 +17,12 @@ namespace Si3iHP.Models
         public string Description { get; set; }
 
         public DateTime? EditTime { get; set; }
+        
         public Guid? Editor { get; set; }
         [InverseProperty("EditRoles")]
         public virtual User EditUser { get; set; }
 
-        public byte IsDeleted { get; set; }
+        public bool IsDeleted { get; set; }
         public DateTime? DeletedTime { get; set; }
 
         public DateTime CreateTime { get; set; }
@@ -56,7 +57,7 @@ namespace Si3iHP.Models
         public DateTime? EditTime { get; set; }
         public Guid? Editor { get; set; }
 
-        public byte IsDeleted { get; set; }
+        public bool IsDeleted { get; set; }
         public DateTime? DeletedTime { get; set; }
 
         public DateTime CreateTime { get; set; }

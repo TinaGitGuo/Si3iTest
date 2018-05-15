@@ -224,6 +224,16 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Content\Softtek_SiemensHp_数据库设计说明书_20180509.xlsx" />
+    <Content Include="Content\Softtek_3i_详细设计-hp登入.xlsx" />
+    <Content Include="Content\Softtek_3i_详细设计-用户管理.xlsx" />
+    <Content Include="Content\Softtek_3i_详细设计-用户详情.xlsx" />
+    <Content Include="Content\Softtek_3i_详细设计-行程处理.xlsx" />
+    <Content Include="Content\Softtek_3i_详细设计-行程管理.xlsx" />
+    <Content Include="Content\Softtek_HP_详细设计-行程详情.xlsx" />
+    <Content Include="Content\Softtek_HP_详细设计-预约申请页.xlsx" />
+    <Content Include="Content\Softtek_HP_详细设计_我的行程单.xlsx" />
+    <Content Include="Content\Softtek_HP_详细设计_预约入口.xlsx" />
+    <Content Include="Content\Softtek_项目名称_详细设计_页面名称.xlsx" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
@@ -273,6 +283,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Content\Van\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
